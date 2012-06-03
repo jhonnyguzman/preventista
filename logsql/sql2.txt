@@ -1,0 +1,13 @@
+UPDATE choferes SET cuil = 40114481, apellido = 'JARAMILLO', nombre = 'MIRIAN ANALIA' WHERE _id = 89000;
+UPDATE choferes SET cuil = 3443443, apellido = 'VALDI', nombre = 'ENRIQUE  MAURO' WHERE _id = 100001;
+INSERT INTO choferes (_id,cuil,apellido,nombre) VALUES (100002,2334343,'DSDSD ','DDSDSD');
+INSERT INTO choferes (_id,cuil,apellido,nombre) VALUES (100003,4433,'DDDSS ','EDD');
+INSERT INTO choferes (_id,cuil,apellido,nombre) VALUES (100004,33222,'Este ','RDD');
+UPDATE choferes SET cuil = 40114481, apellido = 'JARAMILLO', nombre = 'MIRIAN ANALIADDDSS ' WHERE _id = 89000;
+UPDATE choferes SET cuil = 40114481, apellido = 'CEBALLOS', nombre = 'EMILSE Do ' WHERE _id = 100000;
+UPDATE choferes SET cuil = 2334343, apellido = 'DSDSD ', nombre = 'DDSDSDDDDSS ' WHERE _id = 100002;
+UPDATE choferes SET cuil = 4433, apellido = 'DDDSS ', nombre = 'EDD DDDSS ' WHERE _id = 100003;
+UPDATE choferes SET cuil = 33222, apellido = 'Este ', nombre = 'RDD FEBRUARY ' WHERE _id = 100004;
+INSERT INTO choferes (_id,cuil,apellido,nombre) VALUES (100005,34343,'What ','D');
+UPDATE choferes SET cuil = 3443443, apellido = 'VALDICan ', nombre = 'ENRIQUE  MAURO' WHERE _id = 100001;
+INSERT INTO choferes (_id,cuil,apellido,nombre) VALUES (100006,3223,'SSH ','WAS');

@@ -1,0 +1,155 @@
+<?php 
+
+/**
+ * Clase BasiCrud 
+ * 
+ * Esta clase contiene funciones de uso general de la aplicacion. Por ejemplos funciones de 
+ * formateo de fechas  
+ * Esta configurada para que se autocargue cada ves que se inicie la aplicacion,
+ * por los que los metodos de la misma pueden ser llamados desde cualquier controlador.
+ * 
+ * @package libraries
+ * @author applicacion
+ * @version  1.0  
+ */
+
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class BasiCrud {
+	
+	
+	function __construct() 
+	{
+		$CI = & get_instance();			
+	}
+	
+	/**
+	 * Método para formatear un array de fechas legible para seres humanos
+	 *
+	 * Este  mé recibe un array de fechas y realiza el formatéo de cada elemento del array al formato dd/mm/aaaa
+	 *
+	 * @param array $data
+	 * @return array $data
+	 */
+	function formatDateToHuman($date) {
+		
+		//$datestring = "%d/%m/%Y - %h:%i %a";
+		$datestring = "%d/%m/%Y";
+		$data = mdate($datestring,strtotime($date));
+		
+		return $data;	
+				
+	}
+	
+	
+	/**
+	 * Metodo para formatear un array de fechas
+	 *
+	 * Este metodo genera la fecha actual en formato aaaa-mm-dd hh:mm:ss y retorna la misma
+	 *
+	 * @return string $date
+	 */
+	function formatDateToBD() {
+		
+		$datestring = "%Y-%m-%d %h:%i:%s";
+		$time = time();
+	    $date = mdate($datestring, $time);
+	    		
+		return $date;	
+	}
+	
+
+	/**
+	 * Este metodo toma un fecha con formato 00/00/0000 
+	 * y lo transforma a 0000-00-00 antes de guardar en 
+	 *	la bd
+	 *
+	 * @param string $date
+	 * @return string $date
+	 */
+	 function getFormatDateToBD($date) {
+	 	 	 	
+	 	//elimina los espacios en blanco de la fecha ingresada
+		$date = str_replace(" ","",$date);  
+	
+		$parte1=substr($date, 0, 2);
+		$parte2=substr($date, 3, 2);
+		$parte3=substr($date, 6, 4);
+		$new_date = ($parte3."/".$parte2."/".$parte1);
+		$new_date{4} = '-';
+		$new_date{7} = '-';
+	
+		return $new_date;
+		
+	 }
+	 
+	/**
+	 * This function getting all the fields for search of 
+	 * setting file
+	 *
+	 * @access public
+	 * @param  array	$fields       all the fields of the table
+	 * @return array 		      fields for search
+	 */
+	function getFieldSearch($fields = array())
+	{
+		//code here
+		$CI = & get_instance();
+			
+		$fieldSearch = array(); 
+		foreach($fields as $field){ 
+			if($CI->config->item("search_by_".$field."")==1){ 
+				$fieldSearch[]=$field; 
+			} 
+		}
+		return $fieldSearch;
+
+	}
+	
+	
+	/**
+	 * This function getting all the fields to show in the result list 
+	 * of setting file 
+	 *
+	 * @param  array	$fields       all the fields of the table
+	 * @return array 		      fields for search
+	 */
+	function getFieldToShow($fields = array())
+	{
+		//code here
+		$CI = & get_instance();	
+		
+		$fieldShow = array(); 
+		foreach($fields as $field){ 
+			if($CI->config->item("show_".$field."")==1){ 
+				$fieldShow[]=$field; 
+			} 
+		}
+		return $fieldShow;
+
+	}
+
+	/**
+	 * This function get the paged data 
+	 *
+	 * @param  array	$options       name of model, amount result per page
+	 * @return string 		      	paged data 
+	 */
+	function getPagination($options = array())
+	{
+		//code here
+		$CI = & get_instance();	
+		
+		$config['base_url'] = '';
+	   $config['total_rows'] = $this->$options['nameModel']->get_m(array('count' => true));
+	   $config['per_page'] = $options['perpage'];
+	   $config['uri_segment'] = 3;
+	   $config['full_tag_open'] = "<div class=\"pagination\">";
+	   $config['full_tag_close'] = "</div>";
+	    
+	   $CI->pagination->initialize($config);
+	   
+	   return $this->pagination->create_links();
+
+	}
+}

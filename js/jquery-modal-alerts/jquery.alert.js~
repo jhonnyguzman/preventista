@@ -1,0 +1,70 @@
+/*
+* Alert for jQuery
+* 
+*/
+(function($) {	  
+	 $.alert = function(msg, opciones_user){
+	 	
+       // Ponemos la variable de opciones antes de la iteración (each) para ahorrar recursos
+       var settings = $.extend({}, $.alert.defaults, opciones_user );
+       		 
+		 $('#'+settings.nameId).remove(); 
+		 
+		 var contenidoHTML = '<span>'+msg+'</span>';
+       
+       // obtenemos ancho y alto de la ventana del explorer
+       var wscr = $(window).width();
+       var hscr = $(window).height();
+       
+       // ventana modal
+       // creamos otro div para la ventana modal y dos atributos
+       var moddiv = $('<div>').attr({
+                               className: settings.nameClass,
+                               id: settings.nameId
+                               });     
+       
+       // agregamos div a la pagina
+       $('body').append(moddiv);
+
+       // agregamos contenido HTML a la ventana modal
+       $('#'+settings.nameId).append(contenidoHTML);
+       
+       // redimensionamos para que se ajuste al centro y mas
+        // dimensiones de la ventana del explorer 
+       var wscr = $(window).width();
+       var hscr = $(window).height();
+       
+       // estableciendo tamaño de la ventana modal
+       $('#'+settings.nameId).css("width", settings.width+'px');
+       $('#'+settings.nameId).css("height", settings.height+'px');
+       
+       // obtiendo tamaño de la ventana modal
+       var wcnt = $('#'+settings.nameId).width();
+       var hcnt = $('#'+settings.nameId).height();
+
+       // obtener posicion central
+       var mleft = ( wscr - wcnt ) / 2;
+       //var mtop = ( hscr - hcnt ) / 2;
+       
+       var mtop = 0;
+       // estableciendo ventana modal en el centro
+       $('#'+settings.nameId).css("left", mleft+'px');
+       $('#'+settings.nameId).css("top", mtop+'px');
+       
+		 $('#'+settings.nameId).slideDown('fast');
+       setTimeout(function(){
+	  			$("#"+settings.nameId).fadeOut(1000);
+    	 }, settings.time); 		    
+            //var mensaje = $.fn.alerter.formato(atrib);
+            //alert( opc.inicial_str + mensaje + opc.final_str );
+    };
+
+    $.alerter.defaults = {
+    		width:400,
+    		height:30,
+    		nameClass:'flash-success',
+    		nameId:'flash-success',
+    		time: 1500
+     };
+    
+})(jQuery);

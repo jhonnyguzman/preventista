@@ -1,0 +1,24 @@
+- No realizar abm de pedidos, solo agregar campo estado en donde sea necesario.
+- No realizar abm de remitos, solo agregar campo estado en donde sea necesario.
+- No realizar abm de hojaruta, solo agregar campo estado en donde sea necesario.
+- Realizar abm de marca y rubro pero antes hacer backup de archivos actuales de rubros
+- Realizar abm de articulos 
+
+
+function get_c($marcas_parent)
+	{
+		$data = '';	
+		$marcas = $this->marcas_model->get_m(array('marcas_parent' => $marcas_parent, 'marcas_estado' => 1));
+
+		if(count($marcas) > 0){
+			
+			$data = "<select name='marcas_id' id='marcas_id' onClick=\"getR(this,'".base_url()."marcas_controller/get_c/','rubros')\">";
+			foreach ($marcas as $f) {
+				$data.= "<option value='".$f->marcas_id."'>".$f->marcas_descripcion."</option>";
+			}
+			$data.= "</select>";
+		}
+
+		echo $data;
+	}
+&nbsp;

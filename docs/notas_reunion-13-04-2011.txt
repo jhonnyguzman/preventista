@@ -1,0 +1,24 @@
+Cosas a hacer y modificar del modulo web con el sistema del preventista:
+------------------------------------------------------------------------
+
+EN la seccion de evaluacion de hoja de rutas:
+	Agregar 2 secciones para clientes y gastos
+	En la seccion de clientes se puede seleccionar un cliente e ingresar monto recibido y recibo
+	En la seccion de pagos se debe poder cargar gastos
+	Se debe poder calcular el total de ingreso de esa hoja de ruta y el total de gastos
+	Se debe poder visualizar la diferencia entre total de   ingreso y total de gastos
+
+En la seccion de hojas de rutas:
+  Agregar icono de impresion de sumario. Se debe poder seleccionar una o varias hojas de rutas con estado
+  ejecutada para poder realizar  el sumario de mercaderia.
+
+En la seccion de utilidades:
+	Verifcar recalcular los ingresos xq estab mal.
+	   Eje:   articulo X tiene precio de compra de $50 y precio de venta de 60, se vendio 10, entonces el monto total es $600
+	          La utilidad de ese articulo va a ser  monto_total - precio_compra * 10 = 600 - 50 * 10 = 600 - 500 =$ 100 de utilidad 
+
+En la seccion de clientes, opcion CC->:
+		Aparte de la seccion de 'General', 'Pedidos pagados' y 'Pedidos adeudados' agregar la solapa 'Recibos' en 
+		donde se detallara recibo id, fecha y monto.
+
+Cuando se da de alta un pedido o se modifica uno habilitar edicion de campo fecha de alta. 

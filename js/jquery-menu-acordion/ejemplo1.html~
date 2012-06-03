@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title></title>
+<meta name="generator" content="Bluefish 2.0.1" >
+<meta name="author" content="johnny" >
+<meta name="date" content="2011-05-15T01:54:46-0300" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link href="reset.css" type="text/css" rel="stylesheet" media="screen" />
+<script type="text/javascript" src="jquery1.6.js"></script>
+<script type="text/javascript" src="jquery.acordion.js"></script>
+<script type="text/javascript" >
+$(document).ready( function(){
+	$("#menu").accordion();
+});
+</script>
+<style>
+		#div-menu{
+			width: 160px;
+			background-color: #fff;
+	
+		}
+		
+		#div-menu a{
+			display:block;
+			text-decoration:none;
+			font-family: verdana, sans-serif;
+			color: #333;
+			font-size: 13px;
+			font-weight: bold;
+			line-height: 0.9;
+			width: 140px;
+			padding:4px 5px;
+		}
+		
+		#div-menu ul{
+			display:block;
+			margin:0;
+			padding:0;
+			width:160px;
+			list-style:none;
+		}
+		
+		#menu{
+
+		}
+		
+		#menu ul li{margin-left: 5px; } 
+		#menu ul li, #menu li:last-child{border:none}
+		
+		#menu a:hover{
+			color:#005EB5;
+		}
+		#menu ul a{
+			color: #0985E3;
+		}
+		#menu ul a:hover{
+			color:#005EB5;
+		}
+		
+		#menu ul{/*background-color:#6594D1;*/}
+		#menu li ul {display:none;}
+</style>
+</head>
+<body>
+	<div id="div-menu">
+	<ul id="menu">
+		<li><a href="#">Menu1 Level 1</a>
+		<ul>
+			<li><a href="#" >Menu1.1 Level 2</a></li>
+			<li><a href="#" >Menu1.2 Level 2</a>
+			<ul>
+				<li><a href="#" >Menu1.2.3 Level 3</a></li>
+				<li><a href="#" >Menu1.2.4 Level 3</a></li>
+				<li><a href="#" >Menu1.2.5 Level 3</a></li>
+			</ul>
+			</li>
+			<li><a href="#" >Menu1.2 Level 2</a></li>
+		</ul>
+		</li>
+		<li><a href="#" >Menu2 Level 1</a></li>
+		<li><a href="#" >Menu3 Level 1</a></li>
+		<li><a href="#" >Menu4 Level 1</a>
+		<ul>
+			<li><a href="#" >Menu4.1 Level 2</a></li>
+			<li><a href="#" >Menu4.2 Level 2</a></li>
+			<li><a href="#" >Menu4.2 Level 2</a></li>
+		</ul>
+		</li>
+		<li><a href="#" >Menu5 Level 1</a></li>	
+	</ul>
+	</div>
+</body>
+</html>
