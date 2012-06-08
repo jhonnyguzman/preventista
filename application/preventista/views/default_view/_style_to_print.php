@@ -1,4 +1,11 @@
 <style type="text/css">
+@page {
+	margin-top: 0.1em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	margin-bottom: 0.1em;
+}
+
 .title-print
 {
 	font-family: verdana, sans-serif;
@@ -21,6 +28,10 @@
 	font-family: verdana, sans-serif;
 	width: 100%;
 }
+
+/**
+* style table 1
+*/
 
 .tb-result-set-print
 {	
@@ -51,11 +62,54 @@
 	text-align: left;
 	vertical-align: top;
 }
+
+/**
+* style table 2
+*/
+.tb-result-set-print-recibos
+{	
+	color: #333;
+	font-size: 10px;
+	font-family: verdana, sans-serif;
+	width: 100%;
+	text-align: center;
+}
+
+.tb-result-set-print-recibos thead th 
+{
+	font-weight: bold;
+	color: #333;
+	padding: 3px 0px;;
+	line-height: 1.5;
+	background: #ffffff;
+}
+
+.tb-result-set-print-recibos tbody td
+{
+	border-bottom: 0px ;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 3px;	 
+	color: #333;
+	line-height: 1.5;
+	text-align: left;
+	vertical-align: top;
+}
+
+
 .markRow{
 	border-bottom: 1px solid #333 !important;
 }
 .alignRight{
 	text-align:right !important;
 }
-
+.markRowRecibos{
+	border-bottom: 1px dashed #666666  !important;
+}
+.markRowRecibos2{
+	border-bottom: 1px dashed #000  !important;
+}
+.markRowRecibos3{
+	width:35px;  !important;
+}
 </style>

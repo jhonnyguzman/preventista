@@ -329,6 +329,14 @@ class Pedidos_Model extends CI_Model {
 		return $query->result();
 	}
 
+
+	/**
+	 * Esta función devuelve todos los pedidos adeudados  de un cliente para mostrar en el detalle de la cuenta corriente
+	 *
+	 * @access public
+	 * @param array $options
+	 * @return array  result
+	 */
 	function getPedidosAdeudadosToShow_m($options = array())
 	{
 		$this->db->where("p.clientes_id = ".$options['clientes_id']." and (p.pedidos_estado = 8 or p.pedidos_estado = 15)");

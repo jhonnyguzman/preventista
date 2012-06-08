@@ -489,7 +489,7 @@ function getModalWindowAdvancedTwo(modal_id,url,w,h,nameChk,url2)
  			height:h,
  			modal:true,
  			beforeClose: function(event, ui) { 
-				loadPage(url2,'right-content');				
+				loadPage(url,'right-content');				
 			}	
 		});
 	}else{

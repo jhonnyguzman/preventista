@@ -20,7 +20,7 @@ class Hojaruta_Controller extends CI_Controller {
 		$this->load->model('fleteros_model');
 		$this->load->model('tabgral_model');
 		$this->load->model('clientes_model');  
-		$this->load->model('recibos_model');
+		$this->load->model('pagos_model');
 		$this->config->load('hojaruta_settings');
 		$data['flags'] = $this->basicauth->getPermissions('hojaruta');
 		$this->flagR = $data['flags']['flag-read'];
@@ -409,7 +409,7 @@ class Hojaruta_Controller extends CI_Controller {
 	function evaluar_c()
 	{
 		$this->load->model('cuentacorriente_model'); 
-		$this->load->model('pedidosrecibos_model');
+		$this->load->model('pagospedidos_model');
 
 		$flag = false; $i = 0; $data = array();
 		$hojaruta_id = $this->input->post('hojaruta_id');
@@ -417,7 +417,6 @@ class Hojaruta_Controller extends CI_Controller {
 		$hojarutadetalle_id = $this->input->post('hojarutadetalle_id');
 		$chkEvaluacionHojaRuta = $this->input->post('chkEvaluacionHojaRuta');
 		$monto_recibido = $this->input->post('monto_recibido');
-		$recibos_id = $this->input->post('recibos_id');
 		
 		foreach ($pedidos_id as $f) 
 		{
@@ -433,7 +432,7 @@ class Hojaruta_Controller extends CI_Controller {
 				$data['remitos_status'][] = "Se actualiz&oacute; el estado del remito: ". $remitos_id[0]->remitos_id." a <strong>'Entregado'</strong>";
 				$pedido = $this->pedidos_model->edit_m(array('pedidos_id' => $f, 'pedidos_estado' => 8)); //estado de pedido = entregado
 				$data['pedidos_status'][] = "Se actualiz&oacute; el estado del pedido: ".$f." a <strong>'Entregado'</strong>";
-				$this->inRecibo($recibos_id[$i], $monto_recibido[$i], $f);
+				$this->inPago($monto_recibido[$i], $f);
 			}
 			else {
 				$remito = $this->remitos_model->edit_m(array('remitos_id' => $remitos_id[0]->remitos_id, 'remitos_estado' => 14)); // estado de remito = cancelado
@@ -442,6 +441,7 @@ class Hojaruta_Controller extends CI_Controller {
 				$data['pedidos_status'][] = "Se actualiz&oacute; el estado del pedido: ".$f." a <strong>'Solicitado'</strong>";
 			}
 			
+			$flag = false;
 			$i++;
 		}
 
@@ -452,27 +452,26 @@ class Hojaruta_Controller extends CI_Controller {
 	}
 
 
-	function inRecibo($recibos_id, $monto, $pedidos_id)
+	function inPago($monto, $pedidos_id)
 	{
 		$pedido = $this->pedidos_model->get_m(array('pedidos_id' => $pedidos_id));
 
 		if($pedido){
-			$data_recibos['recibos_id'] = $recibos_id;
-			$data_recibos['recibos_monto'] = $monto;
-			$data_recibos['clientes_id'] = $pedido[0]->clientes_id;
-			$data_recibos['usuarios_id'] = $this->session->userdata("usuarios_id");
-			$data_recibos['recibos_estado'] = 18; // estado de recibo = ingresado
-			$data_recibos['recibos_fechaingreso'] = $this->basicrud->formatDateToBD();
-			$data_recibos['recibos_updated_at'] = $this->basicrud->formatDateToBD();
-			if($recibos_id != '' && $monto != ''){
-				if($this->recibos_model->edit_m($data_recibos)){
-					$estado = $this->basicrud->calcDeudaCliente($data_recibos);
+			$data_pagos['pagos_monto'] = $monto;
+			$data_pagos['clientes_id'] = $pedido[0]->clientes_id;
+			$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
+			$data_pagos['pagos_fechaingreso'] = $this->basicrud->formatDateToBD();
+			$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
+			if($monto != ''){
+				if($id_pagos = $this->pagos_model->add_m($data_pagos)){
+					$data_pagos['pagos_id'] = $id_pagos;
+					$estado = $this->basicrud->calcDeudaCliente($data_pagos);
 				}
 			}else{
-				$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $data_recibos['clientes_id']));
-				$haber = $this->pedidos_model->getSumPedidos1($data_recibos['clientes_id']);
-				$debe = $this->pedidos_model->getSumPedidos2($data_recibos['clientes_id']);
-				$this->basicrud->updateEstadoContable($data_recibos['clientes_id'], $haber, $debe);
+				$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $data_pagos['clientes_id']));
+				$haber = $this->pedidos_model->getSumPedidos1($data_pagos['clientes_id']);
+				$debe = $this->pedidos_model->getSumPedidos2($data_pagos['clientes_id']);
+				$this->basicrud->updateEstadoContable($data_pagos['clientes_id'], $haber, $debe);
 			}
 		}
 	}

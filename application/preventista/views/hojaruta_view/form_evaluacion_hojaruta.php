@@ -12,7 +12,6 @@
 							<th>Cliente</th>
 							<th>Monto total</th>
 							<th>Monto Recibido</th>
-							<th>Recibo</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -26,9 +25,8 @@
 								<td><?=$f->clientes_apellido." ".$f->clientes_nombre?></td>
 								<td><?=$f->peididos_montototal?></td>
 								<td><input name="monto_recibido[]" id="monto_recibido"/></td>
-								<td><input name="recibos_id[]" id="recibos_id"/></td>
 							</tr>
-						<?php endforeach; ?>
+						<?php  endforeach; ?>
 						</tbody>
 					</table>
 				</div>

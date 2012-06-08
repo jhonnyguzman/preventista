@@ -86,7 +86,7 @@ class DOMPDF {
   protected $_pdf;
 
   /**
-   * Desired paper size ('letter', 'legal', 'A4', etc.)
+   * Desired  size ('letter', 'legal', 'A4', etc.)
    *
    * @var string
    */

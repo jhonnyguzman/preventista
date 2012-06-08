@@ -682,21 +682,25 @@ class BasiCrud {
 	}
 
 
-	function calcDeudaCliente($recibo = array())
+	/**
+	 * Función para calcular la deuda total de un cliente  y actualizar el estado contable 
+	 * @return query insert 
+	 */
+	function calcDeudaCliente($pago = array())
 	{
 		$CI = & get_instance();
 		//consultar todos los pedidos del cliente con estado entregado o parcialmente pagado
-		$pedidos = $CI->pedidos_model->get2_m(array('clientes_id' => $recibo['clientes_id'], 'pedidos_estado1' => 8,'pedidos_estado2' => 15));
-		$cc = $CI->cuentacorriente_model->get_m(array('clientes_id' => $recibo['clientes_id']));
+		$pedidos = $CI->pedidos_model->get2_m(array('clientes_id' => $pago['clientes_id'], 'pedidos_estado1' => 8,'pedidos_estado2' => 15));
+		$cc = $CI->cuentacorriente_model->get_m(array('clientes_id' => $pago['clientes_id']));
 		if($cc)
 		{
-			$saldo = $recibo['recibos_monto'];
+			$saldo = $pago['pagos_monto'];
 			$flag = true;
 
 			if(isset($pedidos) && is_array($pedidos) && count($pedidos) > 0 )
 			{
 				//comprobamos si existe saldo negativo en la cuenta corriente del cliente
-				// si existe lo sumamos al monto del recibo ingresado
+				// si existe lo sumamos al monto del pago ingresado
 				if($cc[0]->cuentacorriente_debe < 0)
 					$saldo = $saldo + ($cc[0]->cuentacorriente_debe * (-1));
 
@@ -710,18 +714,18 @@ class BasiCrud {
 
 						if($saldo >= 0){
 							$pr['pedidos_id'] = $f->pedidos_id;
-							$pr['recibos_id'] = $recibo['recibos_id'];
-							$pr['pedidosrecibos_montocubierto'] =$f->peididos_montototal;
-							$pedidosrecibos = $CI->pedidosrecibos_model->add_m($pr);
+							$pr['pagos_id'] = $pago['pagos_id'];
+							$pr['pagospedidos_montocubierto'] =$f->peididos_montototal;
+							$pagospedidos = $CI->pagospedidos_model->add_m($pr);
 							$pedido = $CI->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 16, 'pedidos_montoadeudado' => 0)); // estado de pedido = pagado y entregado
 							if($saldo == 0) $flag = false;
 						}else{	
 							$porcobrar = $saldo * (-1);
 							$pagoparcial = $f->peididos_montototal - $porcobrar;
 							$pr['pedidos_id'] = $f->pedidos_id;
-							$pr['recibos_id'] = $recibo['recibos_id'];
-							$pr['pedidosrecibos_montocubierto'] = $pagoparcial;
-							$pedidosrecibos = $CI->pedidosrecibos_model->add_m($pr);
+							$pr['pagos_id'] = $pago['pagos_id'];
+							$pr['pagospedidos_montocubierto'] = $pagoparcial;
+							$pagospedidos = $CI->pagospedidos_model->add_m($pr);
 							if($porcobrar != $f->peididos_montototal )
 								$pedido = $CI->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 15, 'pedidos_montoadeudado' => $porcobrar)); // estado de pedido = entregado y parcialmente pagado
 							$flag = false;
@@ -729,25 +733,26 @@ class BasiCrud {
 					}	
 				}
 				if($saldo > 0){
-					$haber = $CI->pedidos_model->getSumPedidos1($recibo['clientes_id']);
-					$debe = $CI->pedidos_model->getSumPedidos2($recibo['clientes_id']) - $saldo;
-					$this->updateEstadoContable($recibo['clientes_id'], $haber, $debe);
+					$haber = $CI->pedidos_model->getSumPedidos1($pago['clientes_id']);
+					$debe = $CI->pedidos_model->getSumPedidos2($pago['clientes_id']) - $saldo;
+					$this->updateEstadoContable($pago['clientes_id'], $haber, $debe);
 				}else{
-					$haber = $CI->pedidos_model->getSumPedidos1($recibo['clientes_id']);
-					$debe = $CI->pedidos_model->getSumPedidos2($recibo['clientes_id']);
-					$this->updateEstadoContable($recibo['clientes_id'], $haber, $debe);
+					$haber = $CI->pedidos_model->getSumPedidos1($pago['clientes_id']);
+					$debe = $CI->pedidos_model->getSumPedidos2($pago['clientes_id']);
+					$this->updateEstadoContable($pago['clientes_id'], $haber, $debe);
 				}
 			}else{
-				$haber = $CI->pedidos_model->getSumPedidos1($recibo['clientes_id']);
+				$haber = $CI->pedidos_model->getSumPedidos1($pago['clientes_id']);
 				if($cc[0]->cuentacorriente_debe < 0) $debe = $cc[0]->cuentacorriente_debe - $saldo;
-				else $debe = $CI->pedidos_model->getSumPedidos2($recibo['clientes_id']) - $saldo;
-				$this->updateEstadoContable($recibo['clientes_id'], $haber, $debe);
+				else $debe = $CI->pedidos_model->getSumPedidos2($pago['clientes_id']) - $saldo;
+				$this->updateEstadoContable($pago['clientes_id'], $haber, $debe);
 			}
 			return true;
 		}
 
 		return true;
 	}
+
 
 
 	/**
