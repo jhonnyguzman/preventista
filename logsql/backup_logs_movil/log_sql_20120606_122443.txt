@@ -1,0 +1,1 @@
+INSERT INTO clientes (clientes_id,clientes_nombre,clientes_apellido,clientes_direccion,clientes_telefono,clientes_created_at,clientes_updated_at,clientescategoria_id) VALUES (50000,'CRISTINA','FERNANDEZ','SANTIAGO 1200','3814923432',now(),now(),3);

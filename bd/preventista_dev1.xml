@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Db flnm="preventista_dev1" nm="preventista_dev1" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>/var/www/repositorios/preventista/bd</DocFolder>
+  <Sch Cm="" nm="schemaA">
+    <Tbl UsSo="1" nm="articulos">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=50025 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="articulos_id" nm="pkarticulos"/>
+      <Cl au="1" df="" nm="articulos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_descripcion" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_preciocompra" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_stockreal" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_stockmin" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_stockmax" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="rubros_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_observaciones" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_precio1" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_precio2" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_precio3" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_porcentaje1" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_porcentaje2" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_porcentaje3" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="marcas_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="articulos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="articulos_marcas_id" prLkCl="marcas_id" upAc="3">
+        <PrTb mn="0" nm="marcas" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="articulos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="marcas_id" prCl="marcas_id"/>
+      </Fk>
+      <Fk deAc="3" nm="articulos_rubros_id" prLkCl="rubros_id" upAc="3">
+        <PrTb mn="0" nm="rubros" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="articulos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="rubros_id" prCl="rubros_id"/>
+      </Fk>
+      <Fk deAc="3" nm="articulos_tabgral_id" prLkCl="tabgral_id" upAc="3">
+        <PrTb mn="0" nm="tabgral" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="articulos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="articulos_estado" prCl="tabgral_id"/>
+      </Fk>
+      <Idx clu="0" nm="articulos_marcas_id" unq="0">
+        <ClNs>marcas_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="articulos_rubros_id" unq="0">
+        <ClNs>rubros_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="articulos_tabgral_id" unq="0">
+        <ClNs>articulos_estado</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="audit">
+      <TblOpts>ENGINE=MyISAM DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="audit_id" nm="pkaudit"/>
+      <Cl au="1" df="" nm="audit_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="audit_tabla" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="audit_evento" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="audit_usuario" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="audit_fecha" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="cambiodirectostock">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="cambiodirectostock_id" nm="pkcambiodirectostock"/>
+      <Cl au="1" df="" nm="cambiodirectostock_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cambiodirectostock_tipo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cambiodirectostock_stockantiguo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cambiodirectostock_stocknuevo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cambiodirectostock_comentario" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="cambiodirectostock_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cambiodirectostock_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="cambiodirectostock_articulos_id" prLkCl="articulos_id" upAc="1">
+        <PrTb mn="0" nm="articulos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="cambiodirectostock" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="articulos_id" prCl="articulos_id"/>
+      </Fk>
+      <Fk deAc="1" nm="cambiodirectostock_usuarios_id" prLkCl="usuarios_id" upAc="1">
+        <PrTb mn="0" nm="usuarios" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="cambiodirectostock" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="usuarios_id" prCl="usuarios_id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="clientes">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="clientes_id" nm="pkclientes"/>
+      <Cl au="1" df="" nm="clientes_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_apellido" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_direccion" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="clientes_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientescategoria_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="clientes_clientescategoria_id" prLkCl="clientescategoria_id" upAc="3">
+        <PrTb mn="0" nm="clientescategoria" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="clientes" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="clientescategoria_id" prCl="clientescategoria_id"/>
+      </Fk>
+      <Idx clu="0" nm="clientes_clientescategoria_id" unq="0">
+        <ClNs>clientescategoria_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="clientescategoria">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="clientescategoria_id" nm="pkclientescategoria"/>
+      <Cl au="1" df="" nm="clientescategoria_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientescategoria_descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientescategoria_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="clientescategoria_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientescategoria_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="compras">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="compras_id" nm="pkcompras"/>
+      <Cl au="1" df="" nm="compras_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="proveedores_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="compras_montototal" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="compras_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="compras_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="1" nm="compras_proveedores_id" prLkCl="proveedores_id" upAc="1">
+        <PrTb mn="0" nm="proveedores" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="compras" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="proveedores_id" prCl="proveedores_id"/>
+      </Fk>
+      <Fk deAc="3" nm="compras_usuarios_id" prLkCl="usuarios_id" upAc="3">
+        <PrTb mn="0" nm="usuarios" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="compras" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="usuarios_id" prCl="usuarios_id"/>
+      </Fk>
+      <Idx clu="0" nm="compras_usuarios_id" unq="0">
+        <ClNs>usuarios_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="comprasdetalle">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="comprasdetalle_id" nm="pkcomprasdetalle"/>
+      <Cl au="1" df="" nm="comprasdetalle_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="compras_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="comprasdetalle_cantidad" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="comprasdetalle_costo" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="comprasdetalle_subtotal" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="comprasdetalle_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="comprasdetalle_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="comprasdetalle_articulo_id" prLkCl="articulos_id" upAc="3">
+        <PrTb mn="0" nm="articulos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="comprasdetalle" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="articulos_id" prCl="articulos_id"/>
+      </Fk>
+      <Fk deAc="1" nm="comprasdetalle_compras_id" prLkCl="compras_id" upAc="1">
+        <PrTb mn="0" nm="compras" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="comprasdetalle" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="compras_id" prCl="compras_id"/>
+      </Fk>
+      <Idx clu="0" nm="comprasdetalle_articulo_id" unq="0">
+        <ClNs>articulos_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="cuentacorriente">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="cuentacorriente_id" nm="pkcuentacorriente"/>
+      <Cl au="1" df="" nm="cuentacorriente_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cuentacorriente_haber" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cuentacorriente_debe" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cuentacorriente_saldo" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="cuentacorriente_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cuentacorriente_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="cuentacorriente_clientes_id" prLkCl="clientes_id" upAc="3">
+        <PrTb mn="0" nm="clientes" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="cuentacorriente" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="clientes_id" prCl="clientes_id"/>
+      </Fk>
+      <Idx clu="0" nm="cuentacorriente_clientes_id" unq="0">
+        <ClNs>clientes_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="fleteros">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="fleteros_id" nm="pkfleteros"/>
+      <Cl au="1" df="" nm="fleteros_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fleteros_nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fleteros_apellido" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fleteros_telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fleteros_direccion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="fleteros_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fleteros_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="grupos_tabgral">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="grupos_tabgral_id" nm="pkgrupos_tabgral"/>
+      <Cl au="1" df="" nm="grupos_tabgral_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="grupos_tabgral_descripcion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="grupos_tabgral_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="grupos_tabgral_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="hojaruta">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="hojaruta_id" nm="pkhojaruta"/>
+      <Cl au="1" df="" nm="hojaruta_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fleteros_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hojaruta_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="hojaruta_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hojaruta_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="hojaruta_fleteros_id" prLkCl="fleteros_id" upAc="3">
+        <PrTb mn="0" nm="fleteros" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="hojaruta" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="fleteros_id" prCl="fleteros_id"/>
+      </Fk>
+      <Fk deAc="3" nm="hojaruta_usuarios_id" prLkCl="usuarios_id" upAc="3">
+        <PrTb mn="0" nm="usuarios" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="hojaruta" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="usuarios_id" prCl="usuarios_id"/>
+      </Fk>
+      <Idx clu="0" nm="hojaruta_fleteros_id" unq="0">
+        <ClNs>fleteros_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="hojaruta_usuarios_id" unq="0">
+        <ClNs>usuarios_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="hojarutadetalle">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="hojarutadetalle_id" nm="pkhojarutadetalle"/>
+      <Cl au="1" df="" nm="hojarutadetalle_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hojaruta_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="hojarutadetalle_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hojarutadetalle_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="hojarutadetalle_hojartuta_id" prLkCl="hojaruta_id" upAc="0">
+        <PrTb mn="0" nm="hojaruta" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="hojarutadetalle" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="hojaruta_id" prCl="hojaruta_id"/>
+      </Fk>
+      <Fk deAc="0" nm="hojarutadetalle_pedidos_id" prLkCl="pedidos_id" upAc="0">
+        <PrTb mn="0" nm="pedidos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="hojarutadetalle" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="pedidos_id" prCl="pedidos_id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="localidades">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=22965 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="localidades_id" nm="pklocalidades"/>
+      <Cl au="1" df="" nm="localidades_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="localidades_nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="localidades_codpostal" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="provincias_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="localidades_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="localidades_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="localidades_provincias_id" prLkCl="provincias_id" upAc="3">
+        <PrTb mn="0" nm="provincias" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="localidades" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="provincias_id" prCl="provincias_id"/>
+      </Fk>
+      <Idx clu="0" nm="localidades_provincias_id" unq="0">
+        <ClNs>provincias_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="provincias_id" unq="0">
+        <ClNs>provincias_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="marcas">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="marcas_id" nm="pkmarcas"/>
+      <Cl au="1" df="" nm="marcas_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="marcas_parent" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="marcas_descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="marcas_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="marcas_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="marcas_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="pedidodetalle">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="pedidodetalle_id" nm="pkpedidodetalle"/>
+      <Cl au="1" df="" nm="pedidodetalle_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="articulos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidodetalle_cantidad" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidodetalle_montoacordado" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidodetalle_subtotal" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="pedidodetalle_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidodetalle_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidodetalle_pv" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="pedidodetalle_articulos_id" prLkCl="articulos_id" upAc="0">
+        <PrTb mn="0" nm="articulos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="pedidodetalle" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="articulos_id" prCl="articulos_id"/>
+      </Fk>
+      <Fk deAc="0" nm="pedidodetalle_pedidos_id" prLkCl="pedidos_id" upAc="0">
+        <PrTb mn="0" nm="pedidos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="pedidodetalle" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="pedidos_id" prCl="pedidos_id"/>
+      </Fk>
+      <Idx clu="0" nm="pedidodetalle_articulos_id" unq="0">
+        <ClNs>articulos_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="pedidodetalle_pedidos_id" unq="0">
+        <ClNs>pedidos_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="pedidos">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="pedidos_id" nm="pkpedidos"/>
+      <Cl au="1" df="" nm="pedidos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="peididos_montototal" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="pedidos_montoadeudado" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidos_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="pedidos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidos_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tramites_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="pedidos_clientes_id" prLkCl="clientes_id" upAc="3">
+        <PrTb mn="0" nm="clientes" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="pedidos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="clientes_id" prCl="clientes_id"/>
+      </Fk>
+      <Fk deAc="3" nm="pedidos_tramites_id" prLkCl="tramites_id" upAc="3">
+        <PrTb mn="0" nm="tramites" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="pedidos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="tramites_id" prCl="tramites_id"/>
+      </Fk>
+      <Idx clu="0" nm="pedidos_clientes_id" unq="0">
+        <ClNs>clientes_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="pedidos_tramites_id" unq="0">
+        <ClNs>tramites_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="pedidosrecibos">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="pedidosrecibos_id" nm="pkpedidosrecibos"/>
+      <Cl au="1" df="" nm="pedidosrecibos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="recibos_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidosrecibos_montocubierto" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="pedidosremitos_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidosremitos_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="pedidosrecibos_pedidos_id" prLkCl="pedidos_id" upAc="0">
+        <PrTb mn="0" nm="pedidos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="pedidosrecibos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="pedidos_id" prCl="pedidos_id"/>
+      </Fk>
+      <Fk deAc="3" nm="pedidosrecibos_recibos_id" prLkCl="recibos_id" upAc="3">
+        <PrTb mn="0" nm="recibos" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="pedidosrecibos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="recibos_id" prCl="recibos_id"/>
+      </Fk>
+      <Idx clu="0" nm="pedidosrecibos_pedidos_id" unq="0">
+        <ClNs>pedidos_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="pedidosrecibos_recibos_id" unq="0">
+        <ClNs>recibos_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="perfiles">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="perfiles_id" nm="pkperfiles"/>
+      <Cl au="1" df="" nm="perfiles_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfiles_descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="perfiles_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="perfiles_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfiles_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="perfiles_tabgral_id" prLkCl="tabgral_id" upAc="3">
+        <PrTb mn="0" nm="tabgral" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="perfiles" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="perfiles_estado" prCl="tabgral_id"/>
+      </Fk>
+      <Idx clu="0" nm="perfiles_tabgral_id" unq="0">
+        <ClNs>perfiles_estado</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="preferences">
+      <TblOpts/>
+      <Pk ClNs="_id" nm="pkpreferences"/>
+      <Cl au="1" df="" nm="_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="_key" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="_value" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="proveedores">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="proveedores_id" nm="pkproveedores"/>
+      <Cl au="1" df="" nm="proveedores_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="proveedores_nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="proveedores_apellido" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="proveedores_direccion" nu="0">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="proveedores_telefono" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="proveedores_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="proveedores_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="provincias">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="provincias_id" nm="pkprovincias"/>
+      <Cl au="1" df="" nm="provincias_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="provincias_nombre" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="provincias_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="provincias_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="recibos">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="recibos_id" nm="pkrecibos"/>
+      <Cl au="1" df="" nm="recibos_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="recibos_monto" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clientes_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="recibos_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="recibos_fechaingreso" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="recibos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="recibos_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="recibos_clientes_id" prLkCl="clientes_id" upAc="3">
+        <PrTb mn="0" nm="clientes" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="recibos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="clientes_id" prCl="clientes_id"/>
+      </Fk>
+      <Fk deAc="3" nm="recibos_usuarios_id" prLkCl="usuarios_id" upAc="3">
+        <PrTb mn="0" nm="usuarios" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="recibos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="usuarios_id" prCl="usuarios_id"/>
+      </Fk>
+      <Idx clu="0" nm="recibos_clientes_id" unq="0">
+        <ClNs>clientes_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="recibos_usuarios_id" unq="0">
+        <ClNs>usuarios_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="remitos">
+      <TblOpts>ENGINE=InnoDB DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="remitos_id" nm="pkremitos"/>
+      <Cl au="1" df="" nm="remitos_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hojarutadetalle_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="remitos_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="remitos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="remitos_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="remitos_hojarutadetalle_id" prLkCl="hojarutadetalle_id" upAc="0">
+        <PrTb mn="0" nm="hojarutadetalle" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="remitos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="hojarutadetalle_id" prCl="hojarutadetalle_id"/>
+      </Fk>
+      <Fk deAc="3" nm="remitos_tabgral_id" prLkCl="tabgral_id" upAc="3">
+        <PrTb mn="0" nm="tabgral" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="remitos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="remitos_estado" prCl="tabgral_id"/>
+      </Fk>
+      <Idx clu="0" nm="remitos_tabgral_id" unq="0">
+        <ClNs>remitos_estado</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="rubros">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="rubros_id" nm="pkrubros"/>
+      <Cl au="1" df="" nm="rubros_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="rubros_descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="rubros_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="rubros_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="rubros_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sismenu">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="sismenu_id" nm="pksismenu"/>
+      <Cl au="1" df="" nm="sismenu_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sismenu_descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="sismenu_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sismenu_parent" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="sismenu_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sismenu_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="sismenu_tabgral_id" prLkCl="tabgral_id" upAc="3">
+        <PrTb mn="0" nm="tabgral" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="sismenu" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="sismenu_estado" prCl="tabgral_id"/>
+      </Fk>
+      <Idx clu="0" nm="sismenu_tabgral_id" unq="0">
+        <ClNs>sismenu_estado</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sisperfil">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="sisperfil_id" nm="pksisperfil"/>
+      <Cl au="1" df="" nm="sisperfil_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sismenu_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfiles_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="sisperfil_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="sisperfil_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sisperfil_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="perfiles_id" prLkCl="perfiles_id" upAc="3">
+        <PrTb mn="0" nm="perfiles" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="sisperfil" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="perfiles_id" prCl="perfiles_id"/>
+      </Fk>
+      <Fk deAc="3" nm="sisperfil_sismenu_id" prLkCl="sismenu_id" upAc="3">
+        <PrTb mn="0" nm="sismenu" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="sisperfil" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="sismenu_id" prCl="sismenu_id"/>
+      </Fk>
+      <Fk deAc="3" nm="sisperfil_tabgral_id" prLkCl="tabgral_id" upAc="3">
+        <PrTb mn="0" nm="tabgral" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="sisperfil" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="sisperfil_estado" prCl="tabgral_id"/>
+      </Fk>
+      <Idx clu="0" nm="perfiles_id" unq="0">
+        <ClNs>perfiles_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="sisperfil_sismenu_id" unq="0">
+        <ClNs>sismenu_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="sisperfil_tabgral_id" unq="0">
+        <ClNs>sisperfil_estado</ClNs>
+      </Idx>
+      <Idx clu="0" nm="tabgral_id" unq="0">
+        <ClNs>sisperfil_estado</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sispermisos">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="sispermisos_id" nm="pksispermisos"/>
+      <Cl au="1" df="" nm="sispermisos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sispermisos_tabla" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="1" nm="sispermisos_flag_read" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="sispermisos_flag_insert" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="sispermisos_flag_update" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="sispermisos_flag_delete" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfiles_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="sispermisos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sispermisos_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="sispermisos_perfiles_id" prLkCl="perfiles_id" upAc="3">
+        <PrTb mn="0" nm="perfiles" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="sispermisos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="perfiles_id" prCl="perfiles_id"/>
+      </Fk>
+      <Idx clu="0" nm="perfiles_id" unq="0">
+        <ClNs>perfiles_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="sispermisos_perfiles_id" unq="0">
+        <ClNs>perfiles_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="sisvinculos">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="sisvinculos_id" nm="pksisvinculos"/>
+      <Cl au="1" df="" nm="sisvinculos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sismenu_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sisvinculos_link" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="250" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="sisvinculos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="sisvinculos_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="sisvinculos_sismenu_id" prLkCl="sismenu_id" upAc="0">
+        <PrTb mn="0" nm="sismenu" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="sisvinculos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="sismenu_id" prCl="sismenu_id"/>
+      </Fk>
+      <Idx clu="0" nm="sismenu_id" unq="0">
+        <ClNs>sismenu_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="sisvinculos_sismenu_id" unq="0">
+        <ClNs>sismenu_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tabgral">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="tabgral_id" nm="pktabgral"/>
+      <Cl au="1" df="" nm="tabgral_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tabgral_descripcion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="grupos_tabgral_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="tabgral_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tabgral_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="grupos_tabgral_id" prLkCl="grupos_tabgral_id" upAc="3">
+        <PrTb mn="0" nm="grupos_tabgral" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="tabgral" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="grupos_tabgral_id" prCl="grupos_tabgral_id"/>
+      </Fk>
+      <Idx clu="0" nm="grupos_tabgral_id" unq="0">
+        <ClNs>grupos_tabgral_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tramites">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="tramites_id" nm="pktramites"/>
+      <Cl au="1" df="" nm="tramites_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tramites_descripcion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="tramites_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tramites_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="usuarios">
+      <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</TblOpts>
+      <Pk ClNs="usuarios_id" nm="pkusuarios"/>
+      <Cl au="1" df="" nm="usuarios_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_username" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_password" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_nombre" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_apellido" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_email" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_direccion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_telefono" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="50" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_estado" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_legajo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfiles_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="provincias_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="localidades_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_activationcode" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="150" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_tokenforgotpasswd" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="usuarios_created_at" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuarios_updated_at" nu="0">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="usuarios_estado" prLkCl="tabgral_id" upAc="3">
+        <PrTb mn="0" nm="tabgral" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="usuarios" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="usuarios_estado" prCl="tabgral_id"/>
+      </Fk>
+      <Fk deAc="3" nm="usuarios_localidades_id" prLkCl="localidades_id" upAc="3">
+        <PrTb mn="0" nm="localidades" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="usuarios" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="localidades_id" prCl="localidades_id"/>
+      </Fk>
+      <Fk deAc="3" nm="usuarios_perfiles_id" prLkCl="perfiles_id" upAc="3">
+        <PrTb mn="0" nm="perfiles" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="usuarios" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="perfiles_id" prCl="perfiles_id"/>
+      </Fk>
+      <Fk deAc="3" nm="usuarios_provincias_id" prLkCl="provincias_id" upAc="3">
+        <PrTb mn="0" nm="provincias" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="usuarios" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="provincias_id" prCl="provincias_id"/>
+      </Fk>
+      <Idx clu="0" nm="localidades_id" unq="0">
+        <ClNs>localidades_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="perfiles_id" unq="0">
+        <ClNs>usuarios_telefono</ClNs>
+      </Idx>
+      <Idx clu="0" nm="perfiles_id_usuarios" unq="0">
+        <ClNs>perfiles_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="provincias_id" unq="0">
+        <ClNs>provincias_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="tabgral_id" unq="0">
+        <ClNs>usuarios_direccion</ClNs>
+      </Idx>
+      <Idx clu="0" nm="usuarios_estado" unq="0">
+        <ClNs>usuarios_estado</ClNs>
+      </Idx>
+      <Idx clu="0" nm="usuarios_perfiles_id" unq="0">
+        <ClNs>perfiles_id</ClNs>
+      </Idx>
+      <Idx clu="0" nm="usuarios_provincias_id" unq="0">
+        <ClNs>provincias_id</ClNs>
+      </Idx>
+      <SchTrHis/>
+    </Tbl>
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="diagramA">
+    <RnCf FtSz="9" lkStgy="OffsetDirect" zm="1.0">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="0" PkCols="1"/>
+      <ErNotation>DbwErNotation</ErNotation>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="articulos" x="1220" y="502"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="audit" x="1596" y="118"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="cambiodirectostock" x="1824" y="499"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="clientes" x="316" y="896"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="clientescategoria" x="330" y="1048"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="compras" x="1636" y="807"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="comprasdetalle" x="1299" y="787"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="cuentacorriente" x="38" y="938"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="fleteros" x="941" y="836"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="grupos_tabgral" x="425" y="320"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="hojaruta" x="912" y="706"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="hojarutadetalle" x="648" y="837"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="localidades" x="1238" y="176"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="marcas" x="1573" y="577"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="pedidodetalle" x="693" y="512"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="pedidos" x="371" y="522"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="pedidosrecibos" x="329" y="719"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="perfiles" x="726" y="33"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="proveedores" x="1636" y="977"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="provincias" x="1234" y="282"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="recibos" x="25" y="732"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="remitos" x="651" y="667"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="rubros" x="1564" y="469"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sismenu" x="39" y="20"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sisperfil" x="470" y="24"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sispermisos" x="1067" y="28"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="sisvinculos" x="33" y="173"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="tabgral" x="490" y="181"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="tramites" x="37" y="522"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="usuarios" x="937" y="183"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="preferences" x="882" y="1062"/>
+    <FkGl bkCl="ff000000" nm="schemaA.articulos.articulos_marcas_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.articulos.articulos_rubros_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.articulos.articulos_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.cambiodirectostock.cambiodirectostock_articulos_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.cambiodirectostock.cambiodirectostock_usuarios_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.clientes.clientes_clientescategoria_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.compras.compras_proveedores_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.compras.compras_usuarios_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.comprasdetalle.comprasdetalle_articulo_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.comprasdetalle.comprasdetalle_compras_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.cuentacorriente.cuentacorriente_clientes_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.hojaruta.hojaruta_fleteros_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.hojaruta.hojaruta_usuarios_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.hojarutadetalle.hojarutadetalle_hojartuta_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.hojarutadetalle.hojarutadetalle_pedidos_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.localidades.localidades_provincias_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.pedidodetalle.pedidodetalle_articulos_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.pedidodetalle.pedidodetalle_pedidos_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.pedidos.pedidos_clientes_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.pedidos.pedidos_tramites_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.pedidosrecibos.pedidosrecibos_pedidos_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.pedidosrecibos.pedidosrecibos_recibos_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.perfiles.perfiles_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.recibos.recibos_clientes_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.recibos.recibos_usuarios_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.remitos.remitos_hojarutadetalle_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.remitos.remitos_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sismenu.sismenu_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sisperfil.perfiles_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sisperfil.sisperfil_sismenu_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sisperfil.sisperfil_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sispermisos.sispermisos_perfiles_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.sisvinculos.sisvinculos_sismenu_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.tabgral.grupos_tabgral_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.usuarios.usuarios_estado"/>
+    <FkGl bkCl="ff000000" nm="schemaA.usuarios.usuarios_localidades_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.usuarios.usuarios_perfiles_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.usuarios.usuarios_provincias_id"/>
+    <Notes/>
+    <Zones>
+      <Zone bkCl="ffece9d8" h="1508" nm="Autentificación de usuarios" w="400" x="13" y="0"/>
+      <Zone bkCl="ffece9d8" h="622" nm="Módulo de pago" w="506" x="8" y="658"/>
+    </Zones>
+  </Dgm>
+  <RnmMgr NxRnmId="2">
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="preferences" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="1" nNm="_key" oNm="key"/>
+    </RnmCh>
+  </RnmMgr>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+  </TreePaths>
+</Db>

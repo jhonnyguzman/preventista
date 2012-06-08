@@ -3,6 +3,8 @@
 
 class Rubros_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'rubros_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,14 @@ class Rubros_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('rubros', $options);
+		
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		
+		//log query
+		//log_message("info", "Row insert successfull: ".$this->basicrud->writeAddSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLog($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -44,8 +54,12 @@ class Rubros_Model extends CI_Model {
 			$this->db->set('rubros_updated_at', $options['rubros_updated_at']);
 
 		$this->db->where('rubros_id', $options['rubros_id']);
-
 		$this->db->update('rubros');
+		
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		//log_message("info", "Row update successfull: ".$this->basicrud->writeEditSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -64,6 +78,12 @@ class Rubros_Model extends CI_Model {
 		//code here
 		$this->db->where('rubros_id', $rubros_id);
 		$this->db->delete('rubros');
+		
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		//log_message("info", "Row delete successfull: ".$this->basicrud->writeDeleteSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+
 		return $this->db->affected_rows();
 	}
 
@@ -103,7 +123,10 @@ class Rubros_Model extends CI_Model {
 		$this->db->select("r.*, tg.tabgral_descripcion as rubros_estado_descripcion");
 		$this->db->from("rubros as r");
 		$this->db->join("tabgral as tg","tg.tabgral_id = r.rubros_estado");
+		
+
 		$query = $this->db->get();
+
 
 		if(isset($options['count'])) return $query->num_rows();
 

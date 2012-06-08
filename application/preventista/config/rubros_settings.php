@@ -47,6 +47,7 @@ $config['isRequired_rubros_updated_at']= 1;
 
 $config['pag_perpage']= 25;
 
+
 /* Config flash messages */
 
 $config['rubros_flash_add_message']= 'The rubros has been successfully added.';

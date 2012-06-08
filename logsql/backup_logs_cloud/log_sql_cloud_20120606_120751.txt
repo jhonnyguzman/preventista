@@ -1,0 +1,4 @@
+INSERT INTO clientes (_id, nombre, apellido, clientescategoria_id, created_at, updated_at) VALUES ('1', 'JUAN', 'GUZMAN', '1', '2012-06-06 12:05:59', '2012-06-06 12:05:59')
+INSERT INTO cuentacorriente (clientes_id, updated_at) VALUES (1, '2012-06-06 12:05:59')
+INSERT INTO clientes (_id, nombre, apellido, direccion, clientescategoria_id, created_at, updated_at) VALUES ('2', 'MIGUEL', 'PONCE', 'SAN JUAN 4554', '2', '2012-06-06 12:07:20', '2012-06-06 12:07:20')
+INSERT INTO cuentacorriente (clientes_id, updated_at) VALUES (2, '2012-06-06 12:07:20')

@@ -78,7 +78,7 @@ class Articulos_Controller extends CI_Controller {
 		if($this->form_validation->run())
 		{	
 			$data_articulos  = array();
-			
+			$data_articulos['articulos_id'] = $this->preferences->data['articulos_next_id'];
 			$data_articulos['articulos_descripcion'] = $this->input->post('articulos_descripcion');
 			$data_articulos['articulos_preciocompra'] = $this->input->post('articulos_preciocompra');
 			$data_articulos['articulos_stockreal'] = $this->input->post('articulos_stockreal');
@@ -103,6 +103,7 @@ class Articulos_Controller extends CI_Controller {
 
 			$id_articulos = $this->articulos_model->add_m($data_articulos);
 			if($id_articulos){ 
+				$this->preferences->editNextId('articulos_next_id',$id_articulos);
 				$this->session->set_flashdata('flashConfirm', $this->config->item('articulos_flash_add_message')); 
 				redirect('articulos_controller','location');
 			}else{

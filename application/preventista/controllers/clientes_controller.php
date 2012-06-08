@@ -30,7 +30,6 @@ class Clientes_Controller extends CI_Controller {
 		if($this->flagR){
 			$data['flag'] = $this->flags;
 			$data['subtitle'] = $this->config->item('recordListTitle');
-			//$data['fieldSearch'] = $this->basicrud->getFieldSearch($this->clientes_model->getFieldsTable_m());
 			$this->load->view('clientes_view/home_clientes', $data);
 			$this->search_c();
 		}
@@ -65,7 +64,7 @@ class Clientes_Controller extends CI_Controller {
 		if($this->form_validation->run())
 		{	
 			$data_clientes  = array();
-			
+			$data_clientes['clientes_id'] = $this->preferences->data['clientes_next_id'];
 			$data_clientes['clientes_nombre'] = $this->input->post('clientes_nombre');
 			$data_clientes['clientes_apellido'] = $this->input->post('clientes_apellido');
 			if($this->input->post('clientes_direccion'))
@@ -78,6 +77,7 @@ class Clientes_Controller extends CI_Controller {
 
 			$id_clientes = $this->clientes_model->add_m($data_clientes);
 			if($id_clientes){
+				$this->preferences->editNextId('clientes_next_id',$id_clientes);
 				$cuentacorriente = $this->cuentacorriente_model->add_m(array('clientes_id' => $id_clientes, 'cuentacorriente_updated_at' => $this->basicrud->formatDateToBD())); 
 				$this->session->set_flashdata('flashConfirm', $this->config->item('clientes_flash_add_message')); 
 				redirect('clientes_controller','location');

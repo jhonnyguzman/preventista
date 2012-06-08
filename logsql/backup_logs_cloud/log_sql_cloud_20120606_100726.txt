@@ -1,0 +1,4 @@
+UPDATE articulos SET preciocompra = '25', stockreal = '100', precio1 = '27.5', precio2 = '28.75', precio3 = '30', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '1'
+UPDATE articulos SET preciocompra = '15', stockreal = '100', precio1 = '16.5', precio2 = '17.25', precio3 = '18', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '2'
+UPDATE articulos SET preciocompra = '25', stockreal = '100', precio1 = '27.5', precio2 = '28.75', precio3 = '30', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '3'
+UPDATE articulos SET preciocompra = '15', stockreal = '100', precio1 = '16.5', precio2 = '17.25', precio3 = '18', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '4'

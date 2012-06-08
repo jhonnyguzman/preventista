@@ -1,0 +1,13 @@
+UPDATE articulos SET articulos_stockreal = 31, articulos_updated_at = '2012-39-29 18:39:48' WHERE articulos_id = 4;
+UPDATE articulos SET articulos_stockreal = 31, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 4;
+UPDATE articulos SET articulos_stockreal = 92, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 10;
+UPDATE articulos SET articulos_stockreal = 1, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 6;
+UPDATE articulos SET articulos_stockreal = 18, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 2;
+UPDATE articulos SET articulos_stockreal = 39, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 4;
+UPDATE articulos SET articulos_stockreal = 93, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 11;
+UPDATE articulos SET articulos_stockreal = 7, articulos_updated_at = '2012-37-29 20:37:57' WHERE articulos_id = 50001;
+UPDATE articulos SET articulos_stockreal = 84, articulos_updated_at = '2012-40-29 20:40:51' WHERE articulos_id = 8;
+UPDATE articulos SET articulos_stockreal = 5, articulos_updated_at = '2012-42-29 20:42:32' WHERE articulos_id = 3;
+UPDATE articulos SET articulos_stockreal = 39, articulos_updated_at = '2012-42-29 20:42:32' WHERE articulos_id = 4;
+UPDATE articulos SET articulos_stockreal = 84, articulos_updated_at = '2012-42-29 20:42:32' WHERE articulos_id = 8;
+UPDATE articulos SET articulos_descripcion = 'BELDENT FRUT.  X20 ', articulos_preciocompra = 25.0, articulos_stockreal = 200, rubros_id = 2, marcas_id = 2, articulos_porcentaje1 = 10.0, articulos_porcentaje2 = 15.0, articulos_porcentaje3 = 20.0, articulos_precio1 = 27.5, articulos_precio2 = 28.75, articulos_precio2 = 30.0, articulos_updated_at = '2012-53-05 19:53:57' WHERE articulos_id = 50022;

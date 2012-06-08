@@ -3,6 +3,8 @@
 
 class Clientes_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'clientes_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,13 @@ class Clientes_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('clientes', $options);
+
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		
+		//log query
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLog($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -53,6 +62,10 @@ class Clientes_Model extends CI_Model {
 
 		$this->db->update('clientes');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
@@ -70,6 +83,11 @@ class Clientes_Model extends CI_Model {
 		//code here
 		$this->db->where('clientes_id', $clientes_id);
 		$this->db->delete('clientes');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+
 		return $this->db->affected_rows();
 	}
 

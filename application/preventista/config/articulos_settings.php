@@ -103,6 +103,7 @@ $config['isRequired_articulos_updated_at']= 1;
 
 $config['pag_perpage']= 20;
 
+
 /* Config flash messages */
 
 $config['articulos_flash_add_message']= 'The articulos has been successfully added.';

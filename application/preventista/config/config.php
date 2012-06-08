@@ -15,8 +15,8 @@
 |
 */
 //$config['base_url']	= 'http://testsystem.zapto.org/projects/crud_test_pro/';
-//$config['base_url']	= 'http://192.168.2.10/projects/preventista/local/';
-$config['base_url']	= 'http://192.168.2.103/repositorios/preventista/';
+$config['base_url']	= 'http://localhost/repositorios/preventista/';
+//$config['base_url']	= 'http://192.168.2.103/repositorios/preventista/';
 
 /*
 |--------------------------------------------------------------------------
@@ -182,7 +182,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------

@@ -63,7 +63,7 @@ class Rubros_Controller extends CI_Controller {
 		if($this->form_validation->run())
 		{	
 			$data_rubros  = array();
-			
+			$data_rubros['rubros_id'] = $this->preferences->data['rubros_next_id'];
 			$data_rubros['rubros_descripcion'] = $this->input->post('rubros_descripcion');
 			$data_rubros['rubros_estado'] = $this->input->post('rubros_estado');
 			$data_rubros['rubros_created_at'] = $this->basicrud->formatDateToBD();
@@ -71,6 +71,7 @@ class Rubros_Controller extends CI_Controller {
 
 			$id_rubros = $this->rubros_model->add_m($data_rubros);
 			if($id_rubros){ 
+				$this->preferences->editNextId('rubros_next_id',$id_rubros);
 				$this->session->set_flashdata('flashConfirm', $this->config->item('rubros_flash_add_message')); 
 				redirect('rubros_controller','location');
 			}else{

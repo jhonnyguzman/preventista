@@ -71,6 +71,20 @@ class BasiCrud {
 	
 
 	/**
+	 * Método para formatear fecha
+	 * Este método genera la fecha actual en formato aaaa-mm-dd hh:mm:ss y retorna la misma
+	 *
+	 * @return string $date
+	 */
+	function formatDateToBD2() 
+	{	
+		$datestring = "%Y%m%d_%H%i%s";
+		$time = time();
+	  	return mdate($datestring, $time);
+	}
+
+
+	/**
 	 * Metodo para formatear un fecha
 	 * Este metodo genera la fecha actual en formato aaaa-mm-dd  y retorna la misma
 	 *
@@ -735,4 +749,75 @@ class BasiCrud {
 		return true;
 	}
 
+
+	/**
+	 * Función para formatear un sentencia INSERT correctamente
+	 * @return query insert 
+	 */
+	function writeAddSqlToLog($options = array())
+	{ 
+		$new_string1 = str_replace("`", '',$options['string']);
+		$new_string2 = str_replace($options['search']."id", '_id',$new_string1);
+		return str_replace($options['search'], '', $new_string2);
+		
+	}
+
+
+	/**
+	 * Función para formatear un sentencia INSERT correctamente
+	 * @return query insert 
+	 */
+	function writeAddSqlToLogWithoutId($options = array())
+	{
+		$table = substr($options['search'],0,-1);   
+
+		$new_string1 = str_replace("`$table` (", "$table (_id, ", $options['string']);
+		$new_string2 = str_replace("`", '',$new_string1);
+		$new_string3 = str_replace("VALUES (", "VALUES ('".$options['new_id']."', ", $new_string2);
+		
+		return str_replace($options['search'], '', $new_string3);
+		
+	}
+
+	/**
+	 * Función para formatear un sentencia UPDATE correctamente
+	 * @return query update 
+	 */
+	function writeEditSqlToLog($options = array())
+	{
+		$new_string1 = str_replace($options['search']."id", '_id', $options['string']);
+		$new_string2 = str_replace("`", '', $new_string1);
+		return $new_string3 = str_replace($options['search'], '', $new_string2);
+		
+	}
+
+
+	/**
+	 * Función para formatear un sentencia DEÑETE correctamente
+	 * @return query delete 
+	 */
+	function writeDeleteSqlToLog($options = array())
+	{
+		$new_string1 = str_replace($options['search']."id", '_id', $options['string']);
+		$new_string2 = str_replace("`", '', $new_string1);
+		$new_string3 = str_replace($options['search'], '', $new_string2);
+		return preg_replace('/\n+/', ' ', $new_string2);
+	}
+
+
+	/**
+	 * Función para para escribir la sentencia sql pasada como parámetro a un archivo de log
+	 * @param string row query (INSERT, UPDATE, DELETE) 
+	 */
+	function writeFileLog($row)
+	{
+		if ( ! write_file('./logsql/log_sql_cloud.txt', $row."\n", FOPEN_READ_WRITE_CREATE))
+		{
+		    log_message("error","Unable to write the Sql Log cloud file");
+		}
+		else
+		{
+			log_message("info","Sql Log cloud file written!");
+		}
+	}	
 }

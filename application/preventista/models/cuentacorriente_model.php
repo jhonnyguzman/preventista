@@ -3,6 +3,8 @@
 
 class Cuentacorriente_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'cuentacorriente_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,13 @@ class Cuentacorriente_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('cuentacorriente', $options);
+
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		
+		//log query
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLog($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -54,6 +63,10 @@ class Cuentacorriente_Model extends CI_Model {
 
 		$this->db->update('cuentacorriente');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
@@ -71,6 +84,11 @@ class Cuentacorriente_Model extends CI_Model {
 		//code here
 		$this->db->where('cuentacorriente_id', $cuentacorriente_id);
 		$this->db->delete('cuentacorriente');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+
 		return $this->db->affected_rows();
 	}
 

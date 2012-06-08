@@ -3,6 +3,8 @@
 
 class Articulos_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'articulos_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,14 @@ class Articulos_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('articulos', $options);
+
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+
+		//log query
+		log_message("info", "Row insert successfull: ".$this->db->last_query());
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLog($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -73,6 +83,11 @@ class Articulos_Model extends CI_Model {
 
 		$this->db->update('articulos');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		log_message("info", "Row update successfull: ".$this->basicrud->writeEditSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
@@ -90,6 +105,12 @@ class Articulos_Model extends CI_Model {
 		//code here
 		$this->db->where('articulos_id', $articulos_id);
 		$this->db->delete('articulos');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		log_message("info", "Row delete successfull: ".$this->basicrud->writeDeleteSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+
 		return $this->db->affected_rows();
 	}
 

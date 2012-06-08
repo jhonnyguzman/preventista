@@ -52,7 +52,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database','form_validation','session','basicrud','basicauth','pagination');
+$autoload['libraries'] = array('database','form_validation','session','basicrud','basicauth','pagination','preferences');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','form_validation','session','basicrud'
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','date');
+$autoload['helper'] = array('url','date','file');
 
 
 /*
