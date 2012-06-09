@@ -1,0 +1,3 @@
+UPDATE pedidos SET peididos_montototal = 227.7, tramites_id = 3, pedidos_observaciones = 'comentario escrito desde movil corregido error', pedidos_updated_at = '2012-06-08 19:33:31' WHERE pedidos_id = 1;
+UPDATE pedidos SET peididos_montototal = 227.7, tramites_id = 3, pedidos_observaciones = 'comentario escrito desde movil corregido error', pedidos_updated_at = '2012-06-08 19:34:15' WHERE pedidos_id = 1;
+UPDATE pedidos SET peididos_montototal = 227.7, tramites_id = 1, pedidos_observaciones = 'comentario escrito desde movil corregido error 2', pedidos_updated_at = '2012-06-08 19:34:36' WHERE pedidos_id = 1;

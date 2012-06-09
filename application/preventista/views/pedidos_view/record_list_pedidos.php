@@ -20,7 +20,7 @@
 							<?php endforeach; ?>
 							<td>
 								<?php if($flag['r']):?>
-									<a href="#" onClick="dialogUp('content_detail_modal',570,500,'<?=base_url()?>index.php/pedidos_controller/show_c/<?=$f->pedidos_id?>','Detalle de Pedido: <?=$f->pedidos_id?>')" id="icon-show">Ver</a>
+									<a href="#" onClick="dialogUp('content_detail_modal',570,670,'<?=base_url()?>index.php/pedidos_controller/show_c/<?=$f->pedidos_id?>','Detalle de Pedido: <?=$f->pedidos_id?>')" id="icon-show">Ver</a>
 								<?php endif;?>
 								<?php if($flag['u']):?>
 									<a href="#" onClick="loadPage('<?=base_url()?>index.php/pedidos_controller/edit_c/<?=$f->pedidos_id?>','right-content')" id="icon-edit">Modificar</a>

@@ -3,6 +3,8 @@
 
 class Pedidos_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'pedidos_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,13 @@ class Pedidos_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('pedidos', $options);
+
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		
+		//log query
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogPedidos($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -48,10 +57,16 @@ class Pedidos_Model extends CI_Model {
 			$this->db->set('pedidos_updated_at', $options['pedidos_updated_at']);
 		if(isset($options['tramites_id']))
 			$this->db->set('tramites_id', $options['tramites_id']);
+		if(isset($options['pedidos_observaciones']))
+			$this->db->set('pedidos_observaciones', $options['pedidos_observaciones']);
 
 		$this->db->where('pedidos_id', $options['pedidos_id']);
 
 		$this->db->update('pedidos');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLogPedidos($this->arr_log));
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -70,6 +85,11 @@ class Pedidos_Model extends CI_Model {
 		//code here
 		$this->db->where('pedidos_id', $pedidos_id);
 		$this->db->delete('pedidos');
+		
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+
 		return $this->db->affected_rows();
 	}
 
@@ -103,6 +123,8 @@ class Pedidos_Model extends CI_Model {
 			$this->db->where('p.pedidos_updated_at', $options['pedidos_updated_at']);
 		if(isset($options['tramites_id']))
 			$this->db->where('p.tramites_id', $options['tramites_id']);
+		if(isset($options['pedidos_observaciones']))
+			$this->db->where('p.pedidos_observaciones', $options['pedidos_observaciones']);
 
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
@@ -168,6 +190,7 @@ class Pedidos_Model extends CI_Model {
 		$fields[]='tramites_descripcion';
 		$fields[]='pedidos_created_at';
 		$fields[]='pedidos_updated_at';
+		$fields[]='pedidos_observaciones';
 		return $fields;
 	}
 

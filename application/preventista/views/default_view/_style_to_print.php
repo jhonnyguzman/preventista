@@ -10,7 +10,7 @@
 {
 	font-family: verdana, sans-serif;
 	color: #595959;
-	font-size: 22px;
+	font-size: 10px;
 	font-weight: bold;
 }
 .today-date-print{
@@ -24,7 +24,7 @@
 }
 
 .tb-header-print{
-	font-size: 14px;
+	font-size: 10px;
 	font-family: verdana, sans-serif;
 	width: 100%;
 }
@@ -36,7 +36,7 @@
 .tb-result-set-print
 {	
 	color: #333;
-	font-size: 12px;
+	font-size: 9px;
 	font-family: verdana, sans-serif;
 	width: 100%;
 	text-align: center;
@@ -46,19 +46,19 @@
 {
 	font-weight: bold;
 	color: #333;
-	padding: 3px 0px;;
-	line-height: 1.5;
+	padding: 2px 0px;;
+	line-height: 1;
 	background: #ffffff;
 }
 
 .tb-result-set-print tbody td
 {
 	border-bottom: 1px solid #e5e5e5;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	padding-right: 3px;	 
 	color: #333;
-	line-height: 1.5;
+	line-height: 1;
 	text-align: left;
 	vertical-align: top;
 }
@@ -69,7 +69,7 @@
 .tb-result-set-print-recibos
 {	
 	color: #333;
-	font-size: 10px;
+	font-size: 9px;
 	font-family: verdana, sans-serif;
 	width: 100%;
 	text-align: center;
@@ -80,15 +80,15 @@
 	font-weight: bold;
 	color: #333;
 	padding: 3px 0px;;
-	line-height: 1.5;
+	line-height: 1;
 	background: #ffffff;
 }
 
 .tb-result-set-print-recibos tbody td
 {
 	border-bottom: 0px ;
-	padding-top: 2px;
-	padding-bottom: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	padding-right: 3px;	 
 	color: #333;
 	line-height: 1.5;
@@ -109,7 +109,5 @@
 .markRowRecibos2{
 	border-bottom: 1px dashed #000  !important;
 }
-.markRowRecibos3{
-	width:35px;  !important;
-}
+
 </style>

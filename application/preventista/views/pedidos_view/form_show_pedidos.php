@@ -76,6 +76,10 @@
 				<label>Tr&aacute;mite:</label>
 				<input type="text" name="tramites_descripcion" id="tramites_descripcion" value="<?=$pedidos->tramites_descripcion?>" readonly="true" />
 			</p>
+			<p>
+				<label>Observaci&oacute;n:</label>
+				<textarea name="pedidos_observaciones" id="pedidos_observaciones" readonly="true" ><?=$pedidos->pedidos_observaciones?></textarea>
+			</p>
 		</fieldset>
 		<div class="botonera">
 			<input type="button" name="btnCerrar" id="btnCerrar" value="Cerrar" />

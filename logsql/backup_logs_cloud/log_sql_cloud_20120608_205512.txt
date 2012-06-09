@@ -1,0 +1,1 @@
+UPDATE articulos SET preciocompra = '24', stockreal = '200', precio1 = '26.40', precio2 = '27.60', precio3 = '28.80', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '1'

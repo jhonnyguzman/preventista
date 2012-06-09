@@ -249,6 +249,10 @@ class Articulos_Model extends CI_Model {
 		
 		$this->db->update('articulos');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 		// gives INSERT INTO mytable (field) VALUES (field+1)
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
@@ -274,6 +278,11 @@ class Articulos_Model extends CI_Model {
 		$this->db->where('articulos_id', $options['articulos_id']);
 		
 		$this->db->update('articulos');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;

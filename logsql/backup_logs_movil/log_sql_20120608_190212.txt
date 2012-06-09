@@ -1,0 +1,1 @@
+UPDATE pedidos SET peididos_montototal = 46.2, tramites_id = 2, pedidos_observaciones = 'comentario escrito desde movil', pedidos_updated_at = '2012-06-08 19:01:19', WHERE pedidos_id = 1;

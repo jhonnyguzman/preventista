@@ -798,7 +798,7 @@ class BasiCrud {
 
 
 	/**
-	 * Función para formatear un sentencia DEÑETE correctamente
+	 * Función para formatear un sentencia DELETE correctamente
 	 * @return query delete 
 	 */
 	function writeDeleteSqlToLog($options = array())
@@ -809,6 +809,34 @@ class BasiCrud {
 		return preg_replace('/\n+/', ' ', $new_string2);
 	}
 
+
+
+	/**
+	 * Función para formatear un sentencia INSERT correctamente para la tabla pedidos
+	 * @return query insert 
+	 */
+	function writeAddSqlToLogPedidos($options = array())
+	{ 
+		$new_string1 = str_replace("`", '',$options['string']);
+		$new_string2 = str_replace("peididos", 'pedidos',$new_string1);
+		$new_string3 = str_replace($options['search']."id", '_id',$new_string2);
+		return str_replace($options['search'], '', $new_string3);
+		
+	}
+
+
+	/**
+	 * Función para formatear un sentencia UPDATE correctamente para pedidos
+	 * @return query update 
+	 */
+	function writeEditSqlToLogPedidos($options = array())
+	{
+		$new_string1 = str_replace($options['search']."id", '_id', $options['string']);
+		$new_string2 = str_replace("`", '', $new_string1);
+		$new_string3 = str_replace("peididos", 'pedidos', $new_string2);
+		return str_replace($options['search'], '', $new_string3);
+		
+	}
 
 	/**
 	 * Función para para escribir la sentencia sql pasada como parámetro a un archivo de log

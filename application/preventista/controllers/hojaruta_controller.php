@@ -369,7 +369,7 @@ class Hojaruta_Controller extends CI_Controller {
 			{
 				//page info here, db calls, etc.     
     			$html = $this->load->view('hojaruta_view/record_list_to_print', $data, true);
-    			$pdf = pdf_create($html,'hojaruta_'.$f,'','','./pdfs/',false);
+    			$pdf = pdf_create($html,'hojaruta_'.$f,'a6','','./pdfs/',false);
     			$data2['hojaruta_'.$f.".pdf"] = $pdf;
 
     			foreach($data['hojarutadetalle'] as $g)
@@ -382,7 +382,7 @@ class Hojaruta_Controller extends CI_Controller {
 					$data["saldocliente"] = $this->pedidos_model->getSumPedidos2($data['pedido'][0]->clientes_id);
 
 					$html = $this->load->view('remitos_view/record_list_to_print', $data, true);
-    				$pdf = pdf_create($html,'remito_'.$data['remito'][0]->remitos_id,'','','./pdfs/',false);
+    				$pdf = pdf_create($html,'remito_'.$data['remito'][0]->remitos_id,'a6','','./pdfs/',false);
     				$data2['remitos_'.$data['remito'][0]->remitos_id.".pdf"] = $pdf;
     			}
 	    	}	

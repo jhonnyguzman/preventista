@@ -1,12 +1,12 @@
 <div class="header-print">
 	<table class="tb-header-print">
 		<tr>
-			<td>Roja Ruta:&nbsp;<?=$hojaruta->hojaruta_id?></td>
+			<td><strong>Roja Ruta:&nbsp;</strong><?=$hojaruta->hojaruta_id?></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>Fletero:&nbsp;<?=$hojaruta->fleteros_apellnom?></td>
-			<td class='today-date-print2'>Fecha:&nbsp;<?=$todayDate?></td>
+			<td><strong>Fletero:&nbsp;</strong><?=$hojaruta->fleteros_apellnom?></td>
+			<td class='today-date-print2'><strong>Fecha:&nbsp;</strong><?=$todayDate?></td>
 		</tr>
 	</table>
 </div>
@@ -19,7 +19,6 @@
 					<th>Tram.</th>
 					<th>Imp.</th>	
 					<th>Monto recibido</th>
-					<th>Recibo</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,8 +27,7 @@
 						<td><?=$f->clientes_apellido." ".$f->clientes_nombre?><br><?=$f->clientes_direccion?></td>
 						<td><?=$f->tramites_descripcion?></td>
 						<td><?=$f->peididos_montototal?></td>
-						<td>____________</td>
-						<td>____________</td>
+						<td class="markRowRecibos"></td>
 					</tr>
 				<?php  endforeach; ?>
 			</tbody>

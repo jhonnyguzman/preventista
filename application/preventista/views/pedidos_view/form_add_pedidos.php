@@ -41,7 +41,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php for($i=0; $i<10; $i++): ?>
+					<?php for($i=0; $i<25; $i++): ?>
 					<tr id="<?=$i?>">
 						<td><input type="text" name="articulos_descripcion-<?=$i?>" id="articulos_descripcion-<?=$i?>" 
 							onFocus="autocompleteTwo('articulos_descripcion-<?=$i?>','<?=base_url()?>autocomplete_controller/getAutocompleteLineas','articulos_model','',new Array('articulos_id-<?=$i?>', getPrecio('clientescategoria_id',<?=$i?>),'articulos_stockreal-<?=$i?>'),'articulos_descripcion');" 
@@ -76,6 +76,10 @@
 					<option value="<?=$f->tramites_id?>"><?=$f->tramites_descripcion?></option>
 				<?php endforeach; ?>
 			</select>
+		</p>
+		<p>
+			<label>Observaci&oacute;n:</label>
+			<textarea name="pedidos_observaciones" id="pedidos_observaciones"></textarea>
 		</p>
 		<!--<a href="#" onclick="AgregarCampos();">Agregar Campos</a>-->
 	</fieldset>

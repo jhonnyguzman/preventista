@@ -1,0 +1,11 @@
+UPDATE articulos SET articulos_stockreal = 108, articulos_updated_at = '2012-16-08 19:16:30' WHERE articulos_id = 2;
+UPDATE articulos SET articulos_stockreal = 98, articulos_updated_at = '2012-16-08 19:16:31' WHERE articulos_id = 50021;
+UPDATE articulos SET articulos_stockreal = 98, articulos_updated_at = '2012-16-08 19:16:31' WHERE articulos_id = 50022;
+UPDATE articulos SET articulos_stockreal = 98, articulos_updated_at = '2012-16-08 19:16:32' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 98, articulos_updated_at = '2012-16-08 19:16:33' WHERE articulos_id = 50017;
+INSERT INTO pedidos (pedidos_id,peididos_montototal,pedidos_montoadeudado,clientes_id,pedidos_estado,tramites_id, pedidos_observaciones, pedidos_created_at,pedidos_updated_at) VALUES (50000,328.0,0.0,2,6, 2,'pedido cargado desde el movil', now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50002,50000,2,2,0.0, 34.5, 17.25, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50003,50000,50021,2,0.0, 84.0, 42.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50004,50000,50022,2,0.0, 60.0, 30.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50005,50000,50018,2,0.0, 92.0, 46.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50006,50000,50017,2,0.0, 57.5, 28.75, now(), now());

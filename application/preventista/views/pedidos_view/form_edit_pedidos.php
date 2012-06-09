@@ -90,6 +90,10 @@
 					<?php endforeach; ?>
 				</select>
 			</p>
+			<p>
+				<label>Observaci&oacute;n:</label>
+				<textarea name="pedidos_observaciones" id="pedidos_observaciones" ><?=$pedidos->pedidos_observaciones?></textarea>
+			</p>
 		</fieldset>
 		<div class="botonera">
 			<input type="submit" name="modificar" value="Modificar" class="crudtest-button" id="btn-save" onClick="submitData('formEditpedidos',new Array('right-content','right-content'))"></input>

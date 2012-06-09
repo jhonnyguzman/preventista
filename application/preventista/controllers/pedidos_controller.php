@@ -70,22 +70,27 @@ class Pedidos_Controller extends CI_Controller {
 		if($this->form_validation->run())
 		{	
 			$data_pedidos  = array();
+			$data_pedidos['pedidos_id'] = $this->preferences->data['pedidos_next_id'];
 			$data_pedidos['peididos_montototal'] = $this->input->post('peididos_montototal');
 			$data_pedidos['clientes_id'] = $this->input->post('clientes_id');
 			$data_pedidos['pedidos_estado'] = 6;  //estado 'Solicitado'
-			$data_pedidos['pedidos_updated_at'] = $this->basicrud->formatDateToBD();
 			$data_pedidos['tramites_id'] = $this->input->post('tramites_id');
-			/*if($this->input->post('pedidos_montoadeudado'))
-				$data_pedidos['pedidos_montoadeudado'] = $this->input->post('pedidos_montoadeudado');*/
+			$data_pedidos['pedidos_observaciones'] = $this->input->post('pedidos_observaciones');
+			$data_pedidos['pedidos_created_at'] = $this->basicrud->formatDateToBD();
+			$data_pedidos['pedidos_updated_at'] = $this->basicrud->formatDateToBD();
 		
 			$id_pedidos = $this->pedidos_model->add_m($data_pedidos);
 			if($id_pedidos)
 			{ 
+				$this->preferences->editNextId('pedidos_next_id',$id_pedidos);
+				$id_pd = $this->preferences->data['pedidodetalle_next_id'];
 				while($this->input->post('articulos_id-'.$i))
 				{
-					$data_pedidodetalle['pedidos_id'] =$id_pedidos;
+					$data_pedidodetalle['pedidodetalle_id'] = $id_pd;
+					$data_pedidodetalle['pedidos_id'] = $id_pedidos;
 					$data_pedidodetalle['articulos_id'] = $this->input->post('articulos_id-'.$i);
 					$data_pedidodetalle['pedidodetalle_cantidad'] = $this->input->post('pedidodetalle_cantidad-'.$i);
+					$data_pedidodetalle['pedidodetalle_montoacordado'] = $this->input->post('pedidodetalle_montoacordado-'.$i);
 					$data_pedidodetalle['pedidodetalle_subtotal'] = $this->input->post('pedidodetalle_subtotal-'.$i);
 					if($this->input->post('articulos_precio1-'.$i))
 						$data_pedidodetalle['pedidodetalle_pv'] = $this->input->post('articulos_precio1-'.$i);
@@ -94,12 +99,14 @@ class Pedidos_Controller extends CI_Controller {
 					if($this->input->post('articulos_precio3-'.$i)) 
 						$data_pedidodetalle['pedidodetalle_pv'] = $this->input->post('articulos_precio3-'.$i);
 		
-					$data_pedidodetalle['pedidodetalle_montoacordado'] = $this->input->post('pedidodetalle_montoacordado-'.$i);
+					
+					$data_pedidodetalle['pedidodetalle_created_at'] = $this->basicrud->formatDateToBD();
 					$data_pedidodetalle['pedidodetalle_updated_at'] = $this->basicrud->formatDateToBD();
 
 					//guardar linea de pedidodetalle
 					$id_pedidodetalle = $this->pedidodetalle_model->add_m($data_pedidodetalle);
 					if($id_pedidodetalle){
+						$id_pd = $id_pedidodetalle + 1;
 						//actualizar el stock de los articulos 
 						if(!$this->articulos_model->editstock_m(array('articulos_id' => $this->input->post('articulos_id-'.$i), 'cantidad' => $this->input->post('pedidodetalle_cantidad-'.$i), 'operacion' => '-'))) 
 							$check_error[] = 1; 
@@ -107,6 +114,7 @@ class Pedidos_Controller extends CI_Controller {
 
 					$i = $i + 1;
 				}
+				$this->preferences->editNextId('pedidodetalle_next_id',$id_pd);
 				if(count($check_error)>0){
 					$this->session->set_flashdata('flashError', $this->config->item('pedidos_flash_error_message')); 
 					redirect('pedidos_controller','location');
@@ -165,7 +173,8 @@ class Pedidos_Controller extends CI_Controller {
 			$data_pedidos['pedidos_estado'] = $this->input->post('pedidos_estado');
 			$data_pedidos['pedidos_updated_at'] = $this->basicrud->formatDateToBD();
 			$data_pedidos['tramites_id'] = $this->input->post('tramites_id');
-			
+			$data_pedidos['pedidos_observaciones'] = $this->input->post('pedidos_observaciones');
+
 			if($this->pedidos_model->edit_m($data_pedidos)){
 				
 				while($this->input->post('articulos_id-'.$i))

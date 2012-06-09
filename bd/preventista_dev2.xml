@@ -377,7 +377,7 @@
       <Cl au="0" df="" nm="hojaruta_estado" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="CURRENT_TIMESTAMP" nm="hojaruta_created_at" nu="1">
+      <Cl au="0" df="now()" nm="hojaruta_created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="hojaruta_updated_at" nu="1">
@@ -413,7 +413,7 @@
       <Cl au="0" df="" nm="pedidos_id" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="CURRENT_TIMESTAMP" nm="hojarutadetalle_created_at" nu="1">
+      <Cl au="0" df="now()" nm="hojarutadetalle_created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="hojarutadetalle_updated_at" nu="1">
@@ -593,14 +593,14 @@
       <Cl au="0" df="" nm="pedidodetalle_subtotal" nu="1">
         <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="CURRENT_TIMESTAMP" nm="pedidodetalle_created_at" nu="0">
+      <Cl au="0" df="" nm="pedidodetalle_pv" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="pedidodetalle_created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="pedidodetalle_updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="pedidodetalle_pv" nu="1">
-        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="0" nm="pedidodetalle_articulos_id" prLkCl="articulos_id" upAc="0">
         <PrTb mn="0" nm="articulos" oe="1" sch="schemaA" zr="0"/>
@@ -638,30 +638,30 @@
       <Cl au="0" df="" nm="pedidos_estado" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="CURRENT_TIMESTAMP" nm="pedidos_created_at" nu="1">
+      <Cl au="0" df="" nm="tramites_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pedidos_observaciones" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="pedidos_created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="pedidos_updated_at" nu="1">
         <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="tramites_id" nu="1">
-        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="pedidos_clientes_id" prLkCl="clientes_id" upAc="3">
         <PrTb mn="0" nm="clientes" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="pedidos" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="clientes_id" prCl="clientes_id"/>
       </Fk>
-      <Fk deAc="3" nm="pedidos_tramites_id" prLkCl="tramites_id" upAc="3">
-        <PrTb mn="0" nm="tramites" oe="1" sch="schemaA" zr="1"/>
+      <Fk deAc="1" nm="pedidos_tramites_id" prLkCl="tramites_id" upAc="1">
+        <PrTb mn="0" nm="tramites" oe="1" sch="schemaA" zr="0"/>
         <CdTb mn="1" nm="pedidos" oe="0" sch="schemaA" zr="1"/>
         <ClPr cdCl="tramites_id" prCl="tramites_id"/>
       </Fk>
       <Idx clu="0" nm="pedidos_clientes_id" unq="0">
         <ClNs>clientes_id</ClNs>
-      </Idx>
-      <Idx clu="0" nm="pedidos_tramites_id" unq="0">
-        <ClNs>tramites_id</ClNs>
       </Idx>
       <SchTrHis/>
     </Tbl>
@@ -762,7 +762,7 @@
       <Cl au="0" df="" nm="remitos_estado" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="CURRENT_TIMESTAMP" nm="remitos_created_at" nu="1">
+      <Cl au="0" df="now()" nm="remitos_created_at" nu="1">
         <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="remitos_updated_at" nu="1">
@@ -1141,7 +1141,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="localidades" x="1238" y="176"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="marcas" x="1573" y="577"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="pedidodetalle" x="693" y="512"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="pedidos" x="371" y="522"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="pedidos" x="370" y="508"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="pagospedidos" x="329" y="719"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="perfiles" x="726" y="33"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="proveedores" x="1636" y="977"/>
@@ -1201,7 +1201,7 @@
       <Zone bkCl="ffece9d8" h="622" nm="Módulo de pago" w="506" x="8" y="658"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="20">
+  <RnmMgr NxRnmId="24">
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="preferences" SupCls="Schema" SupNme="schemaA">
       <Rnm id="1" nNm="_key" oNm="key"/>
     </RnmCh>
@@ -1248,6 +1248,18 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="pagospedidos" SupCls="Schema" SupNme="schemaA">
       <Rnm id="14" nNm="pagos_id" oNm="recibos_id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="pedidodetalle" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="20" nNm="pedidodetalle_pv" oNm="pedidodetalle_created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="pedidodetalle" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="21" nNm="pedidodetalle_created_at" oNm="pedidodetalle_updated_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="pedidos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="22" nNm="tramites_id" oNm="pedidos_created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="pedidos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="23" nNm="pedidos_observaciones" oNm="pedidos_updated_at"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

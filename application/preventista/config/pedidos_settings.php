@@ -25,6 +25,7 @@ $config['tramites_id']='Tr&aacute;mite';
 $config['tramites_descripcion']='Tr&aacute;mite';
 $config['pedidos_created_at']='Fecha de alta';
 $config['pedidos_updated_at']='updated_at';
+$config['pedidos_observaciones']='Obs.';
 
 /* Config fields for search */
 
@@ -42,6 +43,7 @@ $config['search_by_tramites_id']= 0;
 $config['search_by_tramites_descripcion']= 0;
 $config['search_by_pedidos_created_at']= 1;
 $config['search_by_pedidos_updated_at']= 0;
+$config['search_by_pedidos_observaciones']= 0;
 
 /* Config fields for show in the result list */
 
@@ -59,6 +61,7 @@ $config['show_tramites_id']= 0;
 $config['show_tramites_descripcion']= 1;
 $config['show_pedidos_created_at']= 1;
 $config['show_pedidos_updated_at']= 0;
+$config['show_pedidos_observaciones']= 0;
 
 /* Config required fields */
 

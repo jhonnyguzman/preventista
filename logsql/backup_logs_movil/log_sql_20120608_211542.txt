@@ -1,0 +1,12 @@
+UPDATE articulos SET articulos_stockreal = 94, articulos_updated_at = '2012-13-08 21:13:45' WHERE articulos_id = 4;
+UPDATE articulos SET articulos_stockreal = 96, articulos_updated_at = '2012-14-08 21:14:01' WHERE articulos_id = 3;
+UPDATE articulos SET articulos_stockreal = 95, articulos_updated_at = '2012-14-08 21:14:01' WHERE articulos_id = 50024;
+UPDATE articulos SET articulos_stockreal = 89, articulos_updated_at = '2012-14-08 21:14:07' WHERE articulos_id = 50018;
+INSERT INTO pedidos (pedidos_id,peididos_montototal,pedidos_montoadeudado,clientes_id,pedidos_estado,tramites_id, pedidos_observaciones, pedidos_created_at,pedidos_updated_at) VALUES (50002,537.6,0.0,50000,6, 1,'', now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50017,50002,4,4,0.0, 72.0, 18.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50018,50002,3,4,0.0, 120.0, 30.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50019,50002,50024,4,0.0, 9.6, 2.4, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50020,50002,50018,7,0.0, 336.0, 48.0, now(), now());
+UPDATE pedidodetalle SET pedidodetalle_cantidad = 5, pedidodetalle_subtotal = 12.0, pedidodetalle_updated_at = '2012-15-08 21:15:01' WHERE pedidodetalle_id = 50019;
+UPDATE articulos SET articulos_stockreal = 94, articulos_updated_at = '2012-15-08 21:15:02' WHERE articulos_id = 50024;
+UPDATE pedidos SET peididos_montototal = 540.0, tramites_id = 1, pedidos_observaciones = '', pedidos_updated_at = '2012-06-08 21:15:02' WHERE pedidos_id = 50002;

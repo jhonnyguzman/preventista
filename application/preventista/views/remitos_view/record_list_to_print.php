@@ -41,6 +41,8 @@
 				<td class="alignRight"><strong>Total Pedido:</strong></td>
 				<td><span>$&nbsp;</span><?=$pedido[0]->peididos_montototal?></td>
 			</tr>
+		</table>
+		<table class="tb-result-set-print">
 			<tr>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
@@ -80,11 +82,13 @@
 				<td><span>$&nbsp;</span><?php echo $saldocliente + $pedido[0]->peididos_montototal; ?></td>
 			</tr>
 			<tr>
-				<td class="markRow">&nbsp;</td>
-				<td class="markRow">&nbsp;</td>
-				<td class="markRow">&nbsp;</td>
-				<td class="markRow">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
 			</tr>
+		</table>
+		<table class="tb-result-set-print">
 			<tr>
 				<td><strong>Remito:&nbsp;</strong><?=$remito[0]->remitos_id?></td>
 				<td>&nbsp;</td>
@@ -117,15 +121,15 @@
 			</tr>
 			<tr>
 				<td><strong>Firma cliente:</strong></td>
-				<td>______________________</td>
+				<td class="markRowRecibos"></td>
 				<td class="alignRight"><strong>Deuda:</strong></td>
 				<td><span>$&nbsp;</span><?php echo $saldocliente + $pedido[0]->peididos_montototal; ?></td>
 			</tr>
 			<tr>
-				<td class="markRow">&nbsp;</td>
-				<td class="markRow">&nbsp;</td>
-				<td class="markRow">&nbsp;</td>
-				<td class="markRow">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
+				<td class="markRowRecibos2">&nbsp;</td>
 			</tr>
 		</table>
 	<?php else: ?>

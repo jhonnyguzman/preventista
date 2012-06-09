@@ -1,0 +1,16 @@
+- Nueva entidad Pagos:
+	- No es necesario ingrersar numero de pago
+	- Se puede imprimir recibos(por cantidad)
+
+- Cosas por hacer:
+	- Modulo de cuenta corriente en movil
+	- Detalles varios asociados a la interfaz
+	- Opciones de imprimir en hoja de ruta indivisual
+	- Reimpresion de un remito
+	- Pulir detalles en edicion de pedido ("modulo web")
+	- Utilidades (Modificar el calculo)
+	- Agregar historial de pagos en cuenta corriente
+	- En pedidos adeudados el monto adeudado tiene qe ser igual al monto total
+	- Verificar bug al cargar pedidos en el modulo movil. A veces se desaparecen todas las
+	lineas qe se van cargando.
+	
