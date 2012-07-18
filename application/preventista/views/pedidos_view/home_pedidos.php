@@ -6,9 +6,10 @@
 	</div>
 	<div id="controller-panel-right">
 		<div id="controller-botonera">
-			<a href="#" onClick="getModalWindowAdvancedOne('<?=base_url()?>hojaruta_controller/add_c/','Nueva Hoja de Ruta',400,400,'chkPedidos')"  title='Nueva Hoja de Ruta'>Hoja Ruta</a>
+			<a href="#" onClick="dialogUp('content_detail_modal',500,600,'<?=base_url()?>pedidos_controller/showDetalleArt_c','Detalle de Articulos')" >Detalle de Articulos</a>&nbsp;|&nbsp;
+			<a href="#" onClick="getModalWindowAdvancedOne('<?=base_url()?>hojaruta_controller/add_c/','Nueva Hoja de Ruta',400,400,'chkPedidos')" >Nueva Hoja de Ruta</a>&nbsp;|&nbsp;
 			<?php if($flag['i']):?>
-			<a href="#" onClick="loadPage('<?=base_url()?>index.php/pedidos_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a>
+				<a href="#" onClick="loadPage('<?=base_url()?>index.php/pedidos_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a>
 			<?php endif; ?>
 		</div>
 	</div>

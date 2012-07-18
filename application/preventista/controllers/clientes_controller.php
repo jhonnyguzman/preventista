@@ -244,7 +244,33 @@ class Clientes_Controller extends CI_Controller {
 			
 			//page info here, db calls, etc.     
 		    $html = $this->load->view('clientes_view/recibos_list_to_print', $data, true);
-		    pdf_create($html, 'Recibos','a6');
+		    pdf_create($html, 'Recibos','a5');
+			
+		}else{
+			$this->load->view("clientes_view/form_generate_recibos");
+		}
+
+	}
+
+
+	function generateRecibos2()
+	{
+		$this->load->helper('download');
+		$data["fieldstoprint"] = $this->input->post('toprint');
+
+		$this->form_validation->set_rules('cantidad', 'Cantidad', 'trim|required|integer|xss_clean');
+		if($this->form_validation->run())
+		{
+			$data['nro_from'] = $this->preferences->data['recibos_next_nro'];
+			$data['nro_to'] = $data['nro_from'] + $this->input->post("cantidad");
+
+			$this->preferences->editNextId('recibos_next_nro', $data['nro_to']);
+			
+			//page info here, db calls, etc.     
+		    $html = $this->load->view('clientes_view/recibos_list_to_print_txt', $data, true);
+		    $data = $html;
+			$name = $this->basicrud->setFileName('Recibos').".txt";
+			force_download($name, $data);
 			
 		}else{
 			$this->load->view("clientes_view/form_generate_recibos");

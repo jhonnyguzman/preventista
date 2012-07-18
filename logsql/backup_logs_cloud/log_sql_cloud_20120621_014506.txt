@@ -1,0 +1,7 @@
+UPDATE remitos SET estado = 13 WHERE _id = '2'
+UPDATE pedidos SET estado = 8 WHERE _id = '1'
+INSERT INTO pagos (monto, clientes_id, usuarios_id, fechaingreso, updated_at) VALUES ('100', '1', '1', '2012-06-21 01:08:33', '2012-06-21 01:08:33')
+INSERT INTO pagospedidos (pedidos_id, pagos_id, montocubierto) VALUES ('1', 1, 100)
+UPDATE pedidos SET montoadeudado = 63.9, estado = 15 WHERE _id = '1'
+UPDATE cuentacorriente SET clientes_id = '1', haber = 100, debe = 63.9, updated_at = '2012-06-21 01:08:33' WHERE clientes_id = '1'
+UPDATE hojaruta SET estado = 25 WHERE _id = '1'

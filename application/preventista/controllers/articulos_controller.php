@@ -494,7 +494,29 @@ class Articulos_Controller extends CI_Controller {
 		$data["todayDate"] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
 	    //page info here, db calls, etc.     
 	    $html = $this->load->view('articulos_view/record_list_to_print', $data, true);
-	    pdf_create($html, 'Listado','letter',$this->input->post('orientacion'));
+	    pdf_create($html, 'Listado','a5',$this->input->post('orientacion'));
+	}
+
+
+	/**
+	 * Esta función genera un txt con todos los articulos 
+	 * de la bd del sistema
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function printall2_c()
+	{
+		$this->load->helper('download');
+		$data["fieldstoprint"] = $this->input->post('toprint');
+		$data["articulos"] = $this->articulos_model->get_m(array('sortBy'=>'articulos_descripcion', 'sortDirection' => 'asc'));
+		$data["title"] = "Listado de Articulos";
+		$data["todayDate"] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
+	    //page info here, db calls, etc.     
+	    $html = $this->load->view('articulos_view/record_list_to_print2', $data, true);
+	    $data = $html;
+		$name = $this->basicrud->setFileName('ListadoArticulos').".txt";
+		force_download($name, $data);
 	}
 
 
@@ -525,9 +547,40 @@ class Articulos_Controller extends CI_Controller {
 	   
 	    //page info here, db calls, etc.     
 	    $html = $this->load->view('articulos_view/record_list_to_print', $data, true);
-	    pdf_create($html, 'Listado','letter',$this->input->post('orientacion'));
+	    pdf_create($html, 'Listado','a5',$this->input->post('orientacion'));
 	}
 
+
+	/**
+	 * Esta función genera un txt con todos los articulos filatrados
+	 * de la bd del sistema
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function printfilter2_c()
+	{
+		$this->load->helper('download');
+		$data["fieldstoprint"] = $this->input->post('toprint');
+		
+		if($this->input->post('articulos_descripcion_f'))
+			$data_search['articulos_descripcion'] = $this->input->post('articulos_descripcion_f');
+		if($this->input->post('rubros_id_f'))
+			$data_search['rubros_id'] = $this->input->post('rubros_id_f');
+		if($this->input->post('marcas_id_f'))
+			$data_search['marcas_id'] = $this->input->post('marcas_id_f');
+		$data_search['sortBy'] ='articulos_descripcion';
+		$data_search['sortDirection'] ='asc';
+		
+		$data["articulos"] = $this->articulos_model->get_m($data_search);
+		$data["title"] = "Listado de Articulos";
+		$data["todayDate"] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
+	   
+	    $html = $this->load->view('articulos_view/record_list_to_print2', $data, true);
+	    $data = $html;
+		$name = $this->basicrud->setFileName('ListadoArticulos').".txt";
+		force_download($name, $data);
+	}
 	
 	/**
 	 * Esta función permita realizar la alta de un cambio directo producido

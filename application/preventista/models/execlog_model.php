@@ -11,6 +11,7 @@ class Execlog_Model extends CI_Model {
 		$this->website = "http://".base_url();
 	}
 
+
 	function execquery_m($query_str)
 	{
 		if($this->db->simple_query($query_str)){

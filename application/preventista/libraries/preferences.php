@@ -29,6 +29,24 @@ class Preferences {
         else return false;
     }
 
+    function getNextId($_key)
+    {
+        $dato = null;
+        $this->CI =& get_instance();
+        
+        $this->CI->db->where("_key", $_key);
+        $query = $this->CI->db->get('preferences');
+        
+        if ($query->num_rows() > 0)
+        {
+            foreach ($query->result() as $row)
+            {
+                $dato = $row->_value ;
+            }
+        }
+
+        return $dato;
+    }
 }
 
 /* End of file Preferences.php */

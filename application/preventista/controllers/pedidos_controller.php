@@ -72,6 +72,7 @@ class Pedidos_Controller extends CI_Controller {
 			$data_pedidos  = array();
 			$data_pedidos['pedidos_id'] = $this->preferences->data['pedidos_next_id'];
 			$data_pedidos['peididos_montototal'] = $this->input->post('peididos_montototal');
+			$data_pedidos['pedidos_montoadeudado'] = $this->input->post('peididos_montototal');
 			$data_pedidos['clientes_id'] = $this->input->post('clientes_id');
 			$data_pedidos['pedidos_estado'] = 6;  //estado 'Solicitado'
 			$data_pedidos['tramites_id'] = $this->input->post('tramites_id');
@@ -168,7 +169,7 @@ class Pedidos_Controller extends CI_Controller {
 			
 			$data_pedidos['pedidos_id'] = $this->input->post('pedidos_id');
 			$data_pedidos['peididos_montototal'] = $this->input->post('peididos_montototal');
-			//$data_pedidos['pedidos_montoadeudado'] = $this->input->post('pedidos_montoadeudado');
+			$data_pedidos['pedidos_montoadeudado'] = $this->input->post('pedidos_montoadeudado');
 			$data_pedidos['clientes_id'] = $this->input->post('clientes_id');
 			$data_pedidos['pedidos_estado'] = $this->input->post('pedidos_estado');
 			$data_pedidos['pedidos_updated_at'] = $this->basicrud->formatDateToBD();
@@ -331,10 +332,72 @@ class Pedidos_Controller extends CI_Controller {
 	}
 
 
+	function showDetalleArt_c()
+	{
+		$data['fechaActual'] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
+		$this->load->view("pedidos_view/form_detalle_articulos",$data);
+	}
+
+	function searchDetalleArt_c()
+	{
+		$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($this->input->post("fechaDetalleArticulo"));
+		$this->load->view("pedidodetalle_view/record_list_detalle_articulos",$data);
+	}
+
+
+	/**
+	* Esta función permite descargar en pdf con el detalle de articulos para una 
+	* determinada  
+	*/
+	function printDetalleArt_c($dia,$mes,$anio)
+	{
+		$this->load->helper(array('dompdf', 'file'));
+		$fecha = $dia."/".$mes."/".$anio;
+
+		if($fecha){
+			$data["title"] = "Detalle de mercader&iacute;a para el dia ".$fecha;
+			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha);
+			$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print', $data, true);
+			pdf_create($html,$this->basicrud->setFileName('DetalleArticulos'),'a5');
+		}
+	}
+
+
+	function printDetalleArt2_c($dia,$mes,$anio)
+	{
+		$this->load->helper('download');
+		$fecha = $dia."/".$mes."/".$anio;
+
+		if($fecha){
+			$data["title"] = "Detalle de mercadería para el día ".$fecha;
+			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha);
+			$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print2', $data, true);
+
+			$data = $html;
+			$name = $this->basicrud->setFileName('DetalleArticulos').".txt";
+			force_download($name, $data);
+		}
+	}
+
+
+	function printDetalleArt3_c($dia,$mes,$anio)
+	{
+	
+		$fecha = $dia."/".$mes."/".$anio;
+
+		if($fecha){
+			$data["title"] = "Detalle de mercadería para el día ".$fecha;
+			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha);
+			$this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print3', $data);
+		}
+	}
+
+
 	private function getDescripPrecio($clientes_categoria){
 		if($clientes_categoria == 1) return 'articulos_precio1';
 		elseif($clientes_categoria == 2) return 'articulos_precio2';
 		else return 'articulos_precio3';
 	}
+
 
 }

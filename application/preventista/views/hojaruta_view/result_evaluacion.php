@@ -8,14 +8,16 @@
 <?php endforeach;?>
 <p><strong>Estado Hoja de ruta:</strong></p>
 <p>&nbsp;&nbsp;-&nbsp;<?=$hojaruta_status?></p>
-<input type="button" value="Aceptar" id="btnAceptar"/>
+
+
+<input type="button" value="Cerrar" id="btnAceptar"/>
 
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#btnAceptar").click(function(){
-			$("#content_detail_modal1").dialog("close");
-			loadPage('<?=base_url()?>index.php/hojaruta_controller/index','right-content');
+			$("#content_detail_modal").dialog("close");
+			loadPage('<?=base_url()?>hojaruta_controller/index','right-content');
 		});
 	});
 </script>

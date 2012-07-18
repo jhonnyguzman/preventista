@@ -1,0 +1,24 @@
+Sistema de gestión del preventista
+-------------------------------------
+
+- Datos de configuracion para la base de datos de produccion y desarrollo 
+
+	- Base de datos de producción:
+
+		Database:	admin_preventistaprod
+		Host:		localhost
+		Username:	admin_marcos
+		Password:	marcospreventista28009
+
+	- Base de datos de desarrollo:
+
+		Database:	admin_preventistadev
+		Host:		localhost
+		Username:	admin_marcos
+		Password:	marcospreventista28009
+
+
+
+Server's Hostname	: da.intovps.com
+NS1	: ns1.intovps.com
+NS2	:ns2.intovps.com

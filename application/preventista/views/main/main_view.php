@@ -56,5 +56,6 @@
 			</div>
 			<div id="footer"><?=$this->config->item('title_footer')?></div>
 		</div>
+		<div id="content_detail_modal"></div>
 	</body>
 </html>

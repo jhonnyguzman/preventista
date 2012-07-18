@@ -27,7 +27,7 @@ class Cuentacorriente_Model extends CI_Model {
 		$this->arr_log['string'] = $this->db->last_query();
 		
 		//log query
-		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogWithoutId($this->arr_log));
 
 		return $this->db->insert_id();
 	}
@@ -177,4 +177,46 @@ class Cuentacorriente_Model extends CI_Model {
 		return $fields;
 	}
 
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'cuentacorriente' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('cuentacorriente');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla cuentacorriente con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='cuentacorriente_id';
+		$fields[]='clientes_id';
+		$fields[]='cuentacorriente_haber';
+		$fields[]='cuentacorriente_debe';
+		$fields[]='cuentacorriente_saldo';
+		$fields[]='cuentacorriente_created_at';
+		$fields[]='cuentacorriente_updated_at';
+		return $fields;
+	}
 }

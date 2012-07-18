@@ -1,0 +1,8 @@
+INSERT INTO clientes (_id, nombre, apellido, direccion, telefono, clientescategoria_id, created_at, updated_at) VALUES ('5', 'ISMAEL', 'GUERRERO', 'MARCOS PAZ 344', '3814951254', '2', '2012-07-08 09:43:32', '2012-07-08 09:43:32')
+INSERT INTO cuentacorriente (_id, clientes_id, updated_at) VALUES ('12', 5, '2012-07-08 09:43:32')
+INSERT INTO clientes (_id, nombre, apellido, direccion, telefono, clientescategoria_id, created_at, updated_at) VALUES ('6', 'GLADYS', 'OVANDO', 'AV.  AVELLANEDA 2345', '3814951251', '3', '2012-07-08 09:44:05', '2012-07-08 09:44:05')
+INSERT INTO cuentacorriente (_id, clientes_id, updated_at) VALUES ('13', 6, '2012-07-08 09:44:05')
+INSERT INTO clientes (_id, nombre, apellido, direccion, telefono, clientescategoria_id, created_at, updated_at) VALUES ('7', 'LUCAS', 'GUTIERREZ', 'SANTA FE', '1800', '1', '2012-07-08 09:44:23', '2012-07-08 09:44:23')
+INSERT INTO cuentacorriente (_id, clientes_id, updated_at) VALUES ('14', 7, '2012-07-08 09:44:23')
+INSERT INTO clientes (_id, nombre, apellido, direccion, telefono, clientescategoria_id, created_at, updated_at) VALUES ('8', 'AMANDA', 'PINOS', 'SAN MARTIN 3000', '3814915254', '2', '2012-07-08 09:44:46', '2012-07-08 09:44:46')
+INSERT INTO cuentacorriente (_id, clientes_id, updated_at) VALUES ('15', 8, '2012-07-08 09:44:46')

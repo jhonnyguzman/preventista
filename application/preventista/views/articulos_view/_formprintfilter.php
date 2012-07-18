@@ -1,5 +1,5 @@
 <div id="fieldstoprint_filter" title="Seleccione campos a imprimir">
-	<form action="<?=base_url()?>articulos_controller/printfilter_c" method="post" name="formPrintFilterArticulos" id="formPrintFilterArticulos">
+	<form action="<?=base_url()?>articulos_controller/printfilter2_c" method="post" name="formPrintFilterArticulos" id="formPrintFilterArticulos">
 		<?=$this->load->view("articulos_view/_fieldstoprint")?>
 		<input type="hidden" name="articulos_descripcion_f" id="articulos_descripcion_f">
 		<input type="hidden" name="rubros_id_f" id="rubros_id_f">

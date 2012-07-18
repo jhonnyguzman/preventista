@@ -32,7 +32,10 @@ class Access_Hook {
 			'cambiodirectostock_controller',
 			'cuentacorriente_controller',
 			'autocomplete_controller',
-			'tramites_controller');
+			'tramites_controller',
+			'pagos_controller',
+			'utilidades_controller',
+			'dbmobile_controller');
 		if($CI->session->userdata('logged_in') == true && $CI->router->method == 'login') redirect('main_controller');
 		if($CI->session->userdata('logged_in') != true && $CI->router->method != 'login' && in_array($CI->router->class, $privatecontrollers))
 		{

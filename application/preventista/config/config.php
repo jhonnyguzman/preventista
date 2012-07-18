@@ -15,8 +15,10 @@
 |
 */
 //$config['base_url']	= 'http://testsystem.zapto.org/projects/crud_test_pro/';
-//config['base_url']	= 'http://localhost/repositorios/preventista/';
-$config['base_url']	= 'http://192.168.2.103/repositorios/preventista/';
+$config['base_url']	= 'http://localhost/repositorios/preventista/';
+//$config['base_url']	= 'http://192.168.2.103/repositorios/preventista/';
+//$config['base_url']	= 'http://preventista.servehttp.com/repositorios/preventista/';
+//$config['base_url']	= 'http://10.0.0.18/repositorios/preventista/';
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,7 @@ $config['base_url']	= 'http://192.168.2.103/repositorios/preventista/';
 | variable so that it is blank.
 |
 */
+
 $config['index_page'] = '';
 
 /*

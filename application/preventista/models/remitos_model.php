@@ -3,6 +3,8 @@
 
 class Remitos_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'remitos_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,12 @@ class Remitos_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('remitos', $options);
+
+		//log query
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogWithoutId($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -47,6 +55,10 @@ class Remitos_Model extends CI_Model {
 
 		$this->db->update('remitos');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
@@ -64,6 +76,11 @@ class Remitos_Model extends CI_Model {
 		//code here
 		$this->db->where('remitos_id', $remitos_id);
 		$this->db->delete('remitos');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+		
 		return $this->db->affected_rows();
 	}
 
@@ -100,7 +117,8 @@ class Remitos_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 
-		$this->db->select("r.*, hd.pedidos_id, tg.tabgral_descripcion as remitos_estado_descripcion");
+		$this->db->select("r.*,r.remitos_created_at as remitos_created_at_without_format, 
+			hd.pedidos_id, tg.tabgral_descripcion as remitos_estado_descripcion");
 		$this->db->from("remitos as r");
 		$this->db->join("hojarutadetalle as hd", "hd.hojarutadetalle_id = r.hojarutadetalle_id");
 		$this->db->join("tabgral as tg","tg.tabgral_id = r.remitos_estado");
@@ -146,4 +164,44 @@ class Remitos_Model extends CI_Model {
 		return $fields;
 	}
 
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'remitos' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('remitos');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla remitos con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='remitos_id';
+		$fields[]='hojarutadetalle_id';
+		$fields[]='remitos_estado';
+		$fields[]='remitos_created_at';
+		$fields[]='remitos_updated_at';
+		return $fields;
+	}
 }

@@ -287,4 +287,59 @@ class Articulos_Model extends CI_Model {
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
+
+
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'articulos' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('articulos');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla articulos con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='articulos_id';
+		$fields[]='articulos_descripcion';
+		$fields[]='articulos_preciocompra';
+		$fields[]='articulos_stockreal';
+		$fields[]='articulos_stockmin';
+		$fields[]='articulos_stockmax';
+		$fields[]='rubros_id';
+		$fields[]='articulos_observaciones';
+		$fields[]='articulos_precio1';
+		$fields[]='articulos_precio2';
+		$fields[]='articulos_precio3';
+		$fields[]='articulos_porcentaje1';
+		$fields[]='articulos_porcentaje2';
+		$fields[]='articulos_porcentaje3';
+		$fields[]='articulos_estado';
+		$fields[]='marcas_id';
+		$fields[]='articulos_created_at';
+		$fields[]='articulos_updated_at';
+		return $fields;
+	}
 }

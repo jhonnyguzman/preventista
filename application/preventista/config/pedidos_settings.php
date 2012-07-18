@@ -12,8 +12,8 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 /* Config labels of the form fields */
 
 $config['pedidos_id']='Pedido Id';
-$config['peididos_montototal']='Monto total';
-$config['pedidos_montoadeudado']='Monto adeudado';
+$config['peididos_montototal']='Monto Total';
+$config['pedidos_montoadeudado']='Monto Adeud.';
 $config['pedidos_estado']='Estado';
 $config['pedidos_estado_descripcion']='Estado';
 $config['clientes_id']='clientes_id';

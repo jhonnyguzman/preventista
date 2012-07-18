@@ -3,7 +3,6 @@
 <?php else: ?>
 	<div id="title-level2"><?=$subtitle?></div>
 	<div id="form-search">
-		<div class="fields-required">Campos obligatorios (*)</div>
 		<form action="<?=base_url()?>hojaruta_controller/edit_c/<?=$hojaruta->hojaruta_id?>" method="post" name="formEdithojaruta" id="formEdithojaruta">
 			<fieldset>
 				<legend>Hoja de ruta</legend>
@@ -45,9 +44,8 @@
 						<table id="result-set">
 							<thead>
 							<tr>
-								<th><input type="checkbox" name="chkAll" class="chkAll"></th>
 								<th>Pedido Id</th>
-								<th>Tipo de transacci&oacute;n</th>
+								<th>Tr&aacute;mite</th>
 								<th>Cliente</th>
 								<th>Direcci&oacute;n</th>
 								<th>Moto total</th>
@@ -58,13 +56,12 @@
 							<tbody>
 							<?php foreach($hojarutadetalle as $f): ?>
 							<tr>
-								<td><input type="checkbox" name="chkHojaRutaDetalle" class="chkLote" value="<?=$f->hojarutadetalle_id?>"></td>
 								<td><?=$f->pedidos_id?></td>
-								<td><?=$f->hojarutadetalle_tipotransaccion_descripcion?></td>
+								<td><?=$f->tramites_descripcion?></td>
 								<td><?=$f->clientes_apellido." ".$f->clientes_nombre?></td>
 								<td><?=$f->clientes_direccion?></td>
-								<td><?=$f->peididos_montototal?></td>
-								<td><?=$f->pedidos_montoadeudado?></td>
+								<td>$&nbsp;<?=$f->peididos_montototal?></td>
+								<td>$&nbsp;<?=$f->pedidos_montoadeudado?></td>
 								<?php if($flag['d']):?>
 									<td><a href="#" onClick="deleteData('<?=base_url()?>index.php/hojarutadetalle_controller/delete_c/<?=$f->hojarutadetalle_id?>','right-content','¿Estás seguro de eliminar este item?')" id="icon-delete">Eliminar</a><td>
 								<?php endif;?>

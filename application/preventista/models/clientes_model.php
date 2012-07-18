@@ -177,4 +177,48 @@ class Clientes_Model extends CI_Model {
 		return $fields;
 	}
 
+
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'clientes' para luego ser cargados  
+	 * en la base de datos sqlite3 para  el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('clientes');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla clientes con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='clientes_id';
+		$fields[]='clientes_nombre';
+		$fields[]='clientes_apellido';
+		$fields[]='clientes_direccion';
+		$fields[]='clientes_telefono';
+		$fields[]='clientes_created_at';
+		$fields[]='clientes_updated_at';
+		$fields[]='clientescategoria_id';
+		return $fields;
+	}
 }

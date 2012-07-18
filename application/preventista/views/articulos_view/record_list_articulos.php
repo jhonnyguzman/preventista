@@ -48,7 +48,7 @@
 				</tr>
 			<?php $i++; endforeach; ?>
 		</tbody>
-	</table>
+	</table><br>
 	<div class="footer-content">
 		<?php if(isset($pagination)):?>
 			<div class='pagination'>
@@ -56,11 +56,11 @@
 			</div>
 		<?php endif; ?>
 		<ul id="menu_footer_content">
-			<li><a href="#" onClick="updateParcial('chkArticulos','<?=base_url()?>articulos_controller/updateparcial_c')">Registrar cambios</a></li>
-			<li><a href="#">Imprimir</a>
+			<li><a href="#" onClick="updateParcial('chkArticulos','<?=base_url()?>articulos_controller/updateparcial_c')" id="icon-update">Registrar cambios</a></li>
+			<li><a href="#" id="icon-print">Imprimir</a>
 				<ul>
-					<li><a href="#" onClick="dialogUp('fieldstoprint_all',380,180)">Todo</a></li>
-					<li><a href="#" onClick="dialogUp('fieldstoprint_filter',380,180)">Filtrado</a></li>
+					<li><a href="#" onClick="dialogUp('fieldstoprint_all',430,250)">Todo</a></li>
+					<li><a href="#" onClick="dialogUp('fieldstoprint_filter',430,250)">Filtrado</a></li>
 				</ul>
 			</li>
 		</ul>

@@ -1,0 +1,17 @@
+UPDATE articulos SET articulos_stockreal = 84, articulos_updated_at = '2012-08-06 05:08:04' WHERE articulos_id = 50016;
+UPDATE articulos SET articulos_stockreal = 89, articulos_updated_at = '2012-08-06 05:08:04' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 85, articulos_updated_at = '2012-08-06 05:08:04' WHERE articulos_id = 50019;
+UPDATE articulos SET articulos_stockreal = 93, articulos_updated_at = '2012-08-06 05:08:04' WHERE articulos_id = 50024;
+UPDATE articulos SET articulos_stockreal = 99, articulos_updated_at = '2012-08-06 05:08:04' WHERE articulos_id = 50025;
+UPDATE articulos SET articulos_stockreal = 86, articulos_updated_at = '2012-08-06 05:08:45' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 81, articulos_updated_at = '2012-09-06 05:09:06' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 86, articulos_updated_at = '2012-10-06 05:10:03' WHERE articulos_id = 50016;
+UPDATE articulos SET articulos_stockreal = 91, articulos_updated_at = '2012-10-06 05:10:03' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 87, articulos_updated_at = '2012-10-06 05:10:04' WHERE articulos_id = 50019;
+UPDATE articulos SET articulos_stockreal = 102, articulos_updated_at = '2012-10-06 05:10:45' WHERE articulos_id = 2;
+UPDATE articulos SET articulos_stockreal = 75, articulos_updated_at = '2012-10-06 05:10:45' WHERE articulos_id = 50015;
+UPDATE articulos SET articulos_stockreal = 89, articulos_updated_at = '2012-10-06 05:10:45' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 104, articulos_updated_at = '2012-10-06 05:10:53' WHERE articulos_id = 2;
+UPDATE articulos SET articulos_stockreal = 77, articulos_updated_at = '2012-10-06 05:10:53' WHERE articulos_id = 50015;
+UPDATE articulos SET articulos_stockreal = 91, articulos_updated_at = '2012-10-06 05:10:54' WHERE articulos_id = 50018;
+INSERT INTO clientes (clientes_id,clientes_nombre,clientes_apellido,clientes_direccion,clientes_telefono,clientes_created_at,clientes_updated_at,clientescategoria_id) VALUES (50003,'NANCY','GUZMAN','CORDOBA 3453','38148544',now(),now(),1);

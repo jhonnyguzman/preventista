@@ -1,0 +1,10 @@
+INSERT INTO pagos (monto, clientes_id, usuarios_id, fechaingreso, created_at, updated_at) VALUES ('10', '1', '1', '2012-07-06 09:57:23', '2012-07-06 09:57:23', '2012-07-06 09:57:23')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '1', 50001, 160)
+INSERT INTO pagos (monto, clientes_id, usuarios_id, fechaingreso, created_at, updated_at) VALUES ('10', '1', '1', '2012-07-06 10:02:20', '2012-07-06 10:02:20', '2012-07-06 10:02:20')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES ('7', '1', 50002, 160)
+UPDATE pedidos SET montoadeudado = 84.2, estado = 15 WHERE _id = '1'
+UPDATE cuentacorriente SET clientes_id = '1', haber = 160, debe = 84.2, updated_at = '2012-07-06 10:02:20' WHERE clientes_id = '1'
+INSERT INTO pagos (_id, monto, clientes_id, usuarios_id, fechaingreso, created_at, updated_at) VALUES ('8', '10', '1', '1', '2012-07-06 10:04:29', '2012-07-06 10:04:29', '2012-07-06 10:04:29')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES ('8', '1', 8, 170)
+UPDATE pedidos SET montoadeudado = 74.2, estado = 15 WHERE _id = '1'
+UPDATE cuentacorriente SET clientes_id = '1', haber = 170, debe = 74.2, updated_at = '2012-07-06 10:04:29' WHERE clientes_id = '1'

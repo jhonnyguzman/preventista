@@ -8,8 +8,8 @@
 		<div id="controller-botonera">
 			<ul id="menu_sist">
 				<?php if($flag['i']):?>
-					<li><a href="#" onClick="getModalWindowAdvancedTwo('content_detail_modal','<?=base_url()?>hojaruta_controller/showPrintSeleccion_c/',380,180,'chkHojaRuta','<?=base_url()?>hojaruta_controller/index')">Imprimir</a></li>
-					<li><a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a></li>
+					<li><a href="#" onClick="getModalWindowAdvancedTwo('content_detail_modal5','<?=base_url()?>hojaruta_controller/showPrintSeleccion_c/',380,180,'chkHojaRuta','<?=base_url()?>hojaruta_controller/index')"  id="icon-print">Imprimir</a></li>
+					<!--<li><a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a></li>-->
 				<?php endif; ?>
 			</ul>
 		</div>
@@ -23,4 +23,4 @@
 	</fieldset>
 	</form>
 </div>
-<div id="content_detail_modal" title='Imprimir Hojas de Ruta'></div>
+<div id="content_detail_modal5" title='Imprimir Hojas de Ruta'></div>

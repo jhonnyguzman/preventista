@@ -16,7 +16,6 @@ class Pagos_Controller extends CI_Controller {
 		$this->load->model('clientes_model');
 		$this->load->model('usuarios_model');
 		$this->load->model('tabgral_model');
-		$this->load->model('pedidos_model');
 		$this->load->model('cuentacorriente_model');
 		$this->load->model('pagospedidos_model');
 		$this->config->load('pagos_settings');
@@ -181,16 +180,17 @@ class Pagos_Controller extends CI_Controller {
 		
 		if($this->form_validation->run()){
 			$data_pagos  = array();
-		
+			$data_pagos['pagos_id'] = $this->preferences->data['pagos_next_id'];
 			$data_pagos['pagos_monto'] = $this->input->post('pagos_monto');
 			$data_pagos['clientes_id'] = $this->input->post('clientes_id');
 			$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
-			//$data_pagos['pagos_estado'] = 18; // estado de pago = ingresado
 			$data_pagos['pagos_fechaingreso'] = $this->basicrud->formatDateToBD();
+			$data_pagos['pagos_created_at'] = $this->basicrud->formatDateToBD();
 			$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
 
 			if($id_pago = $this->pagos_model->add_m($data_pagos)){
-				$data_pagos['pagos_id'] = $id_pago;				
+				$data_pagos['pagos_id'] = $id_pago;
+				$this->preferences->editNextId('pagos_next_id',$id_pago);				
 				if($this->basicrud->calcDeudaCliente($data_pagos)){
 					$data['pago'] = $data_pagos;
 					$data['status'] = true; 
@@ -209,7 +209,7 @@ class Pagos_Controller extends CI_Controller {
 	}
 
 
-	function calcDeuda($pago = array())
+	/*function calcDeuda($pago = array())
 	{
 		//consultar todos los pedidos del cliente con estado entregado o parcialmente pagado
 		$pedidos = $this->pedidos_model->get2_m(array('clientes_id' => $pago['clientes_id'], 'pedidos_estado1' => 8,'pedidos_estado2' => 15));
@@ -273,7 +273,7 @@ class Pagos_Controller extends CI_Controller {
 
 		return true;
 	}
-
+	*/
 
 	/**
 	 * This function sends the id of record to the
@@ -367,6 +367,14 @@ class Pagos_Controller extends CI_Controller {
 		$pago = $this->pagos_model->get_m(array('pagos_id' => $pagos_id));	    
 	   
 	  if($pago) return true; else return false;	
+	}
+
+
+	function showPagosRealizados_c($clientes_id)
+	{
+
+		$data['pagosrealizados'] = $this->pagos_model->get_m(array('clientes_id' => $clientes_id,'sortBy' => 'pagos_created_at', 'sortDirection' => 'desc'));
+		$this->load->view("pagos_view/form_show_pagos_realizados",$data);
 	}
 
 }

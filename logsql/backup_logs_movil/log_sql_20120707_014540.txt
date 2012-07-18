@@ -1,0 +1,7 @@
+UPDATE articulos SET articulos_stockreal = 105, articulos_updated_at = '2012-44-07 01:44:16' WHERE articulos_id = 2;
+UPDATE articulos SET articulos_stockreal = 87, articulos_updated_at = '2012-44-07 01:44:17' WHERE articulos_id = 50018;
+UPDATE articulos SET articulos_stockreal = 82, articulos_updated_at = '2012-44-07 01:44:18' WHERE articulos_id = 50019;
+INSERT INTO pedidos (pedidos_id,peididos_montototal,pedidos_montoadeudado,clientes_id,pedidos_estado,tramites_id, pedidos_observaciones, pedidos_created_at,pedidos_updated_at) VALUES (50001,224.4,224.4,1,6, 1,'Pedido cargado desde el emulador de android 2.2', now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50002,50001,2,2,0.0, 37.4, 18.7, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50003,50001,50018,2,0.0, 88.0, 44.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50004,50001,50019,2,0.0, 99.0, 49.5, now(), now());

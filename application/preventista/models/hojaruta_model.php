@@ -3,6 +3,8 @@
 
 class Hojaruta_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'hojaruta_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,12 @@ class Hojaruta_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('hojaruta', $options);
+
+		//log query
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogWithoutId($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -49,6 +57,10 @@ class Hojaruta_Model extends CI_Model {
 
 		$this->db->update('hojaruta');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
@@ -66,6 +78,11 @@ class Hojaruta_Model extends CI_Model {
 		//code here
 		$this->db->where('hojaruta_id', $hojaruta_id);
 		$this->db->delete('hojaruta');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+		
 		return $this->db->affected_rows();
 	}
 
@@ -159,4 +176,45 @@ class Hojaruta_Model extends CI_Model {
 		return $fields;
 	}
 
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'hojaruta' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('hojaruta');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla hojaruta con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='hojaruta_id';
+		$fields[]='fleteros_id';
+		$fields[]='usuarios_id';
+		$fields[]='hojaruta_estado';
+		$fields[]='hojaruta_created_at';
+		$fields[]='hojaruta_updated_at';
+		return $fields;
+	}
 }

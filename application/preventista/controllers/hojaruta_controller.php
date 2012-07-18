@@ -21,6 +21,7 @@ class Hojaruta_Controller extends CI_Controller {
 		$this->load->model('tabgral_model');
 		$this->load->model('clientes_model');  
 		$this->load->model('pagos_model');
+		$this->load->model('gastos_model');
 		$this->config->load('hojaruta_settings');
 		$data['flags'] = $this->basicauth->getPermissions('hojaruta');
 		$this->flagR = $data['flags']['flag-read'];
@@ -181,13 +182,13 @@ class Hojaruta_Controller extends CI_Controller {
 			exit();
 		}
 
-		$data = array();
-		$data['subtitle'] = $this->config->item('recordShowTitle');
-		$data['flag'] = $this->flags;
-		$data['hojaruta'] = $this->hojaruta_model->get_m(array('hojaruta_id' => $hojaruta_id),$flag=1);
-		$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array('hojaruta_id' => $hojaruta_id));
-			
-		if($data['hojaruta']){
+		if($hojaruta_id){
+			$data = array();
+			$data['subtitle'] = $this->config->item('recordShowTitle');
+			$data['flag'] = $this->flags;
+			$data['hojaruta'] = $this->hojaruta_model->get_m(array('hojaruta_id' => $hojaruta_id),$flag=1);
+			$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array('hojaruta_id' => $hojaruta_id));
+			$data['gastos'] = $this->gastos_model->get_m(array('hojaruta_id' => $hojaruta_id));
 			$this->load->view('hojaruta_view/form_show_hojaruta',$data);
 		}else{
 			$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_message')); 
@@ -213,28 +214,40 @@ class Hojaruta_Controller extends CI_Controller {
 			exit();
 		}
 
-		$hojarutadetalle = $this->hojarutadetalle_model->get_m(array('hojaruta_id' => $hojaruta_id));
-		if($hojarutadetalle)
+		$hojaruta = $this->hojaruta_model->get_m(array('hojaruta_id' => $hojaruta_id));
+		
+		//verificamos que el estado de la hoja de ruta sea 'planteada'
+		if($hojaruta[0]->hojaruta_estado == 10)
 		{
-			foreach ($hojarutadetalle as $f) {
-				//cambiamos estado de pedido a 'Solicitado'
-				$state = $this->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 6));
-			}
-			if($this->hojaruta_model->delete_m($hojaruta_id)){ 
-				$this->session->set_flashdata('flashConfirm', $this->config->item('hojaruta_flash_delete_message')); 
-				redirect('hojaruta_controller','location');
+
+			$hojarutadetalle = $this->hojarutadetalle_model->get_m(array('hojaruta_id' => $hojaruta_id));
+			//verificamos que haya lineas de la hoja de ruta seleccionada
+			if(count($hojarutadetalle) > 0)
+			{
+				foreach ($hojarutadetalle as $f) {
+					//cambiamos estado de pedido a 'Solicitado'
+					$state = $this->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 6));
+				}
+				if($this->hojaruta_model->delete_m($hojaruta_id)){ 
+					$this->session->set_flashdata('flashConfirm', $this->config->item('hojaruta_flash_delete_message')); 
+					redirect('hojaruta_controller','location');
+				}else{
+					$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_delete_message')); 
+					redirect('hojaruta_controller','location');
+				}
 			}else{
-				$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_delete_message')); 
-				redirect('hojaruta_controller','location');
+				if($this->hojaruta_model->delete_m($hojaruta_id)){ 
+					$this->session->set_flashdata('flashConfirm', $this->config->item('hojaruta_flash_delete_message')); 
+					redirect('hojaruta_controller','location');
+				}else{
+					$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_delete_message')); 
+					redirect('hojaruta_controller','location');
+				}
 			}
+		
 		}else{
-			if($this->hojaruta_model->delete_m($hojaruta_id)){ 
-				$this->session->set_flashdata('flashConfirm', $this->config->item('hojaruta_flash_delete_message')); 
-				redirect('hojaruta_controller','location');
-			}else{
-				$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_delete_message')); 
-				redirect('hojaruta_controller','location');
-			}
+			$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_delete_message')); 
+			redirect('hojaruta_controller','location');
 		}
 
 	}
@@ -348,11 +361,18 @@ class Hojaruta_Controller extends CI_Controller {
 			$this->session->set_flashdata('flashError', $this->config->item('hojaruta_flash_error_print_message')); 
 			redirect('hojaruta_controller','location');
 		}else{
-			$this->setPrintSeleccion_c($hojaruta_ids);
+			$this->setPrintSeleccion2_c($hojaruta_ids);
 		}
 	}
 
 
+	/**
+	* Esta función me permite generar un pdf de una o varias hojas de rutas. 
+	* Por cada hoja de ruta se genera los remitos correspondientes de 
+	* cada pedido tambien en formato pdf. Todo estos documentos impresos
+	* son encapsulados dentro de un archivo .zip que es finalmente el que 
+	* se descarga.
+	*/ 
 	function setPrintSeleccion_c($hojaruta_ids = array())
 	{
 		$this->load->library('zip');
@@ -369,7 +389,7 @@ class Hojaruta_Controller extends CI_Controller {
 			{
 				//page info here, db calls, etc.     
     			$html = $this->load->view('hojaruta_view/record_list_to_print', $data, true);
-    			$pdf = pdf_create($html,'hojaruta_'.$f,'a6','','./pdfs/',false);
+    			$pdf = pdf_create($html,'hojaruta_'.$f,'a5','','./pdfs/',false);
     			$data2['hojaruta_'.$f.".pdf"] = $pdf;
 
     			foreach($data['hojarutadetalle'] as $g)
@@ -378,11 +398,15 @@ class Hojaruta_Controller extends CI_Controller {
     				$data['cliente'] = $this->clientes_model->get_m(array("clientes_id" => $data['pedido'][0]->clientes_id));
 					$data['remito'] = $this->remitos_model->get_m(array("hojarutadetalle_id" => $g->hojarutadetalle_id));
 					$data['pedidodetalle'] = $this->pedidodetalle_model->get_m(array("pedidos_id" => $g->pedidos_id, 'clientescategoria_id' => $data['cliente'][0]->clientescategoria_id));
-					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados_m($data['pedido'][0]->clientes_id);
-					$data["saldocliente"] = $this->pedidos_model->getSumPedidos2($data['pedido'][0]->clientes_id);
+					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
+						"clientes_id" => $data['pedido'][0]->clientes_id,
+						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
+					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+						$data['pedido'][0]->clientes_id, 
+						$data['pedido'][0]->pedidos_created_at_without_format);
 
 					$html = $this->load->view('remitos_view/record_list_to_print', $data, true);
-    				$pdf = pdf_create($html,'remito_'.$data['remito'][0]->remitos_id,'a6','','./pdfs/',false);
+    				$pdf = pdf_create($html,'remito_'.$data['remito'][0]->remitos_id,'a5','','./pdfs/',false);
     				$data2['remitos_'.$data['remito'][0]->remitos_id.".pdf"] = $pdf;
     			}
 	    	}	
@@ -390,22 +414,75 @@ class Hojaruta_Controller extends CI_Controller {
 			
 		$this->zip->add_data($data2);
 		$this->zip->download($this->basicrud->setFileName('HojaRutas').".zip");
-	
-		//$this->session->set_flashdata('flashConfirm', $this->config->item('hojaruta_flash_print_success_message')); 
-		//redirect('remitos_controller','location');
 
 	}
 
+
+	/**
+	* Esta función me permite generar un txt de una o varias hojas de rutas. 
+	* Por cada hoja de ruta se genera los remitos correspondientes de 
+	* cada pedido. Todo esto se coloca en un solo archivo txt para su descarga
+	*/ 
+	function setPrintSeleccion2_c($hojaruta_ids = array())
+	{
+		$this->load->helper('download');
+		$html = '';
+		$data["todayDate"] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
+		$cant = count($hojaruta_ids);
+		
+		foreach ($hojaruta_ids as $f) 
+		{
+			$data['hojaruta'] = $this->hojaruta_model->get_m(array("hojaruta_id" => $f), $flag = 1);
+			$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $f));
+			if($data['hojarutadetalle'])
+			{
+				//page info here, db calls, etc.     
+    			$html.= $this->load->view('hojaruta_view/record_list_to_print_txt', $data, true);
+
+    			foreach($data['hojarutadetalle'] as $g)
+    			{
+    				$data['pedido'] = $this->pedidos_model->get_m(array("pedidos_id" => $g->pedidos_id));
+    				$data['cliente'] = $this->clientes_model->get_m(array("clientes_id" => $data['pedido'][0]->clientes_id));
+					$data['remito'] = $this->remitos_model->get_m(array("hojarutadetalle_id" => $g->hojarutadetalle_id));
+					$data['pedidodetalle'] = $this->pedidodetalle_model->get_m(array("pedidos_id" => $g->pedidos_id, 'clientescategoria_id' => $data['cliente'][0]->clientescategoria_id));
+					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
+						"clientes_id" => $data['pedido'][0]->clientes_id,
+						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
+					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+						$data['pedido'][0]->clientes_id, 
+						$data['pedido'][0]->pedidos_created_at_without_format);
+
+					$html.= $this->load->view('remitos_view/record_list_to_print_txt', $data, true);
+    			}
+	    	}	
+		}
+
+		$data = $html;
+		$name = $this->basicrud->setFileName('HojaRutas').".txt";
+		force_download($name, $data);
+	}
+
+
+	function showFormEvaluarMain_c($hojaruta_id)
+	{
+		$data["hojaruta_id"] = $hojaruta_id;
+		$this->load->view('hojaruta_view/form_evaluacion_main',$data);
+	}
 
 	function showFormEvaluar_c($hojaruta_id)
 	{
 		$data['hojaruta_id'] = $hojaruta_id;
 		$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array('hojaruta_id' => $hojaruta_id));
-		$this->load->view('hojaruta_view/form_evaluacion_hojaruta',$data);
+		$this->load->view('hojaruta_view/form_evaluacion_main',$data);
 	}
 
 	
-
+	/**
+	* Esta función me permite evaluar cada uno de los items de una 
+	* hoja de ruta. Ademas cambias los estado de cada pedido, remitos
+	* y la misma hoja de ruta. Si existen montos recibimos, aqui se 
+	* actualiza la cuenta corriente de cada cliente asociada a cada pedido.
+	*/
 	function evaluar_c()
 	{
 		$this->load->model('cuentacorriente_model'); 
@@ -417,6 +494,15 @@ class Hojaruta_Controller extends CI_Controller {
 		$hojarutadetalle_id = $this->input->post('hojarutadetalle_id');
 		$chkEvaluacionHojaRuta = $this->input->post('chkEvaluacionHojaRuta');
 		$monto_recibido = $this->input->post('monto_recibido');
+		
+		//datos de gastos
+		$gdescrip = $this->input->post("gdescrip");
+		$gmontos = $this->input->post("gmontos");
+		
+		//datos de pagos casuales
+		$clientes_id = $this->input->post("clientes_id");
+		$pmontos = $this->input->post("pmontos");
+		
 		
 		foreach ($pedidos_id as $f) 
 		{
@@ -448,15 +534,29 @@ class Hojaruta_Controller extends CI_Controller {
 		$hojaruta = $this->hojaruta_model->edit_m(array('hojaruta_id' => $hojaruta_id, 'hojaruta_estado' => 25)); //estado de hoja de ruta = finalizada
 		$data['hojaruta_status'] = "Se actualiz&oacute; el estado de la Hoja de ruta: ".$hojaruta_id." a <strong>'Finalizada'</strong>";
 
+		//cargamos los gastos ingresados
+		$this->cargarGastos($gdescrip, $gmontos, $hojaruta_id);
+		//cargamos los pagos casuales ingresados
+		$this->cargarPagosCasuales($clientes_id, $pmontos);
+		
 		$this->load->view('hojaruta_view/result_evaluacion', $data);
+
 	}
 
 
+	/**
+	 * Esta función permite cargar los pagos segun los montos ingresados de cada pedido
+	 * @param float $monto 	monto recibido de un pedido en especial
+	 * @param integer $pedidos_id 	pedido del cual se ingreso un monto recibido
+	 * @access public
+	 * @return void
+	 */
 	function inPago($monto, $pedidos_id)
 	{
 		$pedido = $this->pedidos_model->get_m(array('pedidos_id' => $pedidos_id));
 
 		if($pedido){
+			$data_pagos['pagos_id'] = $this->preferences->getNextId('pagos_next_id');
 			$data_pagos['pagos_monto'] = $monto;
 			$data_pagos['clientes_id'] = $pedido[0]->clientes_id;
 			$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
@@ -465,6 +565,7 @@ class Hojaruta_Controller extends CI_Controller {
 			if($monto != ''){
 				if($id_pagos = $this->pagos_model->add_m($data_pagos)){
 					$data_pagos['pagos_id'] = $id_pagos;
+					$this->preferences->editNextId('pagos_next_id',$id_pagos);
 					$estado = $this->basicrud->calcDeudaCliente($data_pagos);
 				}
 			}else{
@@ -474,6 +575,193 @@ class Hojaruta_Controller extends CI_Controller {
 				$this->basicrud->updateEstadoContable($data_pagos['clientes_id'], $haber, $debe);
 			}
 		}
+	}
+
+
+	/**
+	 * Esta función permite cargar los gastos ingresados en la interfaz
+	 * @param array $gdescrip 	un array con las descripciones de los gastos
+	 * @param array $gmontos 	un array con los montos ingresados de cada gasto
+	 * @param integer $hojaruta_id 	cada gasto tiene asociado una hoja de ruta 
+	 * @access public
+	 * @return void
+	 */
+	function cargarGastos($gdescrip, $gmontos, $hojaruta_id)
+	{
+		for($i=0; $i<count($gmontos); $i++){
+			$data_gastos['gastos_descripcion'] = $gdescrip[$i];
+			$data_gastos['hojaruta_id'] = $hojaruta_id;
+			$data_gastos['gastos_monto'] = $gmontos[$i];
+			$data_gastos['gastos_updated_at'] = $this->basicrud->formatDateToBD();
+			$id_gastos = $this->gastos_model->add_m($data_gastos);
+		}
+	}
+
+
+	/**
+	 * Esta función permite ingresar todos los pagos casuales ingresados
+	 * y calcular la deudo correspondiente de cada cliente
+	 * @param array $clientes_id 	un array con los id de los clientes
+	 * @param array $pmontos 	un array con los montos ingresados
+	 * @access public
+	 * @return void
+	 */
+	function cargarPagosCasuales($clientes_id, $pmontos)
+	{
+		for($i=0; $i<count($clientes_id); $i++)
+		{
+			$data_pagos  = array();
+			$data_pagos['pagos_id'] = $this->preferences->getNextId('pagos_next_id');
+			$data_pagos['pagos_monto'] = $pmontos[$i];
+			$data_pagos['clientes_id'] = $clientes_id[$i];
+			$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
+			$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
+
+			if($id_pagos = $this->pagos_model->add_m($data_pagos)){
+				$data_pagos['pagos_id'] = $id_pagos;
+				$this->preferences->editNextId('pagos_next_id',$id_pagos);				
+				if($this->basicrud->calcDeudaCliente($data_pagos)){
+					$data['pago'] = $data_pagos;
+				}
+			}
+		}
+	}
+
+
+	/**
+	* Esta función permite descargar en pdf una hoja de ruta 
+	*/
+	function printOnlyHojaRuta($hojaruta_id)
+	{
+		$this->load->helper(array('dompdf', 'file'));
+		
+		if($hojaruta_id){
+			$data['hojaruta'] = $this->hojaruta_model->get_m(array("hojaruta_id" => $hojaruta_id), $flag = 1);
+			if($data['hojaruta']){
+				$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $hojaruta_id));
+
+				$html = $this->load->view('hojaruta_view/record_list_to_print', $data, true);
+				pdf_create($html,'HojaRuta_'.$hojaruta_id,'a5');
+			}
+		}
+	}
+
+
+	/**
+	* Esta función permite descargar un txt de una hoja de ruta 
+	*/
+	function printOnlyHojaRuta2($hojaruta_id)
+	{
+		$this->load->helper('download');
+		
+		if($hojaruta_id){
+			$data['hojaruta'] = $this->hojaruta_model->get_m(array("hojaruta_id" => $hojaruta_id), $flag = 1);
+			if($data['hojaruta']){
+				$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $hojaruta_id));
+
+				$html = $this->load->view('hojaruta_view/record_list_to_print_txt', $data, true);
+				$data = $html;
+				$name = 'HojaRuta_'.$hojaruta_id.".txt";
+				force_download($name, $data);
+			}
+		}
+	}
+
+
+	/**
+	* Esta función permite descargar en pdf los remitos  
+	* de las lineas de una hoja de ruta seleccionadas
+	*/
+	function printRemitos($hojaruta_id,$list)
+	{
+		$this->load->library('zip');
+		$this->load->helper(array('dompdf', 'file'));
+		$data2 = array();
+
+		//lista de todas las lineas de hojas de rutas seleccionadas para 
+		//imprimir su remito
+		$list = explode(",",urldecode($list));
+
+		
+		if(count($list)>0)
+		{
+			$data['hojaruta'] = $this->hojaruta_model->get_m(array('hojaruta_id' => $hojaruta_id),$flag = 1);
+			for ($i=0; $i < count($list); $i++) 
+			{ 
+				$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojarutadetalle_id" => $list[$i]));
+				foreach($data['hojarutadetalle'] as $g)
+				{
+					$data['pedido'] = $this->pedidos_model->get_m(array("pedidos_id" => $g->pedidos_id));
+					$data['cliente'] = $this->clientes_model->get_m(array("clientes_id" => $data['pedido'][0]->clientes_id));
+					$data['remito'] = $this->remitos_model->get_m(array("hojarutadetalle_id" => $g->hojarutadetalle_id));
+					$data['pedidodetalle'] = $this->pedidodetalle_model->get_m(array("pedidos_id" => $g->pedidos_id, 'clientescategoria_id' => $data['cliente'][0]->clientescategoria_id));
+					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
+						"clientes_id" => $data['pedido'][0]->clientes_id,
+						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
+					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+						$data['pedido'][0]->clientes_id, 
+						$data['pedido'][0]->pedidos_created_at_without_format);
+
+					$html = $this->load->view('remitos_view/record_list_to_print', $data, true);
+					$pdf = pdf_create($html,'remito_'.$data['remito'][0]->remitos_id,'a5','','./pdfs/',false);
+					$data2['remitos_'.$data['remito'][0]->remitos_id.".pdf"] = $pdf;
+				}
+
+			}
+
+			$this->zip->add_data($data2);
+			$this->zip->download($this->basicrud->setFileName('Remitos').".zip");
+			
+		}
+    	
+	}
+
+
+
+	/**
+	* Esta función permite un txt con todos los remitos  
+	* de las lineas de una hoja de ruta seleccionadas
+	*/
+	function printRemitos2($hojaruta_id,$list)
+	{
+		$this->load->helper('download');
+		$html = '';
+
+		//lista de todas las lineas de hojas de rutas seleccionadas para 
+		//imprimir su remito
+		$list = explode(",",urldecode($list));
+
+		
+		if(count($list)>0)
+		{
+			$data['hojaruta'] = $this->hojaruta_model->get_m(array('hojaruta_id' => $hojaruta_id),$flag = 1);
+			for ($i=0; $i < count($list); $i++) 
+			{ 
+				$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojarutadetalle_id" => $list[$i]));
+				foreach($data['hojarutadetalle'] as $g)
+				{
+					$data['pedido'] = $this->pedidos_model->get_m(array("pedidos_id" => $g->pedidos_id));
+					$data['cliente'] = $this->clientes_model->get_m(array("clientes_id" => $data['pedido'][0]->clientes_id));
+					$data['remito'] = $this->remitos_model->get_m(array("hojarutadetalle_id" => $g->hojarutadetalle_id));
+					$data['pedidodetalle'] = $this->pedidodetalle_model->get_m(array("pedidos_id" => $g->pedidos_id, 'clientescategoria_id' => $data['cliente'][0]->clientescategoria_id));
+					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
+						"clientes_id" => $data['pedido'][0]->clientes_id,
+						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
+					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+						$data['pedido'][0]->clientes_id, 
+						$data['pedido'][0]->pedidos_created_at_without_format);
+
+					$html.= $this->load->view('remitos_view/record_list_to_print_txt', $data, true);
+				}
+
+			}
+
+			$data = $html;
+			$name = $this->basicrud->setFileName('Remitos').".txt";
+			force_download($name, $data);
+			
+		}
+    	
 	}
 
 

@@ -39,7 +39,7 @@
 							<th>Descripci&oacute;n</th>
 							<th>Stock</th>
 							<th>Precio</th>
-							<th>Monto acordado</th>
+							<th>Monto Acord.</th>
 							<th>Cantidad</th>	
 							<th>Subtotal</th>	
 						</tr>
@@ -78,7 +78,7 @@
 			</p>
 			<p>
 				<label>Observaci&oacute;n:</label>
-				<textarea name="pedidos_observaciones" id="pedidos_observaciones" readonly="true" ><?=$pedidos->pedidos_observaciones?></textarea>
+				<textarea name="pedidos_observaciones" id="pedidos_observaciones" readonly="true" style="height:60px;"><?=$pedidos->pedidos_observaciones?></textarea>
 			</p>
 		</fieldset>
 		<div class="botonera">
@@ -93,3 +93,4 @@ $(document).ready(function(){
 	});
 });
 </script>
+

@@ -4,9 +4,13 @@
 			<thead>
 				<tr>
 					<th><input type="checkbox" name="chkAll" class="chkAll"></th>
-					<?php foreach($fieldShow as $field):?>
-					<th><?=$this->config->item($field)?></th>
-					<?php endforeach; ?>
+					<th><?=$this->config->item("pedidos_id")?></th>
+					<th>Cliente</th>
+					<th><?=$this->config->item("tramites_descripcion")?></th>
+					<th><?=$this->config->item("pedidos_estado_descripcion")?></th>
+					<th><?=$this->config->item("peididos_montototal")?></th>
+					<th><?=$this->config->item("pedidos_montoadeudado")?></th>
+					<th><?=$this->config->item("pedidos_created_at")?></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -14,13 +18,17 @@
 				<?php foreach($pedidos as $f):?>
 					<?php if($f->pedidos_estado == 6): ?>
 						<tr>
-							<td><input type="checkbox" name="chkPedidos" class="chkLote" value="<?=$f->pedidos_id?>"></td>
-							<?php foreach($fieldShow as $field):?>
-							<td><?=$f->$field?></td>
-							<?php endforeach; ?>
+							<td><input type="checkbox" name="chkPedidos" class="chkLote" value="<?=$f->pedidos_id?>"></td>							
+							<td><?=$f->pedidos_id?></td>
+							<td><?=$f->clientes_apellido." ".$f->clientes_nombre?></td>
+							<td><?=$f->tramites_descripcion?></td>
+							<td><?=$f->pedidos_estado_descripcion?></td>
+							<td><?=$f->peididos_montototal?></td>
+							<td><?=$f->pedidos_montoadeudado?></td>
+							<td><?=$f->pedidos_created_at?></td>
 							<td>
 								<?php if($flag['r']):?>
-									<a href="#" onClick="dialogUp('content_detail_modal',570,670,'<?=base_url()?>index.php/pedidos_controller/show_c/<?=$f->pedidos_id?>','Detalle de Pedido: <?=$f->pedidos_id?>')" id="icon-show">Ver</a>
+									<a href="#" onClick="dialogUp('content_detail_modal',600,700,'<?=base_url()?>index.php/pedidos_controller/show_c/<?=$f->pedidos_id?>','Detalle de Pedido: <?=$f->pedidos_id?>')" id="icon-ver">Ver</a>
 								<?php endif;?>
 								<?php if($flag['u']):?>
 									<a href="#" onClick="loadPage('<?=base_url()?>index.php/pedidos_controller/edit_c/<?=$f->pedidos_id?>','right-content')" id="icon-edit">Modificar</a>
@@ -33,12 +41,16 @@
 					<?php else: ?>
 						<tr>
 							<td><input type="checkbox" name="chkPedidos" class="chkLote" value="<?=$f->pedidos_id?>"></td>
-							<?php foreach($fieldShow as $field):?>
-								<td><?=$f->$field?></td>
-							<?php endforeach; ?>
+							<td><?=$f->pedidos_id?></td>
+							<td><?=$f->clientes_apellido." ".$f->clientes_nombre?></td>
+							<td><?=$f->tramites_descripcion?></td>
+							<td><?=$f->pedidos_estado_descripcion?></td>
+							<td><?=$f->peididos_montototal?></td>
+							<td><?=$f->pedidos_montoadeudado?></td>
+							<td><?=$f->pedidos_created_at?></td>
 							<td>
 								<?php if($flag['r']):?>
-									<a href="#" onClick="dialogUp('content_detail_modal',570,500,'<?=base_url()?>index.php/pedidos_controller/show_c/<?=$f->pedidos_id?>','Detalle de Pedido: <?=$f->pedidos_id?>')" id="icon-show">Ver</a>
+									<a href="#" onClick="dialogUp('content_detail_modal',600,700,'<?=base_url()?>index.php/pedidos_controller/show_c/<?=$f->pedidos_id?>','Detalle de Pedido: <?=$f->pedidos_id?>')" id="icon-ver">Ver</a>
 								<?php endif;?>
 							</td>
 						</tr>
@@ -56,7 +68,7 @@
 		<p>No results!</p>
 	<?php endif; ?>
 </div>
-<div id="content_detail_modal"></div>
+
 <script type="text/javascript">
 	$(document).ready(function(){ 
 		setPagination('<?=base_url()?>pedidos_controller/search_c','result-list'); 

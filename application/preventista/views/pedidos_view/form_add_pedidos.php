@@ -99,7 +99,7 @@
 <script type="text/javascript"> 
 	$(document).ready(function(){ 
 		$('#clientes_apellido').focus(function(){
-			autocomplete('clientes_apellido','<?=base_url()?>autocomplete_controller/getAutocomplete_c','clientes_model','',new Array('clientes_id','clientescategoria_id','clientescategoria_descripcion'));
+			autocomplete('clientes_apellido','<?=base_url()?>autocomplete_controller/getAutocompleteClientes_c','clientes_model','',new Array('clientes_id','clientescategoria_id','clientescategoria_descripcion'));
 		});
 	});
 </script>

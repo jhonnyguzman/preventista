@@ -12,10 +12,10 @@
 				<label><span class='required'>*</span><?=$this->config->item('pedidos_id')?>:</label>
 				<input type="text" value="<?=$pedidos->pedidos_id?>" name="pedidos_id" id="pedidos_id"  readonly="readonly"></input>
 			</p>
-			<!--<p>
+			<p>
 				<label><span class='required'>*</span><?=$this->config->item('pedidos_montoadeudado')?>:</label>
 				<input type="text" value="<?=$pedidos->pedidos_montoadeudado?>" name="pedidos_montoadeudado" id="pedidos_montoadeudado"></input>
-			</p>-->
+			</p>
 			<p>
 				<label><span class='required'>*</span><?=$this->config->item('clientes_apellido')?>:</label>
 				<input type="text" name="clientes_apellido" id="clientes_apellido" value="<?=$pedidos->clientes_apellido?>" readonly="true"/>

@@ -1,0 +1,4 @@
+UPDATE pedidodetalle SET pedidodetalle_cantidad = 8, pedidodetalle_montoacordado = 30.0, pedidodetalle_subtotal = 240.0, pedidodetalle_updated_at = '2012-25-12 21:25:29' WHERE pedidodetalle_id = 50030;
+UPDATE articulos SET articulos_stockreal = 80, articulos_updated_at = '2012-25-12 21:25:29' WHERE articulos_id = 50017;
+UPDATE pedidos SET peididos_montototal = 906.0, pedidos_montoadeudado = 906.0, tramites_id = 2, pedidos_observaciones = 'pedido cargado desde el movil', pedidos_updated_at = '2012-07-12 21:25:30' WHERE pedidos_id = 50002;
+UPDATE pedidos SET peididos_montototal = 906.0, pedidos_montoadeudado = 906.0, tramites_id = 2, pedidos_observaciones = 'pedido cargado desde el movil', pedidos_updated_at = '2012-07-12 21:27:58' WHERE pedidos_id = 50002;

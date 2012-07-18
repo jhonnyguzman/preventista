@@ -113,4 +113,20 @@ class Execlog extends CI_Controller {
 			 return false;
 		}
 	}
+
+
+
+	/**
+	* Esta función es ejecutada por la aplicación del teléfono móvil. 
+	* Permite descargar la base de datos móvil que fue creada con anterioridad
+	* a través del controlador dbmobile_controller. 
+	*/
+	function downloadDB()
+	{
+		$this->load->helper('download');
+		$data = file_get_contents("./bd/dbmobile/preventista"); // Read the file's contents
+		$name = 'preventista.sqlite';
+
+		force_download($name, $data);
+	}
 }

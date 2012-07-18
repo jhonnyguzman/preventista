@@ -1,0 +1,7 @@
+UPDATE fleteros SET nombre = 'Miguel', apellido = 'Ponce', telefono = '34', direccion = '', updated_at = '2012-06-21 00:45:31' WHERE _id = '1'
+UPDATE fleteros SET nombre = 'Pablo', apellido = 'Sanchez', telefono = '', direccion = '', updated_at = '2012-06-21 00:45:33' WHERE _id = '2'
+UPDATE fleteros SET nombre = 'Ana', apellido = 'Ceballos', telefono = '', direccion = '', updated_at = '2012-06-21 00:45:37' WHERE _id = '3'
+UPDATE fleteros SET nombre = 'Julian', apellido = 'Castro', telefono = '', direccion = '', updated_at = '2012-06-21 00:45:41' WHERE _id = '4'
+UPDATE fleteros SET nombre = 'jose', apellido = 'sidan', telefono = '', direccion = '', updated_at = '2012-06-21 00:45:45' WHERE _id = '5'
+UPDATE fleteros SET nombre = 'Miguel', apellido = 'Fernandez', telefono = '', direccion = 'San Juan 685', updated_at = '2012-06-21 00:45:47' WHERE _id = '6'
+UPDATE fleteros SET nombre = 'Juan Pablo', apellido = 'Mayoral', telefono = '45511225', direccion = '', updated_at = '2012-06-21 00:45:50' WHERE _id = '7'

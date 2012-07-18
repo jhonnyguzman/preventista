@@ -1,8 +1,8 @@
 <div id="result-list-wrapper">
 	<div id ="result-list-left">
 		<div id="result-list">
-			<span class="markUtilidades">Ingreso:</span>
-			<?php if(isset($pedidos) && is_array($pedidos) && count($pedidos)>0):?>
+			<!--<span class="markUtilidades">Ingreso:</span>-->
+			<?php if(isset($upedidos) && is_array($upedidos) && count($upedidos)>0):?>
 				<table id="result-set">
 					<thead>
 						<tr>
@@ -12,11 +12,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($pedidos as $f): $ingreso+=$f->peididos_montototal; ?>
+						<?php foreach($upedidos as $f): $ingreso+=$f['utilidad']; ?>
 								<tr>
-									<td><?=$this->basicrud->formatDateToHuman($f->pedidos_created_at)?></td>
-									<td><?=$f->pedidos_id?></td>
-									<td>$&nbsp;<?=$f->peididos_montototal?></td>
+									<td><?=$this->basicrud->formatDateToHuman($f['pedidos_created_at'])?></td>
+									<td><?=$f['pedidos_id']?></td>
+									<td>$&nbsp;<?=$f['utilidad']?></td>
 								</tr>
 						<?php endforeach; ?>
 						<tr>
@@ -36,7 +36,7 @@
 			<?php endif; ?>
 		</div>
 	</div>
-	<div id="result-list-right">
+	<!--<div id="result-list-right">
 		<div id="result-list">
 			<span class="markUtilidades">Egreso:</span>
 			<?php if(isset($compras) && is_array($compras) && count($compras)>0):?>
@@ -71,11 +71,11 @@
 			<?php else: ?>
 				<p>No results!</p>
 			<?php endif; ?>
-		</div>
+		</div>-->
 	</div>
-	<div id="result-list-ganancia">
+	<!--<div id="result-list-ganancia">
 		<span class="markUtilidades">Ganancia: $&nbsp; <?php echo $ingreso - $egreso; ?> </span>
-	</div>
+	</div>-->
 </div>
 
 <script type="text/javascript">

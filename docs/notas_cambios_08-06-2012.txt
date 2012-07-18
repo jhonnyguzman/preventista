@@ -9,8 +9,24 @@
 	- Reimpresion de un remito
 	- Pulir detalles en edicion de pedido ("modulo web")
 	- Utilidades (Modificar el calculo)
-	- Agregar historial de pagos en cuenta corriente
-	- En pedidos adeudados el monto adeudado tiene qe ser igual al monto total
+	- Agregar historial de pagos en cuenta corriente -> Listo
+	- En pedidos adeudados el monto adeudado tiene qe ser igual al monto total -> Listo
 	- Verificar bug al cargar pedidos en el modulo movil. A veces se desaparecen todas las
 	lineas qe se van cargando.
 	
+
+
+
+Doors -> juego de escape
+Submachine -> juego de scape
+
+
+
+ - Implementar modulo de pago
+ - Implementar una infraestructura de claves publicas para mejorar la seguridad en el sistema NFC
+ - Las ordenes podrán pedirse a traves de internet. 
+ - 
+Caso de uso: EL sistema debe modificar el estado de una mesa al recibir una orden de menu.
+
+- The Mexican con brat pitt y julia roberts
+- Premonition

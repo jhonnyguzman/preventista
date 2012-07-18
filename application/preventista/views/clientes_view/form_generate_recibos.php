@@ -1,5 +1,5 @@
 <div id="form">
-	<form action="<?=base_url()?>clientes_controller/generateRecibos" method="post" name="formGenerarRecibos" id="formGenerarRecibos">
+	<form action="<?=base_url()?>clientes_controller/generateRecibos2" method="post" name="formGenerarRecibos" id="formGenerarRecibos">
 		<p>
 			<label for="cantidad">Cantidad:</label>
 			<input type="text" name="cantidad" />

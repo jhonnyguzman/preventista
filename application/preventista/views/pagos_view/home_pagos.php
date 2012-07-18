@@ -7,11 +7,8 @@
 	<div id="controller-panel-right">
 		<div id="controller-botonera">
 			<ul id="menu_sist">
-				<?php if($flag['i']):?>
-					<li><a href="#" onClick="getModalWindow('<?=base_url()?>pagos_controller/add_c/','Generar pagos',380,180)" id="icon-new" title='Generar pagos en blanco'>Generar pagos</a></li>
-				<?php endif; ?>
 				<?php if($flag['u']):?>
-					<li><a href="#" onClick="dialogUp('content_detail_modal',300,300,'<?=base_url()?>index.php/pagos_controller/in_c','Ingreso de pago')" >Ingresar pagos</a></li>
+					<li><a href="#" onClick="dialogUp('content_detail_modal',300,300,'<?=base_url()?>index.php/pagos_controller/in_c','Ingreso de pago')" id="icon-pagos">Ingresar pagos</a></li>
 				<?php endif; ?>
 			</lu>
 		</div>
@@ -26,4 +23,3 @@
 	</form>
 </div>
 
-<div id="content_detail_modal"></div>

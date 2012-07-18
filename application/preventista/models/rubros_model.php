@@ -167,4 +167,44 @@ class Rubros_Model extends CI_Model {
 		return $fields;
 	}
 
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'rubros' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('rubros');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla rubros con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='rubros_id';
+		$fields[]='rubros_descripcion';
+		$fields[]='rubros_estado';
+		$fields[]='rubros_created_at';
+		$fields[]='rubros_updated_at';
+		return $fields;
+	}
 }

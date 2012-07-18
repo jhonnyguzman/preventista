@@ -6,7 +6,7 @@
 		</tr>
 		<tr>
 			<td><strong>Fletero:&nbsp;</strong><?=$hojaruta->fleteros_apellnom?></td>
-			<td class='today-date-print2'><strong>Fecha:&nbsp;</strong><?=$todayDate?></td>
+			<td class='today-date-print2'><strong>Fecha:&nbsp;</strong><?=$this->basicrud->formatDateToHuman($hojaruta->hojaruta_created_at)?></td>
 		</tr>
 	</table>
 </div>
@@ -26,7 +26,7 @@
 					<tr>
 						<td><?=$f->clientes_apellido." ".$f->clientes_nombre?><br><?=$f->clientes_direccion?></td>
 						<td><?=$f->tramites_descripcion?></td>
-						<td><?=$f->peididos_montototal?></td>
+						<td>$&nbsp;<?=$f->peididos_montototal?></td>
 						<td class="markRowRecibos"></td>
 					</tr>
 				<?php  endforeach; ?>

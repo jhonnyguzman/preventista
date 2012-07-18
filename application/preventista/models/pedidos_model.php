@@ -23,10 +23,9 @@ class Pedidos_Model extends CI_Model {
 		//code here
 		$this->db->insert('pedidos', $options);
 
+		//log query
 		$this->arr_log['new_id'] = $this->db->insert_id();
 		$this->arr_log['string'] = $this->db->last_query();
-		
-		//log query
 		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogPedidos($this->arr_log));
 
 		return $this->db->insert_id();
@@ -136,7 +135,8 @@ class Pedidos_Model extends CI_Model {
 		if(isset($options['sortBy']) && isset($options['sortDirection']))
 			$this->db->order_by($options['sortBy'],$options['sortDirection']);
 		
-		$this->db->select("p.*, tr.tramites_descripcion, c.clientes_apellido, c.clientes_nombre, c.clientescategoria_id, 
+		$this->db->select("p.*, p.pedidos_created_at as pedidos_created_at_without_format, tr.tramites_descripcion, 
+			c.clientes_apellido, c.clientes_nombre, c.clientescategoria_id, 
 			cc.clientescategoria_descripcion, tg.tabgral_descripcion as pedidos_estado_descripcion");
 
 		$this->db->from('pedidos as p');
@@ -234,8 +234,9 @@ class Pedidos_Model extends CI_Model {
 
 		if($query->num_rows()>0){ 
 			foreach ($query->result() as $f) {
-				if($f->pedidos_montoadeudado == 0) $monto = $monto + $f->peididos_montototal;
-				else $monto = $monto + ($f->peididos_montototal - $f->pedidos_montoadeudado);		
+				/*if($f->pedidos_montoadeudado == 0) $monto = $monto + $f->peididos_montototal;
+				else $monto = $monto + ($f->peididos_montototal - $f->pedidos_montoadeudado);		*/
+				$monto = $monto + ($f->peididos_montototal - $f->pedidos_montoadeudado);
 			}
 		}
 		return $monto;
@@ -259,8 +260,39 @@ class Pedidos_Model extends CI_Model {
 
 		if($query->num_rows()>0){ 
 			foreach ($query->result() as $f) {
-				if($f->pedidos_montoadeudado == 0) $monto = $monto + $f->peididos_montototal;
-				else $monto = $monto + $f->pedidos_montoadeudado;		
+				/*if($f->pedidos_montoadeudado == 0) $monto = $monto + $f->peididos_montototal;
+				else $monto = $monto + $f->pedidos_montoadeudado;		*/
+				$monto = $monto + $f->pedidos_montoadeudado;
+
+			}
+		}
+		return $monto;
+	}
+
+
+	/**
+	 * Esta función calcula la deuda de un cliente
+	 * Es usada al momento de imprimir los remitos de cada hoja
+	 * de ruta
+	 *
+	 * @access public
+	 * @param integer $clientes_id
+	 * @return float  $monto
+	 */
+	function getSumPedidos3($clientes_id, $pedidos_created_at)
+	{
+		$this->db->where("clientes_id = ".$clientes_id." and (pedidos_estado = 8 or pedidos_estado = 15) and pedidos_created_at < '".$pedidos_created_at."'");
+		//$this->db->where('pedidos_estado', 8); // estado de pedido = Entregado
+		//$this->db->or_where('pedidos_estado', 15); // estado de pedido = Entregado y parcialmente pagado
+		$query = $this->db->get('pedidos');
+		$monto = 0; 
+
+		if($query->num_rows()>0){ 
+			foreach ($query->result() as $f) {
+				/*if($f->pedidos_montoadeudado == 0) $monto = $monto + $f->peididos_montototal;
+				else $monto = $monto + $f->pedidos_montoadeudado;		*/
+				$monto = $monto + $f->pedidos_montoadeudado;
+
 			}
 		}
 		return $monto;
@@ -291,11 +323,48 @@ class Pedidos_Model extends CI_Model {
 		$this->db->join("remitos as r","r.hojarutadetalle_id = hd.hojarutadetalle_id");
 		$query = $this->db->get();	
 
-		if($query->num_rows()>0){ 
+		/*if($query->num_rows()>0){ 
 			foreach ($query->result() as $f) {
 				if($f->pedidos_montoadeudado != 0) $f->peididos_montototal = $f->pedidos_montoadeudado;
 			}
-		}
+		}*/
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función devuelve todos los pedidos adeudados  de un cliente
+	 * Es usada para ver devolver los pedidos adeudados de un cliente a la hora de la 
+	 * impresión de remitos y hojas de rutas
+	 *
+	 * @access public
+	 * @param array $options
+	 * @return array  result
+	 */
+	function getPedidosAdeudados2_m($options = array())
+	{
+		$this->db->where("p.clientes_id = ".$options['clientes_id']." and (p.pedidos_estado = 8 or p.pedidos_estado = 15) and 
+			r.remitos_estado = 13 and r.remitos_created_at < '".$options['remitos_created_at']."'");
+		
+		//$this->db->where('p.clientes_id', $options['clientes_id']);
+		//$this->db->where('p.pedidos_estado', 8); //pedido estado = entregado
+		//$this->db->or_where('p.pedidos_estado', 15); //pedido estado = entregado y parcialmenten pagado
+		//$this->db->where('r.remitos_estado', 13); //remitos estado = entregado
+
+		$this->db->order_by('r.remitos_created_at','asc');
+
+		$this->db->select("p.pedidos_id, p.peididos_montototal, p.pedidos_montoadeudado, r.remitos_id, r.remitos_created_at");
+		$this->db->from("pedidos as p");
+		$this->db->join("hojarutadetalle as hd","hd.pedidos_id = p.pedidos_id");
+		$this->db->join("remitos as r","r.hojarutadetalle_id = hd.hojarutadetalle_id");
+		$query = $this->db->get();	
+
+		/*if($query->num_rows()>0){ 
+			foreach ($query->result() as $f) {
+				if($f->pedidos_montoadeudado != 0) $f->peididos_montototal = $f->pedidos_montoadeudado;
+			}
+		}*/
 		return $query->result();
 	}
 
@@ -376,4 +445,52 @@ class Pedidos_Model extends CI_Model {
 		$query = $this->db->get();	
 		return $query->result();
 	}
+
+
+
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'pedidos' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('pedidos');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla pedidos con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='pedidos_id';
+		$fields[]='peididos_montototal';
+		$fields[]='pedidos_montoadeudado';
+		$fields[]='clientes_id';
+		$fields[]='pedidos_estado';
+		$fields[]='tramites_id';
+		$fields[]='pedidos_observaciones';
+		$fields[]='pedidos_created_at';
+		$fields[]='pedidos_updated_at';
+		return $fields;
+	}
+
 }

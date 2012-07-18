@@ -207,4 +207,72 @@ class Pedidodetalle_Model extends CI_Model {
 		return $query_str;
 	}
 
+
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'pedidodetalle' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('pedidodetalle');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla pedidodetalle con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='pedidodetalle_id';
+		$fields[]='pedidos_id';
+		$fields[]='articulos_id';
+		$fields[]='pedidodetalle_cantidad';
+		$fields[]='pedidodetalle_montoacordado';
+		$fields[]='pedidodetalle_subtotal';
+		$fields[]='pedidodetalle_pv';
+		$fields[]='pedidodetalle_created_at';
+		$fields[]='pedidodetalle_updated_at';
+		return $fields;
+	}
+
+
+	function getPedidoDetalle_m($pedidodetalle_created_at)
+	{
+		$string = "CAST(pd.pedidodetalle_created_at AS DATE) = '".$this->basicrud->getFormatDateToBD($pedidodetalle_created_at)."'";
+		
+		$this->db->select_sum('pd.pedidodetalle_cantidad','cantidadpedido');
+
+		$this->db->where($string);
+		
+		$this->db->group_by("pd.articulos_id"); 
+
+		$this->db->order_by('a.articulos_descripcion','asc');
+
+		$this->db->select("pd.articulos_id, COUNT(*) AS cantidad, a.articulos_descripcion", FALSE);
+		
+		$this->db->from("pedidodetalle as pd");
+		$this->db->join("articulos as a","a.articulos_id = pd.articulos_id");
+
+		$query = $this->db->get();	
+		return $query->result();
+		
+	}
 }

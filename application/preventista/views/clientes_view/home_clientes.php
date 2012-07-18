@@ -7,7 +7,7 @@
 	<div id="controller-panel-right">
 		<div id="controller-botonera">
 		<?php if($flag['i']):?>
-			<a href="#" onClick="getModalWindow('<?=base_url()?>clientes_controller/generateRecibos','Generar recibos',380,180)" >Generar recibos</a>
+			<a href="#" onClick="getModalWindow('<?=base_url()?>clientes_controller/generateRecibos','Generar recibos',380,180)" id="icon-print" >Generar recibos</a>
 			<a href="#" onClick="loadPage('<?=base_url()?>clientes_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a>
 		<?php endif; ?>
 		</div>
@@ -21,4 +21,3 @@
 	</fieldset>
 	</form>
 </div>
-<div id="content_detail_modal"></div>

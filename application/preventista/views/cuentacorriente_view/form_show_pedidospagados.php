@@ -9,6 +9,7 @@
 							<th>Fecha</th>
 							<th>Monto Total</th>
 							<th>Monto Adeudado</th>
+							<th>Pagado</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -18,6 +19,7 @@
 								<td><?=$this->basicrud->formatDateToHuman($f->pedidos_updated_at)?></td>
 								<td>$&nbsp;<?=$f->peididos_montototal?></td>
 								<td>$&nbsp;<?=$f->pedidos_montoadeudado?></td>
+								<td class="markPedidoPagado">$&nbsp;<?=$f->peididos_montototal-$f->pedidos_montoadeudado?></td>
 							</tr>
 						<?php endforeach; ?>
 						</tbody>

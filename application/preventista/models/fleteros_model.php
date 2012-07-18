@@ -3,6 +3,8 @@
 
 class Fleteros_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'fleteros_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,12 @@ class Fleteros_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('fleteros', $options);
+
+		//log query
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogPedidos($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -48,8 +56,11 @@ class Fleteros_Model extends CI_Model {
 			$this->db->set('fleteros_updated_at', $options['fleteros_updated_at']);
 
 		$this->db->where('fleteros_id', $options['fleteros_id']);
-
 		$this->db->update('fleteros');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLogPedidos($this->arr_log));
 
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
@@ -68,6 +79,11 @@ class Fleteros_Model extends CI_Model {
 		//code here
 		$this->db->where('fleteros_id', $fleteros_id);
 		$this->db->delete('fleteros');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+		
 		return $this->db->affected_rows();
 	}
 
@@ -150,4 +166,47 @@ class Fleteros_Model extends CI_Model {
 		return $fields;
 	}
 
+
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'fleteros' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('fleteros');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla fleteros con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='fleteros_id';
+		$fields[]='fleteros_nombre';
+		$fields[]='fleteros_apellido';
+		$fields[]='fleteros_telefono';
+		$fields[]='fleteros_direccion';
+		$fields[]='fleteros_created_at';
+		$fields[]='fleteros_updated_at';
+		return $fields;
+	}
 }

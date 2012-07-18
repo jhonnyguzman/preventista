@@ -138,15 +138,13 @@ class Cuentacorriente_Controller extends CI_Controller {
 
 
 	function showPedidosPagados_c($clientes_id)
-	{
-		
+	{	
 		$data["pedidospagados"] = $this->pedidos_model->getPedidosPagadosToShow_m(array('clientes_id' => $clientes_id));
 		$this->load->view('cuentacorriente_view/form_show_pedidospagados',$data);
 	}
 
 	function showPedidosAdeudados_c($clientes_id)
 	{
-		
 		$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudadosToShow_m(array('clientes_id' => $clientes_id));
 		$this->load->view('cuentacorriente_view/form_show_pedidosadeudados',$data);
 	}

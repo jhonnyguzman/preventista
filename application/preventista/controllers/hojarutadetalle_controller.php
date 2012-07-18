@@ -165,7 +165,7 @@ class Hojarutadetalle_Controller extends CI_Controller {
 					redirect('hojaruta_controller/edit_c/'.$hojarutadetalle[0]->hojaruta_id,'location');
 				}else{
 					$this->session->set_flashdata('flashError', $this->config->item('hojarutadetalle_flash_error_delete_message')); 
-					redirect('hojarutadetalle_controller','location');
+					redirect('hojaruta_controller/edit_c/'.$hojarutadetalle[0]->hojaruta_id,'location');
 				}
 			}
 		}

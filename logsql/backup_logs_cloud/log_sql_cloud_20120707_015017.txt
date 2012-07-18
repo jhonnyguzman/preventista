@@ -1,0 +1,17 @@
+INSERT INTO hojaruta (fleteros_id, usuarios_id, estado, created_at, updated_at) VALUES ('2', '1', 10, '2012-07-07 01:45:57', '2012-07-07 01:45:57')
+INSERT INTO hojarutadetalle (hojaruta_id, pedidos_id, updated_at) VALUES (8, '50001', '2012-07-07 01:45:57')
+UPDATE pedidos SET estado = 7 WHERE _id = '50001'
+INSERT INTO remitos (hojarutadetalle_id, estado) VALUES ('10', 12)
+UPDATE hojaruta SET estado = 11 WHERE _id = '8'
+UPDATE remitos SET estado = 13 WHERE _id = '11'
+UPDATE pedidos SET estado = 8 WHERE _id = '50001'
+INSERT INTO pagos (monto, clientes_id, usuarios_id, fechaingreso, updated_at) VALUES ('80', '1', '1', '2012-07-07 01:48:42', '2012-07-07 01:48:42')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES ('9', '1', 50003, '244.2')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '1'
+UPDATE remitos SET estado = 13 WHERE _id = '11'
+UPDATE pedidos SET estado = 8 WHERE _id = '50001'
+INSERT INTO pagos (monto, clientes_id, usuarios_id, fechaingreso, updated_at) VALUES ('80', '1', '1', '2012-07-07 01:49:01', '2012-07-07 01:49:01')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES ('10', '50001', 50004, 80)
+UPDATE pedidos SET montoadeudado = 144.4, estado = 15 WHERE _id = '50001'
+UPDATE cuentacorriente SET clientes_id = '1', haber = 324.2, debe = 144.4, updated_at = '2012-07-07 01:49:01' WHERE clientes_id = '1'
+UPDATE hojaruta SET estado = 25 WHERE _id = '8'

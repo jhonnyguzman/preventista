@@ -87,7 +87,7 @@ function submitData3(idform,modal_id,w,h,titl)
 // function to load content through ajax
 function loadPage(url,div_loader)
 {	
-	showFlash('Cargando...',5);
+	showFlash('Cargando...',7);
 	$('#'+div_loader).load(url, function(){
 			$.alert.closeLoading('Listo...',1);
 	}).fadeIn('slow');		
@@ -408,6 +408,7 @@ function getTabs(id)
 {
 	$( "#"+id).tabs({
 			ajaxOptions: {
+				cache: false,
 				error: function( xhr, status, index, anchor ) {
 					$( anchor.hash ).html(
 						"Couldn't load this tab. We'll try to fix this as soon as possible. ");
@@ -840,16 +841,35 @@ function dialogUp(modal_id,w,h,url, titl)
 	  		height: h, 
 	  		modal:true,
 	  		title: titl,
-	  		beforeClose: function(event, ui) { $("#"+modal_id).empty(); }
+	  		close: function(event, ui) {  $(this).dialog('destroy'); 
+	  		}
 		}); 
 	}else{
 		$( "#"+modal_id).dialog({
 			width: w,
 			height: h,
-			modal: true
+			modal: true,
+			close: function(event, ui) {  $(this).dialog('destroy'); 
+			}
 		});
 	}
 }
+
+function showModalCC(modal_id,w,h,url, titl)
+{
+	$("#"+modal_id).load(url).dialog({  
+  		width: w,
+  		height: h, 
+  		modal:true,
+  		title: titl,
+  		close: function(event, ui) { 
+  			 $("#"+modal_id).dialog('destroy');
+  			
+  		}
+	}); 
+	
+}
+
 function dialogUpToComment(modal_id,w,h,i)
 {
 	$( "#"+modal_id).dialog({
@@ -918,5 +938,50 @@ function getHistoricChgDirect(url)
 	  width: 400,
 	  height: 500 
 	}); 
+
+}
+
+
+function calcTotalEvaluacion()
+{
+	var list1 = new Array();var list2 = new Array();var list3 = new Array();
+	var totalIngreso = 0;var totalGastos = 0;var totalPagosCasuales = 0;
+	
+	/*$.each($("#chkEvaluacionHojaRuta:checked"), function() {
+      list1.push($(this).next().val());
+   	});*/
+	
+	$.each($("input[name^=monto_recibido]"), function() {
+		if($(this).val() != '')
+      		list1.push($(this).val());
+   	});
+
+	$.each($("input[name^=gmontos]"), function() {
+      list2.push($(this).val());
+   	});
+
+	$.each($("input[name^=pmontos]"), function() {
+      list3.push($(this).val());
+   	});
+
+	if(list1.length>0){
+		for(var i = 0; i < list1.length; i++){
+			totalIngreso+= parseFloat(list1[i]);
+		}
+	}
+	if(list2.length>0){
+		for(var i = 0; i < list2.length; i++){
+			totalGastos+= parseFloat(list2[i]);
+		}
+	}
+	if(list3.length>0){
+		for(var i = 0; i < list3.length; i++){
+			totalPagosCasuales+= parseFloat(list3[i]);
+		}
+	}
+
+	$("#spIngreso").text(totalIngreso + totalPagosCasuales);
+	$("#spGastos").text(totalGastos);
+	$("#spTotal").text((totalIngreso + totalPagosCasuales) - totalGastos);
 
 }

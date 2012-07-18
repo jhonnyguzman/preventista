@@ -3,6 +3,8 @@
 
 class Marcas_Model extends CI_Model {
 
+	private $arr_log = array('search' => 'marcas_');
+
 	function __construct()
 	{
 		parent::__construct();
@@ -20,6 +22,12 @@ class Marcas_Model extends CI_Model {
 	{
 		//code here
 		$this->db->insert('marcas', $options);
+
+		//log query
+		$this->arr_log['new_id'] = $this->db->insert_id();
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogWithoutId($this->arr_log));
+
 		return $this->db->insert_id();
 	}
 
@@ -49,6 +57,11 @@ class Marcas_Model extends CI_Model {
 
 		$this->db->update('marcas');
 
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeEditSqlToLog($this->arr_log));
+
+
 		if($this->db->affected_rows()>0) return $this->db->affected_rows();
 		else return $this->db->affected_rows() + 1;
 	}
@@ -66,6 +79,11 @@ class Marcas_Model extends CI_Model {
 		//code here
 		$this->db->where('marcas_id', $marcas_id);
 		$this->db->delete('marcas');
+
+		//log query
+		$this->arr_log['string'] = $this->db->last_query();
+		$this->basicrud->writeFileLog($this->basicrud->writeDeleteSqlToLog($this->arr_log));
+		
 		return $this->db->affected_rows();
 	}
 
@@ -151,4 +169,45 @@ class Marcas_Model extends CI_Model {
 		return $fields;
 	}
 
+
+	/**
+	 * Esta funcion obtiene los datos de la tabla 'marcas' para luego ser cargados  
+	 * en la base de datos sqlite3 para el modulo 
+	 * que funciona en el telefono movil
+	 *
+	 * @access public
+	 * @param array fields of the table
+	 * @param integer	flag to indicate if return one record or more of one record
+	 * @return array  result
+	 */
+	function getMobile($options = array(),$flag=0)
+	{
+		//code here
+		$query = $this->db->get('marcas');
+		return $query->result();
+	}
+
+
+
+	/**
+	 * Esta función obtiene los nombres de los campos de la 
+	 * tabla marcas con el proposito de que los datos de esta tabla
+	 * sean grabados correctamente en la base de datos sqlite3 que 
+	 * funciona en el telefono movil
+	 *
+	 * @access public
+	 * @return array  fields of table
+	 */
+	function getFieldsMobile_m()
+	{
+		//code here
+		$fields=array();
+		$fields[]='marcas_id';
+		$fields[]='marcas_parent';
+		$fields[]='marcas_descripcion';
+		$fields[]='marcas_estado';
+		$fields[]='marcas_created_at';
+		$fields[]='marcas_updated_at';
+		return $fields;
+	}
 }

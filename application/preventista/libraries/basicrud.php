@@ -709,23 +709,28 @@ class BasiCrud {
 					if($flag)
 					{
 						//verifico si existe montoadeudado
-						if($f->pedidos_montoadeudado > 0) $saldo = $saldo - $f->pedidos_montoadeudado;
-						else $saldo = $saldo - $f->peididos_montototal;
+						/*if($f->pedidos_montoadeudado > 0) $saldo = $saldo - $f->pedidos_montoadeudado;
+						else $saldo = $saldo - $f->peididos_montototal;*/
+						$saldo = $saldo - $f->pedidos_montoadeudado;
 
 						if($saldo >= 0){
+							$pr['pagospedidos_id'] = $CI->preferences->getNextId['pagospedidos_next_id'];
 							$pr['pedidos_id'] = $f->pedidos_id;
 							$pr['pagos_id'] = $pago['pagos_id'];
 							$pr['pagospedidos_montocubierto'] =$f->peididos_montototal;
 							$pagospedidos = $CI->pagospedidos_model->add_m($pr);
+							$CI->preferences->editNextId('pagospedidos_next_id',$pagospedidos);
 							$pedido = $CI->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 16, 'pedidos_montoadeudado' => 0)); // estado de pedido = pagado y entregado
 							if($saldo == 0) $flag = false;
 						}else{	
 							$porcobrar = $saldo * (-1);
 							$pagoparcial = $f->peididos_montototal - $porcobrar;
+							$pr['pagospedidos_id'] = $CI->preferences->getNextId['pagospedidos_next_id'];
 							$pr['pedidos_id'] = $f->pedidos_id;
 							$pr['pagos_id'] = $pago['pagos_id'];
 							$pr['pagospedidos_montocubierto'] = $pagoparcial;
 							$pagospedidos = $CI->pagospedidos_model->add_m($pr);
+							$CI->preferences->editNextId('pagospedidos_next_id',$pagospedidos);
 							if($porcobrar != $f->peididos_montototal )
 								$pedido = $CI->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 15, 'pedidos_montoadeudado' => $porcobrar)); // estado de pedido = entregado y parcialmente pagado
 							$flag = false;

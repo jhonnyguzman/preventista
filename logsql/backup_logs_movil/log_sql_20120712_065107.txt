@@ -1,0 +1,11 @@
+UPDATE articulos SET articulos_stockreal = 153, articulos_updated_at = '2012-47-12 06:47:24' WHERE articulos_id = 1;
+UPDATE articulos SET articulos_stockreal = 51, articulos_updated_at = '2012-47-12 06:47:32' WHERE articulos_id = 4;
+UPDATE articulos SET articulos_stockreal = 40, articulos_updated_at = '2012-47-12 06:47:40' WHERE articulos_id = 50015;
+UPDATE articulos SET articulos_stockreal = 82, articulos_updated_at = '2012-47-12 06:47:53' WHERE articulos_id = 50017;
+UPDATE articulos SET articulos_stockreal = 81, articulos_updated_at = '2012-48-12 06:48:22' WHERE articulos_id = 50017;
+UPDATE articulos SET articulos_stockreal = 81, articulos_updated_at = '2012-48-12 06:48:49' WHERE articulos_id = 50017;
+INSERT INTO pedidos (pedidos_id,peididos_montototal,pedidos_montoadeudado,clientes_id,pedidos_estado,tramites_id, pedidos_observaciones, pedidos_created_at,pedidos_updated_at) VALUES (50002,876.0,876.0,50000,6, 2,'pedido cargado desde el movil', now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50027,50002,1,5,0.0, 144.0, 28.8, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50028,50002,4,5,0.0, 90.0, 18.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50029,50002,50015,8,0.0, 432.0, 54.0, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50030,50002,50017,7,30.0, 210.0, 32.5, now(), now());

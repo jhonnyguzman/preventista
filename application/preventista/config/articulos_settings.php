@@ -12,7 +12,7 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 /* Config labels of the form fields */
 
 $config['articulos_id']='Id';
-$config['articulos_descripcion']='Descripci&oacute;n';
+$config['articulos_descripcion']='Descripción';
 $config['articulos_preciocompra']='PC';
 $config['articulos_stockreal']='Stock real';
 $config['articulos_stockmin']='Stock min';

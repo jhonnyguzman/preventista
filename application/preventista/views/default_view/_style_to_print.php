@@ -1,21 +1,21 @@
 <style type="text/css">
 @page {
-	margin-top: 0.1em;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
-	margin-bottom: 0.1em;
+	margin-top: 0.0em;
+	margin-left: 1.2em;
+	margin-right: 1.2em;
+	margin-bottom: 0.0em;
 }
 
 .title-print
 {
-	font-family: verdana, sans-serif;
-	color: #595959;
-	font-size: 10px;
-	font-weight: bold;
+	font-family: sans-serif;
+	color: #333;
+	font-size: 11px;
+	/*font-weight: bold;*/
 }
 .today-date-print{
-	font-family: verdana, sans-serif;
-	color: #595959;
+	font-family: sans-serif;
+	color: #333;
 	text-align:right;	
 }
 
@@ -24,8 +24,8 @@
 }
 
 .tb-header-print{
-	font-size: 10px;
-	font-family: verdana, sans-serif;
+	font-size: 11px;
+	font-family: sans-serif;
 	width: 100%;
 }
 
@@ -36,24 +36,25 @@
 .tb-result-set-print
 {	
 	color: #333;
-	font-size: 9px;
-	font-family: verdana, sans-serif;
+	font-size: 11px;
+	font-family: sans-serif;
 	width: 100%;
 	text-align: center;
 }
 
 .tb-result-set-print thead th 
 {
-	font-weight: bold;
+	/*font-weight: bold;*/
 	color: #333;
 	padding: 2px 0px;;
 	line-height: 1;
 	background: #ffffff;
 }
 
+
 .tb-result-set-print tbody td
 {
-	border-bottom: 1px solid #e5e5e5;
+	/*border-bottom: 1px solid #666;*/
 	padding-top: 1px;
 	padding-bottom: 1px;
 	padding-right: 3px;	 
@@ -69,15 +70,15 @@
 .tb-result-set-print-recibos
 {	
 	color: #333;
-	font-size: 9px;
-	font-family: verdana, sans-serif;
+	font-size: 12px;
+	font-family:sans-serif;
 	width: 100%;
 	text-align: center;
 }
 
 .tb-result-set-print-recibos thead th 
 {
-	font-weight: bold;
+	/*font-weight: bold;*/
 	color: #333;
 	padding: 3px 0px;;
 	line-height: 1;

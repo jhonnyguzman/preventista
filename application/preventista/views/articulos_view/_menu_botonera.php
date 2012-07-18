@@ -1,7 +1,7 @@
 <ul id="menu_sist">
 	<?php if($flag['u']):?>
 		<li>
-			<a href="#" onClick="getModalWindowAdvancedOne('<?=base_url()?>articulos_controller/showFormEditGeneral_c/','Actualizar Precios',380,200,'chkArticulos')">Editar selecci&oacute;n</a>
+			<a href="#" onClick="getModalWindowAdvancedOne('<?=base_url()?>articulos_controller/showFormEditGeneral_c/','Actualizar Precios',380,200,'chkArticulos')" id="icon-edit">Editar selecci&oacute;n</a>
 		</li>
 	<?php endif; ?>
 	<?php if($flag['i']):?>

@@ -1,0 +1,10 @@
+UPDATE articulos SET articulos_stockreal = 63, articulos_updated_at = '2012-24-08 12:24:36' WHERE articulos_id = 50015;
+UPDATE articulos SET articulos_stockreal = 57, articulos_updated_at = '2012-24-08 12:24:43' WHERE articulos_id = 50020;
+UPDATE articulos SET articulos_stockreal = 74, articulos_updated_at = '2012-24-08 12:24:51' WHERE articulos_id = 50017;
+INSERT INTO pedidos (pedidos_id,peididos_montototal,pedidos_montoadeudado,clientes_id,pedidos_estado,tramites_id, pedidos_observaciones, pedidos_created_at,pedidos_updated_at) VALUES (50000,779.9,779.9,1,6, 3,'', now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50000,50000,50015,6,0.0, 297.0, 49.5, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50001,50000,50020,7,0.0, 207.90001, 29.7, now(), now());
+INSERT INTO pedidodetalle (pedidodetalle_id,pedidos_id,articulos_id,pedidodetalle_cantidad,pedidodetalle_montoacordado,pedidodetalle_subtotal,pedidodetalle_pv,pedidodetalle_created_at,pedidodetalle_updated_at) VALUES (50002,50000,50017,10,0.0, 275.0, 27.5, now(), now());
+UPDATE pedidodetalle SET pedidodetalle_cantidad = 11, pedidodetalle_subtotal = 302.5, pedidodetalle_updated_at = '2012-26-08 12:26:13' WHERE pedidodetalle_id = 50002;
+UPDATE articulos SET articulos_stockreal = 73, articulos_updated_at = '2012-26-08 12:26:13' WHERE articulos_id = 50017;
+UPDATE pedidos SET peididos_montototal = 807.4, tramites_id = 3, pedidos_observaciones = '', pedidos_updated_at = '2012-07-08 12:26:13' WHERE pedidos_id = 50000;

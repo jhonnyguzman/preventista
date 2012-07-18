@@ -345,6 +345,34 @@
       </Cl>
       <SchTrHis/>
     </Tbl>
+    <Tbl UsSo="1" nm="gastos">
+      <TblOpts/>
+      <Pk ClNs="gastos_id" nm="pkgastos"/>
+      <Cl au="1" df="" nm="gastos_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="gastos_descripcion" nu="1">
+        <DT arr="0" ds="Text" en="" id="703" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="hojaruta_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="gastos_monto" nu="1">
+        <DT arr="0" ds="Float" en="" id="6" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="gastos_created_at" nu="1">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="gastos_updated_at" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="0" nm="gastos_hojaruta_id" prLkCl="hojaruta_id" upAc="0">
+        <PrTb mn="0" nm="hojaruta" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="gastos" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="hojaruta_id" prCl="hojaruta_id"/>
+      </Fk>
+      <SchTrHis/>
+    </Tbl>
     <Tbl UsSo="1" nm="grupos_tabgral">
       <TblOpts>ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1</TblOpts>
       <Pk ClNs="grupos_tabgral_id" nm="pkgrupos_tabgral"/>
@@ -1132,9 +1160,9 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="clientes" x="316" y="896"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="clientescategoria" x="330" y="1048"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="compras" x="1636" y="807"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="comprasdetalle" x="1299" y="787"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="comprasdetalle" x="1349" y="778"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="cuentacorriente" x="23" y="889"/>
-    <TbGl bkCl="ffccccff" sch="schemaA" tbl="fleteros" x="941" y="836"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="fleteros" x="909" y="931"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="grupos_tabgral" x="425" y="320"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="hojaruta" x="912" y="706"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="hojarutadetalle" x="648" y="837"/>
@@ -1157,6 +1185,7 @@
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="tramites" x="37" y="522"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="usuarios" x="937" y="183"/>
     <TbGl bkCl="ffccccff" sch="schemaA" tbl="preferences" x="881" y="1104"/>
+    <TbGl bkCl="ffccccff" sch="schemaA" tbl="gastos" x="1175" y="910"/>
     <FkGl bkCl="ff000000" nm="schemaA.articulos.articulos_marcas_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.articulos.articulos_rubros_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.articulos.articulos_tabgral_id"/>
@@ -1168,6 +1197,7 @@
     <FkGl bkCl="ff000000" nm="schemaA.comprasdetalle.comprasdetalle_articulo_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.comprasdetalle.comprasdetalle_compras_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.cuentacorriente.cuentacorriente_clientes_id"/>
+    <FkGl bkCl="ff000000" nm="schemaA.gastos.gastos_hojaruta_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.hojaruta.hojaruta_fleteros_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.hojaruta.hojaruta_usuarios_id"/>
     <FkGl bkCl="ff000000" nm="schemaA.hojarutadetalle.hojarutadetalle_hojartuta_id"/>
@@ -1201,7 +1231,7 @@
       <Zone bkCl="ffece9d8" h="622" nm="Módulo de pago" w="506" x="8" y="658"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="24">
+  <RnmMgr NxRnmId="26">
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="preferences" SupCls="Schema" SupNme="schemaA">
       <Rnm id="1" nNm="_key" oNm="key"/>
     </RnmCh>
@@ -1261,6 +1291,12 @@
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="pedidos" SupCls="Schema" SupNme="schemaA">
       <Rnm id="23" nNm="pedidos_observaciones" oNm="pedidos_updated_at"/>
     </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="gastos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="24" nNm="gastos_monto" oNm="gastos_created_at"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="gastos" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="25" nNm="gastos_created_at" oNm="gastos_updated_at"/>
+    </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
     <BasicOptionMgr>
@@ -1284,6 +1320,6 @@
     <TreePath/>
     <TreePath>/Schemas (1)</TreePath>
     <TreePath>/Schemas (1)/schemaA</TreePath>
-    <TreePath>/Schemas (1)/schemaA/Tables (31)</TreePath>
+    <TreePath>/Schemas (1)/schemaA/Tables (32)</TreePath>
   </TreePaths>
 </Db>

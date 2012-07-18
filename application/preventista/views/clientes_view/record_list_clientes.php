@@ -18,7 +18,7 @@
 						<?php endforeach; ?>
 						<td>
 							<?php if($flag['r']):?>
-								<a href="#" onClick="dialogUp('content_detail_modal',500,500, '<?=base_url()?>index.php/clientes_controller/showFormCC_c/<?=$f->clientes_id?>', 'Cuenta Corriente de: <?=$f->clientes_apellido." ".$f->clientes_nombre?>')" id="icon-cc" title="Detalle de Cuenta Corriente">CC</a>
+								<a href="#" onClick="showModalCC('content_detail_modal',530,500, '<?=base_url()?>index.php/clientes_controller/showFormCC_c/<?=$f->clientes_id?>', 'Cuenta Corriente de: <?=$f->clientes_apellido." ".$f->clientes_nombre?>')" id="icon-cc" title="Detalle de Cuenta Corriente">CC</a>
 							<?php endif;?>
 							<?php if($flag['u']):?>
 								<a href="#" onClick="loadPage('<?=base_url()?>index.php/clientes_controller/edit_c/<?=$f->clientes_id?>','right-content')" id="icon-edit">Modificar</a>
@@ -40,7 +40,7 @@
 		<p>No results!</p>
 	<?php endif; ?>
 </div>
-<div id="content_detail_modal"></div>
+
 
 <script type="text/javascript">
 $(document).ready(function() {

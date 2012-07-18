@@ -20,14 +20,11 @@
 							<td><?=$f->$field?></td>
 						<?php endforeach; ?>
 						<td>
-							<?php if($flag['r']):?>
-								<a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/show_c/<?=$f->hojaruta_id?>','right-content')" id="icon-see">Ver</a>
-							<?php endif;?>
 							<?php if($flag['u']):?>
-								<a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/edit_c/<?=$f->hojaruta_id?>','right-content')" id="icon-edit">Modificar</a>
+								<a href="#" onClick="loadPage('<?=base_url()?>hojaruta_controller/edit_c/<?=$f->hojaruta_id?>','right-content')" id="icon-edit">Modificar</a>
 							<?php endif;?>
 							<?php if($flag['d']):?>
-								<a href="#" onClick="deleteData('<?=base_url()?>index.php/hojaruta_controller/delete_c/<?=$f->hojaruta_id?>','right-content','¿Estás seguro de eliminar este item?')" id="icon-delete">Eliminar</a>
+								<a href="#" onClick="deleteData('<?=base_url()?>hojaruta_controller/delete_c/<?=$f->hojaruta_id?>','right-content','¿Estás seguro de eliminar este item?')" id="icon-delete">Eliminar</a>
 							<?php endif;?>
 						</td>
 					</tr>
@@ -38,15 +35,9 @@
 							<td><?=$f->$field?></td>
 						<?php endforeach; ?>
 						<td>
-							<?php if($flag['r']):?>
-								<a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/show_c/<?=$f->hojaruta_id?>','right-content')" id="icon-see">Ver</a>
-							<?php endif;?>
 							<?php if($flag['u']):?>
-								<a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/edit_c/<?=$f->hojaruta_id?>','right-content')" id="icon-edit">Modificar</a>
-								<a href="#" onClick="dialogUp('content_detail_modal1',500,400,'<?=base_url()?>index.php/hojaruta_controller/showFormEvaluar_c/<?=$f->hojaruta_id?>','Evaluaci&oacute;n  de Hoja de Ruta: <?=$f->hojaruta_id?>')" >Evaluar</a>
-							<?php endif;?>
-							<?php if($flag['d']):?>
-								<a href="#" onClick="deleteData('<?=base_url()?>index.php/hojaruta_controller/delete_c/<?=$f->hojaruta_id?>','right-content','¿Estás seguro de eliminar este item?')" id="icon-delete">Eliminar</a>
+								<!--<a href="#" onClick="loadPage('<?=base_url()?>hojaruta_controller/edit_c/<?=$f->hojaruta_id?>','right-content')" id="icon-edit">Modificar</a>-->
+								<a href="#" onClick="dialogUp('content_detail_modal',600,700,'<?=base_url()?>hojaruta_controller/showFormEvaluar_c/<?=$f->hojaruta_id?>','Evaluaci&oacute;n  de Hoja de Ruta: <?=$f->hojaruta_id?>')" id="icon-evaluar">Evaluar</a>
 							<?php endif;?>
 						</td>
 					</tr>
@@ -58,7 +49,7 @@
 						<?php endforeach; ?>
 						<td>
 							<?php if($flag['r']):?>
-								<a href="#" onClick="loadPage('<?=base_url()?>index.php/hojaruta_controller/show_c/<?=$f->hojaruta_id?>','right-content')" id="icon-see">Ver</a>
+								<a href="#" onClick="dialogUp('content_detail_modal',650,700,'<?=base_url()?>hojaruta_controller/show_c/<?=$f->hojaruta_id?>','Hoja de Ruta: <?=$f->hojaruta_id?>')" id="icon-ver">Ver</a>
 							<?php endif;?>
 						</td>
 					</tr>
@@ -75,7 +66,6 @@
 		<p>No results!</p>
 	<?php endif; ?>
 </div>
-<div id="content_detail_modal1"></div>
 
 <script type="text/javascript">
 	$(document).ready(function(){ 
