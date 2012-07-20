@@ -6,6 +6,9 @@ class Dbmobile_Controller extends CI_Controller {
 	private $file_name = "basedbmobile";
     private $database;
 
+    private $file_name_cloud = "log_sql_cloud";
+	private $status_file_cloud = FALSE;
+
 	function __construct()
 	{
 		parent::__construct();
@@ -112,11 +115,14 @@ class Dbmobile_Controller extends CI_Controller {
 			}
 
 			$this->cargarSqlInserts();
+			$this->deleteLinesFronFileCloud();
 			$this->session->set_flashdata('flashConfirm', "La base de datos se ha creado correctamente!"); 
 			redirect('dbmobile_controller','location');
+			//$this->index();
 		}else{
 			$this->session->set_flashdata('flashError', "Hubo un error al crear la base de datos"); 
 			redirect('dbmobile_controller','location');
+			//$this->index();
 		}
 		
 	}
@@ -201,6 +207,27 @@ class Dbmobile_Controller extends CI_Controller {
 	{
 		substr($nameModel, 0,-6);
 		return substr($nameModel, 0,-6);
+	}
+
+
+	/**
+	 * Este método elimina todas las sentencias sql que se encuentran en el
+	 * archivo de texto plano log_sql_cloud.txt. Es llamado desde el móvil cuando
+	 * en el mismo se termina de ejecutar todas las sentencias sql que se encuentran
+	 * en este archivo.
+	 */
+	function deleteLinesFronFileCloud()
+	{
+		try{
+			if(!$file = fopen("./logsql/".$this->file_name_cloud.".txt","wb"))
+		    	throw new Exception("Problem with File");
+		    else {
+		    	fclose($file);
+		    	$this->status_file_cloud = TRUE;
+		    }
+		}catch(Exception $e) {
+    		 $this->status_file_cloud = FALSE;
+		}		
 	}
 
 }

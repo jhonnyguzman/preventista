@@ -6,8 +6,18 @@
 	</div>
 	<div id="controller-panel-right">
 		<div id="controller-botonera">
-			<a href="#" onClick="loadPage('<?=base_url()?>dbmobile_controller/cargarDatosIniciales','right-content')" id="icon-newdb" title='Nueva Base de Datos Movil'>Crear Base de Datos M&oacute;vil</a>
+			<a href="#" onClick="loadDB('<?=base_url()?>dbmobile_controller/cargarDatosIniciales','right-content')" id="icon-newdb" title='Nueva Base de Datos Movil'>Crear Base de Datos M&oacute;vil</a>
 		</div>
 	</div>
 </div>
 
+<script type="text/javascript">
+function loadDB(url,div_loader)
+{	
+	showFlash('Generando Base de Datos M&oacute;vil...',5);
+	$('#'+div_loader).load(url, function(){
+			$.alert.closeLoading('Listo...',1);
+	}).fadeIn('slow');
+}
+
+</script>

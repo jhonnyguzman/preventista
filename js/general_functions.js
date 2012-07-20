@@ -87,10 +87,10 @@ function submitData3(idform,modal_id,w,h,titl)
 // function to load content through ajax
 function loadPage(url,div_loader)
 {	
-	showFlash('Cargando...',7);
+	showFlash('Cargando...',5);
 	$('#'+div_loader).load(url, function(){
 			$.alert.closeLoading('Listo...',1);
-	}).fadeIn('slow');		
+	}).fadeIn('slow');
 }
 
 // function to load form edit through ajax
@@ -944,8 +944,8 @@ function getHistoricChgDirect(url)
 
 function calcTotalEvaluacion()
 {
-	var list1 = new Array();var list2 = new Array();var list3 = new Array();
-	var totalIngreso = 0;var totalGastos = 0;var totalPagosCasuales = 0;
+	var list1 = new Array(); var list2 = new Array();var list3 = new Array();
+	var totalIngreso = 0;var totalGastos = 0; var totalPagosCasuales = 0;
 	
 	/*$.each($("#chkEvaluacionHojaRuta:checked"), function() {
       list1.push($(this).next().val());
