@@ -52,7 +52,7 @@ class Dbmobile_Controller extends CI_Controller {
 		try 
 		{
 		  //crear o abre una base de datos sqlite
-		  $this->database = new SQLite3('./bd/dbmobile/preventista');
+		  $this->database = new SQLite3('./bd/dbmobile/preventista'); 
 		}
 		catch(Exception $e) 
 		{
@@ -137,18 +137,18 @@ class Dbmobile_Controller extends CI_Controller {
 		$nameModels = $this->getNameModels();
 		foreach ($nameModels as $key => $value) 
 		{
-			$records = $this->$value->getMobile();
-			if(count($records) > 0){
-				foreach ($records as $f) 
-				{
-					$str_sql = $this->getFormatSqlInsert($f, $value);
-					if(!$this->database->exec($str_sql))
+				$records = $this->$value->getMobile();
+				if(count($records) > 0){
+					foreach ($records as $f) 
 					{
-					  die("Error al crear la tabla o insertar los datos ");
+						$str_sql = $this->getFormatSqlInsert($f, $value);
+						/*if(!$this->database->exec($str_sql))
+						{
+						  die("Error al crear la tabla o insertar los datos ");
+						}*/
+						echo " Sentencia: ".$str_sql."<br>";
 					}
-					//echo " Sentencia: ".$str_sql."<br>";
 				}
-			}
 		}
 	}
 

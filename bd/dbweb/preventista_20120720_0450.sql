@@ -1,435 +1,25 @@
+-- MySQL Administrator dump 1.4
 --
--- Definition of table `admin_preventistadev`.`articulos`
---
+-- ------------------------------------------------------
+-- Server version	5.1.63-0ubuntu0.11.10.1
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`articulos`;
-CREATE TABLE  `admin_preventistadev`.`articulos` (
-  `articulos_id` int(11) NOT NULL AUTO_INCREMENT,
-  `articulos_descripcion` text,
-  `articulos_preciocompra` float DEFAULT NULL,
-  `articulos_stockreal` float DEFAULT NULL,
-  `articulos_stockmin` float DEFAULT NULL,
-  `articulos_stockmax` float DEFAULT NULL,
-  `rubros_id` int(11) DEFAULT NULL,
-  `articulos_observaciones` text,
-  `articulos_precio1` float DEFAULT NULL,
-  `articulos_precio2` float DEFAULT NULL,
-  `articulos_precio3` float DEFAULT NULL,
-  `articulos_porcentaje1` float DEFAULT NULL,
-  `articulos_porcentaje2` float DEFAULT NULL,
-  `articulos_porcentaje3` float DEFAULT NULL,
-  `articulos_estado` int(11) DEFAULT NULL,
-  `marcas_id` int(11) DEFAULT NULL,
-  `articulos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `articulos_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`articulos_id`),
-  KEY `articulos_marcas_id` (`marcas_id`),
-  KEY `articulos_rubros_id` (`rubros_id`),
-  KEY `articulos_tabgral_id` (`articulos_estado`),
-  CONSTRAINT `articulos_marcas_id` FOREIGN KEY (`marcas_id`) REFERENCES `marcas` (`marcas_id`),
-  CONSTRAINT `articulos_rubros_id` FOREIGN KEY (`rubros_id`) REFERENCES `rubros` (`rubros_id`),
-  CONSTRAINT `articulos_tabgral_id` FOREIGN KEY (`articulos_estado`) REFERENCES `tabgral` (`tabgral_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50026 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `admin_preventistadev`.`articulos`
---
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-/*!40000 ALTER TABLE `articulos` DISABLE KEYS */;
-LOCK TABLES `articulos` WRITE;
-INSERT INTO `admin_preventistadev`.`articulos` VALUES  (1,'GALLETA  QUIQUI',24,149,5,NULL,1,NULL,26.4,27.6,28.8,10,15,20,20,2,'2012-06-06 07:41:35','0000-00-00 00:00:00'),
- (2,'BUBALUU',17,76,10,NULL,2,NULL,18.7,19.55,20.4,10,15,20,20,3,'2012-06-06 07:49:27','0000-00-00 00:00:00'),
- (3,'BAGIO',25,47,2,NULL,3,NULL,27.5,30,30,10,15,20,20,7,'2012-06-06 07:57:53','0000-00-00 00:00:00'),
- (4,'BON AGUA',16.67,47,10,NULL,5,NULL,18.33,19.17,20,10,15,20,20,7,'2012-06-06 08:05:17','0000-00-00 00:00:00'),
- (50015,'BON SPIRE',45,34,NULL,NULL,5,NULL,49.5,51.75,54,10,15,20,20,6,'2012-06-03 10:39:41','0000-00-00 00:00:00'),
- (50016,'GALLETA COL',30,48,NULL,NULL,1,NULL,33,34.5,36,10,15,20,20,4,'2012-06-03 11:03:20','0000-00-00 00:00:00'),
- (50017,'RAPTE',25,80,NULL,NULL,2,NULL,27.5,28.75,33,10,15,32,20,1,'2012-06-03 11:28:33','0000-00-00 00:00:00'),
- (50018,'GALLETA IRIS',40,44,34,0,1,'',44,46,48,10,15,20,20,5,'2012-06-03 11:32:15','0000-00-00 00:00:00'),
- (50019,'GALLETA ARO',45,46,NULL,NULL,1,NULL,49.5,54,48,10,15,20,20,4,'2012-06-03 12:01:35','0000-00-00 00:00:00'),
- (50020,'ALFAJOR ARES',27,82,NULL,NULL,6,NULL,29.7,32.4,30,10,15,20,20,7,'2012-06-03 12:07:25','2012-10-10 06:10:12'),
- (50021,'BOBON QEA ',35,63,NULL,NULL,5,NULL,38.5,42,42,10,15,20,20,5,'2012-06-03 12:07:25','0000-00-00 00:00:00'),
- (50022,'BELDENT FRUT. ',25,58,NULL,NULL,2,NULL,27.5,30,30,10,15,20,20,2,'2012-06-03 12:07:25','0000-00-00 00:00:00'),
- (50023,'BON FIX',50,169,NULL,NULL,5,NULL,55,60,54,10,15,20,20,4,'2012-06-03 22:25:43','0000-00-00 00:00:00'),
- (50024,'GALLETA VAINILLA',2,67,10,NULL,1,NULL,2.2,2.3,2.4,10,15,20,20,5,'2012-06-05 20:56:06','0000-00-00 00:00:00'),
- (50025,'GALLETA PEPITO',24,85,NULL,NULL,1,NULL,26.4,27.6,28.8,10,15,20,20,7,'2012-06-06 10:31:46','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `articulos` ENABLE KEYS */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
 --
--- Definition of table `admin_preventistadev`.`audit`
+-- Create schema admin_preventistadev
 --
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`audit`;
-CREATE TABLE  `admin_preventistadev`.`audit` (
-  `audit_id` int(11) NOT NULL AUTO_INCREMENT,
-  `audit_tabla` varchar(150) DEFAULT NULL,
-  `audit_evento` varchar(50) DEFAULT NULL,
-  `audit_usuario` varchar(100) DEFAULT NULL,
-  `audit_fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`audit_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`audit`
---
-
-/*!40000 ALTER TABLE `audit` DISABLE KEYS */;
-LOCK TABLES `audit` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `audit` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`cambiodirectostock`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`cambiodirectostock`;
-CREATE TABLE  `admin_preventistadev`.`cambiodirectostock` (
-  `cambiodirectostock_id` int(11) NOT NULL AUTO_INCREMENT,
-  `cambiodirectostock_tipo` int(11) DEFAULT NULL,
-  `articulos_id` int(11) DEFAULT NULL,
-  `cambiodirectostock_stockantiguo` int(11) DEFAULT NULL,
-  `cambiodirectostock_stocknuevo` int(11) DEFAULT NULL,
-  `usuarios_id` int(11) DEFAULT NULL,
-  `cambiodirectostock_comentario` text,
-  `cambiodirectostock_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `cambiodirectostock_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`cambiodirectostock_id`),
-  KEY `cambiodirectostock_articulos_id` (`articulos_id`),
-  KEY `cambiodirectostock_usuarios_id` (`usuarios_id`),
-  CONSTRAINT `cambiodirectostock_articulos_id` FOREIGN KEY (`articulos_id`) REFERENCES `articulos` (`articulos_id`),
-  CONSTRAINT `cambiodirectostock_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`cambiodirectostock`
---
-
-/*!40000 ALTER TABLE `cambiodirectostock` DISABLE KEYS */;
-LOCK TABLES `cambiodirectostock` WRITE;
-INSERT INTO `admin_preventistadev`.`cambiodirectostock` VALUES  (1,NULL,50023,60,200,1,'N','2012-06-05 08:35:27','2012-06-05 08:35:27'),
- (2,NULL,50015,56,250,1,'N','2012-06-05 08:56:11','2012-06-05 08:56:11'),
- (3,NULL,50017,10,300,1,'N','2012-06-05 08:56:11','2012-06-05 08:56:11'),
- (4,NULL,50015,250,500,1,'N','2012-06-05 19:55:25','2012-06-05 19:55:25'),
- (5,NULL,50018,100,400,1,'N','2012-06-05 19:59:30','2012-06-05 19:59:30'),
- (6,NULL,50015,500,1000,1,'N','2012-06-05 20:50:48','2012-06-05 20:50:48'),
- (7,NULL,1,20,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
- (8,NULL,2,50,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
- (9,NULL,3,10,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
- (10,NULL,4,150,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
- (11,NULL,1,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (12,NULL,2,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (13,NULL,3,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (14,NULL,4,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (15,NULL,50015,1000,2000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (16,NULL,50016,25,3000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (17,NULL,50017,300,4000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (18,NULL,50018,400,5000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (19,NULL,50019,150,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (20,NULL,50020,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
- (21,NULL,50021,10,1000,1,'N','2012-06-06 10:09:28','2012-06-06 10:09:28'),
- (22,NULL,50022,500,1000,1,'N','2012-06-06 10:09:28','2012-06-06 10:09:28'),
- (23,NULL,50024,50,2000,1,'N','2012-06-06 10:09:28','2012-06-06 10:09:28'),
- (24,NULL,1,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
- (25,NULL,2,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
- (26,NULL,3,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
- (27,NULL,4,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
- (28,NULL,50015,2000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (29,NULL,50016,3000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (30,NULL,50017,4000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (31,NULL,50018,5000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (32,NULL,50019,1000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (33,NULL,50020,1000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (34,NULL,50021,1000,30,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (35,NULL,50022,1000,30,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (36,NULL,50024,2000,30,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
- (37,NULL,1,8,100,1,'N','2012-06-08 12:22:50','2012-06-08 12:22:50'),
- (38,NULL,1,100,101,1,'N','2012-06-08 12:24:33','2012-06-08 12:24:33'),
- (39,NULL,1,101,102,1,'N','2012-06-08 12:25:06','2012-06-08 12:25:06'),
- (40,NULL,1,102,103,1,'N','2012-06-08 12:28:29','2012-06-08 12:28:29'),
- (41,NULL,1,103,104,1,'N','2012-06-08 18:11:29','2012-06-08 18:11:29'),
- (42,NULL,1,104,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (43,NULL,2,0,111,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (44,NULL,3,3,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (45,NULL,4,3,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (46,NULL,50015,12,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (47,NULL,50016,18,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (48,NULL,50017,20,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (49,NULL,50018,19,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (50,NULL,50019,19,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (51,NULL,50020,4,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (52,NULL,50021,22,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
- (53,NULL,50022,25,100,1,'N','2012-06-08 18:28:59','2012-06-08 18:28:59'),
- (54,NULL,50024,29,100,1,'N','2012-06-08 18:28:59','2012-06-08 18:28:59'),
- (55,NULL,50025,290,100,1,'N','2012-06-08 18:28:59','2012-06-08 18:28:59'),
- (56,NULL,1,189,190,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (57,NULL,2,106,107,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (58,NULL,3,88,89,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (59,NULL,4,87,88,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (60,NULL,50015,87,88,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (61,NULL,50016,90,91,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (62,NULL,50017,94,95,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (63,NULL,50018,88,89,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (64,NULL,50019,85,86,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
- (65,NULL,50020,93,94,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
- (66,NULL,50021,98,99,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
- (67,NULL,50022,95,96,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
- (68,NULL,50024,94,95,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
- (69,NULL,50025,100,101,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
- (70,NULL,1,168,167,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
- (71,NULL,2,91,92,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
- (72,NULL,3,78,79,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
- (73,NULL,4,75,76,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
- (74,NULL,50015,68,69,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (75,NULL,50016,60,61,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (76,NULL,50017,83,84,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (77,NULL,50018,58,59,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (78,NULL,50019,63,64,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (79,NULL,50020,63,64,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (80,NULL,50021,90,91,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (81,NULL,50022,78,77,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (82,NULL,50024,87,88,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
- (83,NULL,50025,96,99,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `cambiodirectostock` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`clientes`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`clientes`;
-CREATE TABLE  `admin_preventistadev`.`clientes` (
-  `clientes_id` int(11) NOT NULL AUTO_INCREMENT,
-  `clientes_nombre` varchar(150) DEFAULT NULL,
-  `clientes_apellido` varchar(150) DEFAULT NULL,
-  `clientes_direccion` text,
-  `clientes_telefono` varchar(100) DEFAULT NULL,
-  `clientes_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `clientes_updated_at` datetime DEFAULT NULL,
-  `clientescategoria_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`clientes_id`),
-  KEY `clientes_clientescategoria_id` (`clientescategoria_id`),
-  CONSTRAINT `clientes_clientescategoria_id` FOREIGN KEY (`clientescategoria_id`) REFERENCES `clientescategoria` (`clientescategoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50002 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`clientes`
---
-
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-LOCK TABLES `clientes` WRITE;
-INSERT INTO `admin_preventistadev`.`clientes` VALUES  (1,'JUAN','GUZMAN','CORDOBA 345','381478545','2012-06-06 12:05:59','2012-07-12 04:14:11',1),
- (2,'MIGUEL','PONCE','SAN JUAN 4554',NULL,'2012-06-06 12:07:20','2012-06-06 12:07:20',2),
- (3,'ALFONSO','GIRON','SAN JUAN 4544','38145855','2012-07-07 03:17:40','2012-07-07 03:17:40',2),
- (4,'MATIAS','ALAFARO','SANTIAGO 3443','381458522','2012-07-07 03:21:36','2012-07-07 03:21:36',3),
- (5,'ISMAEL','GUERRERO','MARCOS PAZ 344','3814951254','2012-07-08 09:43:32','2012-07-08 09:43:32',2),
- (6,'GLADYS','OVANDO','AV.  AVELLANEDA 2345','3814951251','2012-07-08 09:44:05','2012-07-08 09:44:05',3),
- (7,'LUCAS','GUTIERREZ','SANTA FE','1800','2012-07-08 09:44:23','2012-07-08 09:44:23',1),
- (8,'AMANDA','PINOS','SAN MARTIN 3000','3814915254','2012-07-08 09:44:46','2012-07-08 09:44:46',2),
- (9,'PABLO JOSE','QUINTEROS','SAN JUAN 1200','03814952558','2012-07-11 10:09:07','0000-00-00 00:00:00',3),
- (10,'GUSTAVO','BAUZA','RAUL COLOMBRES','101','2012-07-12 21:18:36','2012-07-12 21:18:36',1),
- (50000,'CRISTINA','FERNANDEZ','SANTIAGO 1200','3814923432','2012-06-06 12:24:43','2012-06-06 12:24:43',3),
- (50001,'GIMENA','GALAN','MARCOS PAZ 321','381453244','2012-07-07 03:23:24','2012-07-17 04:19:37',1);
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`clientescategoria`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`clientescategoria`;
-CREATE TABLE  `admin_preventistadev`.`clientescategoria` (
-  `clientescategoria_id` int(11) NOT NULL AUTO_INCREMENT,
-  `clientescategoria_descripcion` varchar(150) DEFAULT NULL,
-  `clientescategoria_estado` int(11) DEFAULT NULL,
-  `clientescategoria_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `clientescategoria_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`clientescategoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`clientescategoria`
---
-
-/*!40000 ALTER TABLE `clientescategoria` DISABLE KEYS */;
-LOCK TABLES `clientescategoria` WRITE;
-INSERT INTO `admin_preventistadev`.`clientescategoria` VALUES  (1,'Cat. 1',1,'2012-03-02 00:00:00','2012-04-01 02:35:09'),
- (2,'Cat. 2',1,'2012-03-02 00:00:00','2012-04-01 02:35:19'),
- (3,'Cat. 3',1,'2012-03-02 00:00:00',NULL);
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `clientescategoria` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`compras`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`compras`;
-CREATE TABLE  `admin_preventistadev`.`compras` (
-  `compras_id` int(11) NOT NULL AUTO_INCREMENT,
-  `proveedores_id` int(11) DEFAULT NULL,
-  `compras_montototal` float DEFAULT NULL,
-  `usuarios_id` int(11) DEFAULT NULL,
-  `compras_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `compras_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`compras_id`),
-  KEY `compras_usuarios_id` (`usuarios_id`),
-  KEY `compras_proveedores_id` (`proveedores_id`),
-  CONSTRAINT `compras_proveedores_id` FOREIGN KEY (`proveedores_id`) REFERENCES `proveedores` (`proveedores_id`),
-  CONSTRAINT `compras_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`compras`
---
-
-/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
-LOCK TABLES `compras` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`comprasdetalle`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`comprasdetalle`;
-CREATE TABLE  `admin_preventistadev`.`comprasdetalle` (
-  `comprasdetalle_id` int(11) NOT NULL AUTO_INCREMENT,
-  `compras_id` int(11) NOT NULL,
-  `articulos_id` int(11) NOT NULL,
-  `comprasdetalle_cantidad` int(11) DEFAULT NULL,
-  `comprasdetalle_costo` float DEFAULT NULL,
-  `comprasdetalle_subtotal` float DEFAULT NULL,
-  `comprasdetalle_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `comprasdetalle_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`comprasdetalle_id`),
-  KEY `comprasdetalle_articulo_id` (`articulos_id`),
-  KEY `comprasdetalle_compras_id` (`compras_id`),
-  CONSTRAINT `comprasdetalle_articulo_id` FOREIGN KEY (`articulos_id`) REFERENCES `articulos` (`articulos_id`),
-  CONSTRAINT `comprasdetalle_compras_id` FOREIGN KEY (`compras_id`) REFERENCES `compras` (`compras_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`comprasdetalle`
---
-
-/*!40000 ALTER TABLE `comprasdetalle` DISABLE KEYS */;
-LOCK TABLES `comprasdetalle` WRITE;
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `comprasdetalle` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`cuentacorriente`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`cuentacorriente`;
-CREATE TABLE  `admin_preventistadev`.`cuentacorriente` (
-  `cuentacorriente_id` int(11) NOT NULL AUTO_INCREMENT,
-  `clientes_id` int(11) NOT NULL,
-  `cuentacorriente_haber` float DEFAULT NULL,
-  `cuentacorriente_debe` float DEFAULT NULL,
-  `cuentacorriente_saldo` float DEFAULT NULL,
-  `cuentacorriente_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `cuentacorriente_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`cuentacorriente_id`),
-  KEY `cuentacorriente_clientes_id` (`clientes_id`),
-  CONSTRAINT `cuentacorriente_clientes_id` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`cuentacorriente`
---
-
-/*!40000 ALTER TABLE `cuentacorriente` DISABLE KEYS */;
-LOCK TABLES `cuentacorriente` WRITE;
-INSERT INTO `admin_preventistadev`.`cuentacorriente` VALUES  (1,1,2700,1837.12,0,'2012-06-08 20:28:23','2012-07-17 06:23:17'),
- (2,2,0,0,0,'2012-06-08 20:28:28','2012-07-08 07:47:30'),
- (3,50000,600,1588.8,0,'2012-06-08 20:28:34','2012-07-17 07:52:55'),
- (6,3,100,125.75,NULL,'2012-07-07 03:17:40','2012-07-08 12:15:02'),
- (7,4,250,1130,NULL,'2012-07-07 03:21:36','2012-07-12 06:16:11'),
- (9,50001,103.4,-116.6,0,'2012-07-07 03:24:57','2012-07-17 06:23:17'),
- (12,5,NULL,NULL,NULL,'2012-07-08 09:43:32','2012-07-08 09:43:32'),
- (13,6,NULL,NULL,NULL,'2012-07-08 09:44:05','2012-07-08 09:44:05'),
- (14,7,0,71.5,NULL,'2012-07-08 09:44:23','2012-07-08 12:15:02'),
- (15,8,NULL,NULL,NULL,'2012-07-08 09:44:47','2012-07-08 09:44:46'),
- (16,9,500,3527.2,NULL,'2012-07-11 10:09:08','2012-07-12 06:16:11'),
- (17,10,NULL,NULL,NULL,'2012-07-12 21:18:36','2012-07-12 21:18:36');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `cuentacorriente` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`fleteros`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`fleteros`;
-CREATE TABLE  `admin_preventistadev`.`fleteros` (
-  `fleteros_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fleteros_nombre` varchar(150) DEFAULT NULL,
-  `fleteros_apellido` varchar(150) DEFAULT NULL,
-  `fleteros_telefono` varchar(150) DEFAULT NULL,
-  `fleteros_direccion` varchar(200) DEFAULT NULL,
-  `fleteros_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `fleteros_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`fleteros_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`fleteros`
---
-
-/*!40000 ALTER TABLE `fleteros` DISABLE KEYS */;
-LOCK TABLES `fleteros` WRITE;
-INSERT INTO `admin_preventistadev`.`fleteros` VALUES  (1,'Miguel','Ponce','34','','2012-02-18 00:00:00','2012-06-21 00:45:31'),
- (2,'Pablo','Sanchez','','','2012-02-18 00:00:00','2012-06-21 00:45:33'),
- (3,'Ana','Ceballos','','','2012-02-18 00:00:00','2012-06-21 00:45:37'),
- (4,'Julian','Castro','','','2012-02-18 00:00:00','2012-06-21 00:45:41'),
- (5,'jose','sidan','','','2012-03-22 20:44:56','2012-06-21 00:45:45'),
- (6,'Miguel','Fernandez','','San Juan 685','2012-04-01 02:23:59','2012-06-21 00:45:47'),
- (7,'Juan Pablo','Mayoral','45511225','','2012-04-01 02:24:48','2012-06-21 00:45:50');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `fleteros` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`gastos`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`gastos`;
-CREATE TABLE  `admin_preventistadev`.`gastos` (
-  `gastos_id` int(11) NOT NULL AUTO_INCREMENT,
-  `gastos_descripcion` text,
-  `hojaruta_id` int(11) DEFAULT NULL,
-  `gastos_monto` float DEFAULT NULL,
-  `gastos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `gastos_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`gastos_id`),
-  KEY `gastos_hojaruta_id` (`hojaruta_id`),
-  CONSTRAINT `gastos_hojaruta_id` FOREIGN KEY (`hojaruta_id`) REFERENCES `hojaruta` (`hojaruta_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`gastos`
---
-
-/*!40000 ALTER TABLE `gastos` DISABLE KEYS */;
-LOCK TABLES `gastos` WRITE;
-INSERT INTO `admin_preventistadev`.`gastos` VALUES  (4,'Nafta',13,60,'2012-07-08 12:15:03','2012-07-08 12:15:03'),
- (5,'Parche',13,20,'2012-07-08 12:15:03','2012-07-08 12:15:03'),
- (6,'Pinchado de goma',14,45,'2012-07-12 04:58:29','2012-07-12 04:58:29'),
- (7,'Gasoil',14,120,'2012-07-12 04:58:29','2012-07-12 04:58:29'),
- (8,NULL,16,NULL,'2012-07-12 06:01:32','2012-07-12 06:01:32'),
- (9,'Pinchado de goma',17,50,'2012-07-12 06:16:11','2012-07-12 06:16:11'),
- (10,NULL,18,NULL,'2012-07-12 06:23:08','2012-07-12 06:23:08'),
- (11,'Pinchado de Goma',19,45,'2012-07-17 06:23:17','2012-07-17 06:23:17'),
- (12,NULL,20,NULL,'2012-07-17 07:52:55','2012-07-17 07:52:55');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `gastos` ENABLE KEYS */;
+CREATE DATABASE IF NOT EXISTS admin_preventistadev;
+USE admin_preventistadev;
 
 
 --
@@ -464,78 +54,128 @@ UNLOCK TABLES;
 
 
 --
--- Definition of table `admin_preventistadev`.`hojaruta`
+-- Definition of table `admin_preventistadev`.`tabgral`
 --
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`hojaruta`;
-CREATE TABLE  `admin_preventistadev`.`hojaruta` (
-  `hojaruta_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fleteros_id` int(11) NOT NULL,
-  `usuarios_id` int(11) NOT NULL,
-  `hojaruta_estado` int(11) DEFAULT NULL,
-  `hojaruta_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `hojaruta_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`hojaruta_id`),
-  KEY `hojaruta_fleteros_id` (`fleteros_id`),
-  KEY `hojaruta_usuarios_id` (`usuarios_id`),
-  CONSTRAINT `hojaruta_fleteros_id` FOREIGN KEY (`fleteros_id`) REFERENCES `fleteros` (`fleteros_id`),
-  CONSTRAINT `hojaruta_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `admin_preventistadev`.`tabgral`;
+CREATE TABLE  `admin_preventistadev`.`tabgral` (
+  `tabgral_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tabgral_descripcion` varchar(50) NOT NULL,
+  `grupos_tabgral_id` int(11) NOT NULL,
+  `tabgral_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tabgral_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`tabgral_id`),
+  KEY `grupos_tabgral_id` (`grupos_tabgral_id`),
+  CONSTRAINT `grupos_tabgral_id` FOREIGN KEY (`grupos_tabgral_id`) REFERENCES `grupos_tabgral` (`grupos_tabgral_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin_preventistadev`.`hojaruta`
+-- Dumping data for table `admin_preventistadev`.`tabgral`
 --
 
-/*!40000 ALTER TABLE `hojaruta` DISABLE KEYS */;
-LOCK TABLES `hojaruta` WRITE;
-INSERT INTO `admin_preventistadev`.`hojaruta` VALUES  (13,2,1,25,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
- (14,2,1,25,'2012-07-08 12:28:47','2012-07-08 12:28:47'),
- (16,4,1,25,'2012-07-12 02:28:59','2012-07-12 02:28:59'),
- (17,1,1,25,'2012-07-12 06:00:00','2012-07-12 06:00:00'),
- (18,2,1,25,'2012-07-12 06:20:58','2012-07-12 06:20:58'),
- (19,2,1,25,'2012-07-17 06:18:17','2012-07-17 06:18:17'),
- (20,3,1,25,'2012-07-17 07:51:08','2012-07-17 07:51:08');
+/*!40000 ALTER TABLE `tabgral` DISABLE KEYS */;
+LOCK TABLES `tabgral` WRITE;
+INSERT INTO `admin_preventistadev`.`tabgral` VALUES  (1,'Habilitado',1,'2012-02-06 19:13:23','0000-00-00 00:00:00'),
+ (2,'Deshabilitado',1,'2012-02-06 19:13:38','0000-00-00 00:00:00'),
+ (3,'Categoria 1',2,'2012-02-16 13:31:13','0000-00-00 00:00:00'),
+ (4,'Categoria 2',2,'2012-02-16 13:31:13','0000-00-00 00:00:00'),
+ (5,'Categoria 3',2,'2012-02-16 13:31:13','0000-00-00 00:00:00'),
+ (6,'Solicitado',3,'2012-03-01 22:04:40','0000-00-00 00:00:00'),
+ (7,'Asignado',3,'2012-03-01 22:04:40','0000-00-00 00:00:00'),
+ (8,'Entregado',3,'2012-03-01 22:04:39','0000-00-00 00:00:00'),
+ (9,'Cancelado',3,'2012-03-01 22:04:39','0000-00-00 00:00:00'),
+ (10,'Planteada',4,'2012-03-03 02:46:44','0000-00-00 00:00:00'),
+ (11,'Ejecutada',4,'2012-03-03 02:46:44','0000-00-00 00:00:00'),
+ (12,'En curso',5,'2012-03-03 13:53:39','0000-00-00 00:00:00'),
+ (13,'Entregado',5,'2012-03-03 13:53:39','0000-00-00 00:00:00'),
+ (14,'Cancelado',5,'2012-03-03 13:53:39','0000-00-00 00:00:00'),
+ (15,'Entregado y parcialmente pagado',3,'2012-03-04 16:05:50','0000-00-00 00:00:00'),
+ (16,'Entregado y pagado',3,'2012-03-04 16:05:50','0000-00-00 00:00:00'),
+ (17,'Generado',6,'2012-03-04 20:56:33','0000-00-00 00:00:00'),
+ (18,'Ingresado',6,'2012-03-04 20:56:33','0000-00-00 00:00:00'),
+ (19,'Cancelado',6,'2012-03-04 20:56:33','0000-00-00 00:00:00'),
+ (20,'Disponible',7,'2012-03-20 01:55:46','0000-00-00 00:00:00'),
+ (21,'No disponible',7,'2012-03-20 01:55:46','0000-00-00 00:00:00'),
+ (22,'Efectivo',8,'2012-03-27 15:26:08','0000-00-00 00:00:00'),
+ (23,'Cuenta Corriente',8,'2012-03-27 15:26:08','0000-00-00 00:00:00'),
+ (24,'BCB',8,'2012-03-27 15:30:28','0000-00-00 00:00:00'),
+ (25,'Finalizada',4,'2012-03-30 01:44:38','0000-00-00 00:00:00');
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `hojaruta` ENABLE KEYS */;
+/*!40000 ALTER TABLE `tabgral` ENABLE KEYS */;
 
 
 --
--- Definition of table `admin_preventistadev`.`hojarutadetalle`
+-- Definition of table `admin_preventistadev`.`perfiles`
 --
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`hojarutadetalle`;
-CREATE TABLE  `admin_preventistadev`.`hojarutadetalle` (
-  `hojarutadetalle_id` int(11) NOT NULL AUTO_INCREMENT,
-  `hojaruta_id` int(11) NOT NULL,
-  `pedidos_id` int(11) NOT NULL,
-  `hojarutadetalle_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `hojarutadetalle_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`hojarutadetalle_id`),
-  KEY `hojarutadetalle_hojartuta_id` (`hojaruta_id`),
-  KEY `hojarutadetalle_pedidos_id` (`pedidos_id`),
-  CONSTRAINT `hojarutadetalle_hojartuta_id` FOREIGN KEY (`hojaruta_id`) REFERENCES `hojaruta` (`hojaruta_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `hojarutadetalle_pedidos_id` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos` (`pedidos_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `admin_preventistadev`.`perfiles`;
+CREATE TABLE  `admin_preventistadev`.`perfiles` (
+  `perfiles_id` int(11) NOT NULL AUTO_INCREMENT,
+  `perfiles_descripcion` varchar(150) DEFAULT NULL,
+  `perfiles_estado` int(11) DEFAULT '0',
+  `perfiles_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `perfiles_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`perfiles_id`),
+  KEY `perfiles_tabgral_id` (`perfiles_estado`),
+  CONSTRAINT `perfiles_tabgral_id` FOREIGN KEY (`perfiles_estado`) REFERENCES `tabgral` (`tabgral_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin_preventistadev`.`hojarutadetalle`
+-- Dumping data for table `admin_preventistadev`.`perfiles`
 --
 
-/*!40000 ALTER TABLE `hojarutadetalle` DISABLE KEYS */;
-LOCK TABLES `hojarutadetalle` WRITE;
-INSERT INTO `admin_preventistadev`.`hojarutadetalle` VALUES  (15,13,4,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
- (16,13,3,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
- (17,13,2,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
- (18,13,1,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
- (19,14,50000,'2012-07-08 12:28:47','2012-07-08 12:28:47'),
- (22,16,5,'2012-07-12 02:29:00','2012-07-12 02:29:00'),
- (23,17,50001,'2012-07-12 06:00:01','2012-07-12 06:00:01'),
- (24,18,6,'2012-07-12 06:20:58','2012-07-12 06:20:58'),
- (25,19,7,'2012-07-17 06:18:17','2012-07-17 06:18:17'),
- (26,19,50002,'2012-07-17 06:18:17','2012-07-17 06:18:17'),
- (27,20,8,'2012-07-17 07:51:08','2012-07-17 07:51:08');
+/*!40000 ALTER TABLE `perfiles` DISABLE KEYS */;
+LOCK TABLES `perfiles` WRITE;
+INSERT INTO `admin_preventistadev`.`perfiles` VALUES  (3,'Administrador',1,'2012-02-06 19:14:10','0000-00-00 00:00:00');
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `hojarutadetalle` ENABLE KEYS */;
+/*!40000 ALTER TABLE `perfiles` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`provincias`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`provincias`;
+CREATE TABLE  `admin_preventistadev`.`provincias` (
+  `provincias_id` int(11) NOT NULL AUTO_INCREMENT,
+  `provincias_nombre` varchar(150) NOT NULL,
+  `provincias_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `provincias_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`provincias_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`provincias`
+--
+
+/*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
+LOCK TABLES `provincias` WRITE;
+INSERT INTO `admin_preventistadev`.`provincias` VALUES  (1,'Buenos Aires','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (2,'Capital Federal','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (3,'Catamarca','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (4,'Chaco','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (5,'Chubut','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (6,'Córdoba','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (7,'Corrientes','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (8,'Entre Ríos','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (9,'Formosa','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (10,'Jujuy','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (11,'La Pampa','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (12,'La Rioja','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (13,'Mendoza','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (14,'Misiones','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (15,'Neuquén','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (16,'Río Negro','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (17,'Salta','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (18,'San Juan','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (19,'San Luis','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (20,'Santa Cruz','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (21,'Santa Fé','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (22,'Santiago del Estero','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (23,'Tierra del Fuego','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (24,'Tucumán','0000-00-00 00:00:00','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
 
 
 --
@@ -23531,6 +23171,270 @@ UNLOCK TABLES;
 
 
 --
+-- Definition of table `admin_preventistadev`.`usuarios`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`usuarios`;
+CREATE TABLE  `admin_preventistadev`.`usuarios` (
+  `usuarios_id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuarios_username` varchar(150) DEFAULT NULL,
+  `usuarios_password` varchar(150) DEFAULT NULL,
+  `usuarios_nombre` varchar(150) DEFAULT NULL,
+  `usuarios_apellido` varchar(150) DEFAULT NULL,
+  `usuarios_email` varchar(150) DEFAULT NULL,
+  `usuarios_direccion` varchar(200) DEFAULT NULL,
+  `usuarios_telefono` varchar(50) DEFAULT NULL,
+  `usuarios_estado` int(11) DEFAULT NULL,
+  `usuarios_legajo` int(11) DEFAULT NULL,
+  `perfiles_id` int(11) NOT NULL,
+  `provincias_id` int(11) DEFAULT NULL,
+  `localidades_id` int(11) DEFAULT NULL,
+  `usuarios_activationcode` varchar(150) DEFAULT NULL,
+  `usuarios_tokenforgotpasswd` text,
+  `usuarios_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `usuarios_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`usuarios_id`),
+  KEY `localidades_id` (`localidades_id`),
+  KEY `perfiles_id` (`usuarios_telefono`),
+  KEY `perfiles_id_usuarios` (`perfiles_id`),
+  KEY `provincias_id` (`provincias_id`),
+  KEY `tabgral_id` (`usuarios_direccion`),
+  KEY `usuarios_estado` (`usuarios_estado`),
+  KEY `usuarios_perfiles_id` (`perfiles_id`),
+  KEY `usuarios_provincias_id` (`provincias_id`),
+  CONSTRAINT `usuarios_estado` FOREIGN KEY (`usuarios_estado`) REFERENCES `tabgral` (`tabgral_id`),
+  CONSTRAINT `usuarios_localidades_id` FOREIGN KEY (`localidades_id`) REFERENCES `localidades` (`localidades_id`),
+  CONSTRAINT `usuarios_perfiles_id` FOREIGN KEY (`perfiles_id`) REFERENCES `perfiles` (`perfiles_id`),
+  CONSTRAINT `usuarios_provincias_id` FOREIGN KEY (`provincias_id`) REFERENCES `provincias` (`provincias_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`usuarios`
+--
+
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+LOCK TABLES `usuarios` WRITE;
+INSERT INTO `admin_preventistadev`.`usuarios` VALUES  (1,'admin','21232f297a57a5a743894a0e4a801fc3','Admin','admin','admin@gmail.com',NULL,NULL,1,NULL,3,1,NULL,NULL,NULL,'2012-02-07 00:00:00','2012-02-09 00:00:00'),
+ (3,'marcos','caf1a3dfb505ffed0d024130f58c5cfa','marcos laquaire',NULL,NULL,NULL,NULL,1,NULL,3,NULL,NULL,NULL,NULL,'2012-03-22 00:00:00','2012-03-22 00:00:00'),
+ (4,'gaston','6fda27264f8154abdb6ed31bd701a8e5','Gaston','Gonzalez','gastonmgonzalez@gmail.com',NULL,NULL,1,NULL,3,24,22731,NULL,NULL,'2012-04-01 01:13:05','2012-04-01 01:13:05');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`sismenu`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`sismenu`;
+CREATE TABLE  `admin_preventistadev`.`sismenu` (
+  `sismenu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sismenu_descripcion` varchar(150) DEFAULT NULL,
+  `sismenu_estado` int(11) DEFAULT '0',
+  `sismenu_parent` int(11) DEFAULT NULL,
+  `sismenu_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `sismenu_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`sismenu_id`),
+  KEY `sismenu_tabgral_id` (`sismenu_estado`),
+  CONSTRAINT `sismenu_tabgral_id` FOREIGN KEY (`sismenu_estado`) REFERENCES `tabgral` (`tabgral_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`sismenu`
+--
+
+/*!40000 ALTER TABLE `sismenu` DISABLE KEYS */;
+LOCK TABLES `sismenu` WRITE;
+INSERT INTO `admin_preventistadev`.`sismenu` VALUES  (1,'Administración',1,0,'2012-02-07 11:08:25','0000-00-00 00:00:00'),
+ (2,'Usuarios',1,1,'2012-02-07 11:09:01','0000-00-00 00:00:00'),
+ (3,'Perfiles',1,1,'2012-02-07 11:09:23','0000-00-00 00:00:00'),
+ (4,'Permisos',1,1,'2012-02-07 11:09:43','0000-00-00 00:00:00'),
+ (5,'Menues',1,1,'2012-02-07 11:10:00','0000-00-00 00:00:00'),
+ (6,'Gestión de Articulos',1,0,'2012-02-07 15:06:43','0000-00-00 00:00:00'),
+ (7,'Articulos',1,6,'2012-02-07 15:07:22','0000-00-00 00:00:00'),
+ (8,'Rubros',1,6,'2012-02-07 00:00:00','0000-00-00 00:00:00'),
+ (9,'Gestión de  Cuenta C.',1,0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (10,'Clientes',1,9,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (11,'Proveedores',1,6,'2012-02-09 17:05:36','0000-00-00 00:00:00'),
+ (12,'Gestion de pedidos',1,0,'2012-02-16 00:00:00','0000-00-00 00:00:00'),
+ (13,'Pedidos',1,12,'2012-02-16 00:00:00','0000-00-00 00:00:00'),
+ (14,'Hoja de Ruta',1,12,'2012-02-17 00:00:00','0000-00-00 00:00:00'),
+ (15,'Fleteros',1,1,'2012-02-18 00:00:00','0000-00-00 00:00:00'),
+ (16,'Marcas',1,6,'2012-02-27 00:00:00','0000-00-00 00:00:00'),
+ (17,'Clientes categ.',1,1,'2012-03-02 00:00:00','0000-00-00 00:00:00'),
+ (18,'Compras',1,6,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
+ (19,'Remitos',1,12,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
+ (20,'Recibos',1,9,'2012-03-04 00:00:00','0000-00-00 00:00:00'),
+ (21,'CC',1,9,'2012-03-31 00:00:00','0000-00-00 00:00:00'),
+ (22,'Utilidades',1,1,'2012-04-04 15:43:07','2012-04-04 15:43:07'),
+ (23,'Pagos',1,9,'2012-06-08 04:18:04','0000-00-00 00:00:00'),
+ (24,'Bases de datos',1,1,'2012-07-11 09:25:36','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `sismenu` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`sisvinculos`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`sisvinculos`;
+CREATE TABLE  `admin_preventistadev`.`sisvinculos` (
+  `sisvinculos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sismenu_id` int(11) DEFAULT NULL,
+  `sisvinculos_link` varchar(250) DEFAULT NULL,
+  `sisvinculos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `sisvinculos_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`sisvinculos_id`),
+  KEY `sismenu_id` (`sismenu_id`),
+  KEY `sisvinculos_sismenu_id` (`sismenu_id`),
+  CONSTRAINT `sisvinculos_sismenu_id` FOREIGN KEY (`sismenu_id`) REFERENCES `sismenu` (`sismenu_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`sisvinculos`
+--
+
+/*!40000 ALTER TABLE `sisvinculos` DISABLE KEYS */;
+LOCK TABLES `sisvinculos` WRITE;
+INSERT INTO `admin_preventistadev`.`sisvinculos` VALUES  (1,1,'#','2012-02-07 11:21:39','0000-00-00 00:00:00'),
+ (2,2,'usuarios_controller/index','2012-02-07 11:21:55','0000-00-00 00:00:00'),
+ (3,3,'perfiles_controller/index','2012-02-07 11:22:11','0000-00-00 00:00:00'),
+ (4,4,'sispermisos_controller/index','2012-02-07 11:22:22','0000-00-00 00:00:00'),
+ (5,5,'sismenu_controller/index','2012-02-07 11:22:32','0000-00-00 00:00:00'),
+ (6,7,'articulos_controller/index','2012-02-07 15:09:14','0000-00-00 00:00:00'),
+ (7,8,'rubros_controller/index','2012-02-07 15:09:47','0000-00-00 00:00:00'),
+ (8,6,'#','2012-02-07 16:51:17','0000-00-00 00:00:00'),
+ (9,9,'#','0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (10,10,'clientes_controller/index','2012-02-09 17:06:31','0000-00-00 00:00:00'),
+ (11,11,'proveedores_controller/index','2012-02-09 17:06:31','0000-00-00 00:00:00'),
+ (12,12,'#','2012-02-16 15:38:47','0000-00-00 00:00:00'),
+ (13,13,'pedidos_controller/index','2012-02-16 15:39:25','0000-00-00 00:00:00'),
+ (14,14,'hojaruta_controller/index','2012-02-17 21:16:57','0000-00-00 00:00:00'),
+ (15,15,'fleteros_controller/index','2012-02-18 03:13:32','0000-00-00 00:00:00'),
+ (16,16,'marcas_controller/index','2012-02-27 18:17:04','0000-00-00 00:00:00'),
+ (17,17,'clientescategoria_controller/index','2012-03-02 20:19:54','0000-00-00 00:00:00'),
+ (18,18,'compras_controller/index','2012-03-03 01:55:52','0000-00-00 00:00:00'),
+ (19,19,'remitos_controller/index','2012-03-03 16:53:59','0000-00-00 00:00:00'),
+ (20,20,'#','2012-03-04 16:03:03','0000-00-00 00:00:00'),
+ (21,21,'cuentacorriente_controller/index','2012-03-31 16:07:34','0000-00-00 00:00:00'),
+ (22,22,'utilidades_controller/index','2012-04-04 15:43:07','0000-00-00 00:00:00'),
+ (23,23,'pagos_controller/index','2012-06-08 04:18:38','0000-00-00 00:00:00'),
+ (24,24,'dbmobile_controller/index','2012-07-11 09:26:31','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `sisvinculos` ENABLE KEYS */;
+
+
+
+--
+-- Definition of table `admin_preventistadev`.`sisperfil`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`sisperfil`;
+CREATE TABLE  `admin_preventistadev`.`sisperfil` (
+  `sisperfil_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sismenu_id` int(11) NOT NULL,
+  `perfiles_id` int(11) NOT NULL,
+  `sisperfil_estado` int(11) DEFAULT '0',
+  `sisperfil_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `sisperfil_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`sisperfil_id`),
+  KEY `perfiles_id` (`perfiles_id`),
+  KEY `sisperfil_sismenu_id` (`sismenu_id`),
+  KEY `sisperfil_tabgral_id` (`sisperfil_estado`),
+  KEY `tabgral_id` (`sisperfil_estado`),
+  CONSTRAINT `perfiles_id` FOREIGN KEY (`perfiles_id`) REFERENCES `perfiles` (`perfiles_id`),
+  CONSTRAINT `sisperfil_sismenu_id` FOREIGN KEY (`sismenu_id`) REFERENCES `sismenu` (`sismenu_id`),
+  CONSTRAINT `sisperfil_tabgral_id` FOREIGN KEY (`sisperfil_estado`) REFERENCES `tabgral` (`tabgral_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`sisperfil`
+--
+
+/*!40000 ALTER TABLE `sisperfil` DISABLE KEYS */;
+LOCK TABLES `sisperfil` WRITE;
+INSERT INTO `admin_preventistadev`.`sisperfil` VALUES  (1,1,3,1,'2012-02-07 11:15:56','0000-00-00 00:00:00'),
+ (2,5,3,1,'2012-02-07 11:17:26','0000-00-00 00:00:00'),
+ (3,4,3,1,'2012-02-07 11:17:26','0000-00-00 00:00:00'),
+ (4,3,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (5,2,3,1,'2012-02-07 11:17:26','0000-00-00 00:00:00'),
+ (6,8,3,1,'2012-02-07 15:08:26','0000-00-00 00:00:00'),
+ (7,7,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (8,6,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (9,11,3,1,'2012-02-09 17:07:05','0000-00-00 00:00:00'),
+ (10,10,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (11,9,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (12,13,3,1,'2012-02-16 15:43:01','0000-00-00 00:00:00'),
+ (13,12,3,1,'2012-02-16 15:43:01','0000-00-00 00:00:00'),
+ (14,14,3,1,'2012-02-17 21:17:37','0000-00-00 00:00:00'),
+ (15,15,3,1,'2012-02-18 03:14:13','0000-00-00 00:00:00'),
+ (16,16,3,1,'2012-02-27 18:17:37','0000-00-00 00:00:00'),
+ (17,17,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (18,18,3,1,'2012-03-03 01:56:26','0000-00-00 00:00:00'),
+ (19,19,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (20,20,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (21,21,3,1,'2012-03-31 16:08:55','0000-00-00 00:00:00'),
+ (22,22,3,1,'2012-04-04 15:43:42','0000-00-00 00:00:00'),
+ (23,23,3,1,'2012-06-08 04:19:02','0000-00-00 00:00:00'),
+ (24,24,3,1,'2012-07-11 09:26:56','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `sisperfil` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`sispermisos`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`sispermisos`;
+CREATE TABLE  `admin_preventistadev`.`sispermisos` (
+  `sispermisos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sispermisos_tabla` varchar(150) NOT NULL,
+  `sispermisos_flag_read` int(11) DEFAULT '1',
+  `sispermisos_flag_insert` int(11) DEFAULT '0',
+  `sispermisos_flag_update` int(11) DEFAULT '0',
+  `sispermisos_flag_delete` int(11) DEFAULT '0',
+  `perfiles_id` int(11) NOT NULL,
+  `sispermisos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `sispermisos_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`sispermisos_id`),
+  KEY `perfiles_id` (`perfiles_id`),
+  KEY `sispermisos_perfiles_id` (`perfiles_id`),
+  CONSTRAINT `sispermisos_perfiles_id` FOREIGN KEY (`perfiles_id`) REFERENCES `perfiles` (`perfiles_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`sispermisos`
+--
+
+/*!40000 ALTER TABLE `sispermisos` DISABLE KEYS */;
+LOCK TABLES `sispermisos` WRITE;
+INSERT INTO `admin_preventistadev`.`sispermisos` VALUES  (1,'usuarios',1,1,1,1,3,'2012-02-07 11:45:43','0000-00-00 00:00:00'),
+ (2,'perfiles',1,1,1,1,3,'2012-02-07 14:06:08','0000-00-00 00:00:00'),
+ (3,'sispermisos',1,1,1,1,3,'2012-02-07 14:06:53','0000-00-00 00:00:00'),
+ (4,'sismenu',1,1,1,1,3,'2012-02-07 14:07:17','0000-00-00 00:00:00'),
+ (5,'articulos',1,1,1,1,3,'2012-02-07 15:10:10','0000-00-00 00:00:00'),
+ (6,'rubros',1,1,1,1,3,'2012-02-07 00:00:00','2012-02-24 00:00:00'),
+ (7,'historialprecios',1,1,1,1,3,'2012-02-08 01:12:14','0000-00-00 00:00:00'),
+ (8,'clientes',1,1,1,1,3,'2012-02-09 00:00:00','2012-02-09 00:00:00'),
+ (9,'proveedores',1,1,1,1,3,'2012-02-09 00:00:00','2012-02-09 00:00:00'),
+ (10,'pedidos',1,1,1,1,3,'2012-02-16 00:00:00','2012-04-01 01:48:59'),
+ (11,'pedidodetalle',1,1,1,1,3,'2012-02-16 00:00:00','0000-00-00 00:00:00'),
+ (13,'hojarutadetalle',1,1,1,1,3,'2012-02-17 00:00:00','2012-03-03 00:00:00'),
+ (14,'hojaruta',1,1,1,1,3,'2012-02-17 00:00:00','0000-00-00 00:00:00'),
+ (15,'fleteros',1,1,1,1,3,'2012-02-18 00:00:00','0000-00-00 00:00:00'),
+ (16,'marcas',1,1,1,1,3,'2012-02-27 00:00:00','0000-00-00 00:00:00'),
+ (17,'clientescategoria',1,1,1,1,3,'2012-03-02 00:00:00','0000-00-00 00:00:00'),
+ (18,'compras',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
+ (19,'comprasdetalle',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
+ (20,'cambiodirectostock',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
+ (21,'remitos',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
+ (22,'pagos',1,1,1,1,3,'2012-03-04 00:00:00','0000-00-00 00:00:00'),
+ (23,'pagospedidos',1,1,1,1,3,'2012-03-04 00:00:00','0000-00-00 00:00:00'),
+ (24,'cuentacorriente',1,1,1,1,3,'2012-03-31 00:00:00','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `sispermisos` ENABLE KEYS */;
+
+
+--
 -- Definition of table `admin_preventistadev`.`marcas`
 --
 
@@ -23563,97 +23467,535 @@ UNLOCK TABLES;
 
 
 --
--- Definition of table `admin_preventistadev`.`pagos`
+-- Definition of table `admin_preventistadev`.`rubros`
 --
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`pagos`;
-CREATE TABLE  `admin_preventistadev`.`pagos` (
-  `pagos_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pagos_monto` float DEFAULT NULL,
-  `clientes_id` int(11) DEFAULT NULL,
-  `usuarios_id` int(11) DEFAULT NULL,
-  `pagos_estado` int(11) DEFAULT NULL,
-  `pagos_fechaingreso` datetime DEFAULT NULL,
-  `pagos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `pagos_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`pagos_id`),
-  KEY `pagos_clientes_id` (`clientes_id`),
-  KEY `pagos_usuarios_id` (`usuarios_id`),
-  CONSTRAINT `pagos_clientes_id` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pagos_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=50002 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `admin_preventistadev`.`rubros`;
+CREATE TABLE  `admin_preventistadev`.`rubros` (
+  `rubros_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rubros_descripcion` varchar(150) DEFAULT NULL,
+  `rubros_estado` int(11) DEFAULT NULL,
+  `rubros_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `rubros_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`rubros_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin_preventistadev`.`pagos`
+-- Dumping data for table `admin_preventistadev`.`rubros`
 --
 
-/*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
-LOCK TABLES `pagos` WRITE;
-INSERT INTO `admin_preventistadev`.`pagos` VALUES  (1,100,3,1,NULL,'2012-07-08 12:15:02','2012-07-08 12:15:02','2012-07-08 12:15:02'),
- (2,100,50001,1,NULL,'2012-07-08 12:15:02','2012-07-08 12:15:02','2012-07-08 12:15:02'),
- (3,150,1,1,NULL,'2012-07-08 12:15:02','2012-07-08 12:15:02','2012-07-08 12:15:02'),
- (4,100,50000,1,NULL,NULL,'2012-07-08 12:15:03','2012-07-08 12:15:03'),
- (5,500,1,1,NULL,'2012-07-12 04:58:28','2012-07-12 04:58:28','2012-07-12 04:58:28'),
- (6,350,50000,1,NULL,NULL,'2012-07-12 04:58:29','2012-07-12 04:58:29'),
- (7,100,4,1,NULL,'2012-07-12 06:01:32','2012-07-12 06:01:32','2012-07-12 06:01:32'),
- (8,200,1,1,NULL,NULL,'2012-07-12 06:01:32','2012-07-12 06:01:32'),
- (9,500,9,1,NULL,'2012-07-12 06:16:11','2012-07-12 06:16:11','2012-07-12 06:16:11'),
- (10,280,1,1,NULL,NULL,'2012-07-12 06:16:11','2012-07-12 06:16:11'),
- (11,150,4,1,NULL,NULL,'2012-07-12 06:16:11','2012-07-12 06:16:11'),
- (12,100,50000,1,NULL,'2012-07-12 06:23:08','2012-07-12 06:23:08','2012-07-12 06:23:08'),
- (13,270,1,1,NULL,'2012-07-16 07:51:14','2012-07-16 07:51:14','2012-07-16 07:51:14'),
- (14,550,1,1,NULL,'2012-07-17 06:23:16','2012-07-17 06:23:16','2012-07-17 06:23:16'),
- (15,120,50001,1,NULL,NULL,'2012-07-17 06:23:17','2012-07-17 06:23:17'),
- (16,50,50000,1,NULL,'2012-07-17 07:52:55','2012-07-17 07:52:55','2012-07-17 07:52:55'),
- (50000,20,1,1,NULL,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (50001,1000,1,1,NULL,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `rubros` DISABLE KEYS */;
+LOCK TABLES `rubros` WRITE;
+INSERT INTO `admin_preventistadev`.`rubros` VALUES  (1,'GALLETAS',1,'2012-02-27 00:00:00',NULL),
+ (2,'CHICLES',1,'2012-02-27 00:00:00',NULL),
+ (3,'JUGOS',2,'2012-02-27 00:00:00','2012-06-04 00:51:09'),
+ (4,'CARAMELOS',1,'2012-03-22 00:00:00',NULL),
+ (5,'BOMBONES',1,'2012-03-22 00:00:00',NULL),
+ (6,'ALFAJORES',1,'2012-03-22 20:47:15',NULL);
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
+/*!40000 ALTER TABLE `rubros` ENABLE KEYS */;
+
 
 
 --
--- Definition of table `admin_preventistadev`.`pagospedidos`
+-- Definition of table `admin_preventistadev`.`articulos`
 --
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`pagospedidos`;
-CREATE TABLE  `admin_preventistadev`.`pagospedidos` (
-  `pagospedidos_id` int(11) NOT NULL AUTO_INCREMENT,
-  `pedidos_id` int(11) NOT NULL,
-  `pagos_id` bigint(20) NOT NULL,
-  `pagospedidos_montocubierto` float DEFAULT NULL,
-  `pagospedidos_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `pagospedidos_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`pagospedidos_id`),
-  KEY `pagospedidos_pagos_id` (`pagos_id`),
-  KEY `pagospedidos_pedidos_id` (`pedidos_id`),
-  CONSTRAINT `pagospedidos_pagos_id` FOREIGN KEY (`pagos_id`) REFERENCES `pagos` (`pagos_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pagospedidos_pedidos_id` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos` (`pedidos_id`) ON DELETE CASCADE ON UPDATE CASCADE
+DROP TABLE IF EXISTS `admin_preventistadev`.`articulos`;
+CREATE TABLE  `admin_preventistadev`.`articulos` (
+  `articulos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `articulos_descripcion` text,
+  `articulos_preciocompra` float DEFAULT NULL,
+  `articulos_stockreal` float DEFAULT NULL,
+  `articulos_stockmin` float DEFAULT NULL,
+  `articulos_stockmax` float DEFAULT NULL,
+  `rubros_id` int(11) DEFAULT NULL,
+  `articulos_observaciones` text,
+  `articulos_precio1` float DEFAULT NULL,
+  `articulos_precio2` float DEFAULT NULL,
+  `articulos_precio3` float DEFAULT NULL,
+  `articulos_porcentaje1` float DEFAULT NULL,
+  `articulos_porcentaje2` float DEFAULT NULL,
+  `articulos_porcentaje3` float DEFAULT NULL,
+  `articulos_estado` int(11) DEFAULT NULL,
+  `marcas_id` int(11) DEFAULT NULL,
+  `articulos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `articulos_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`articulos_id`),
+  KEY `articulos_marcas_id` (`marcas_id`),
+  KEY `articulos_rubros_id` (`rubros_id`),
+  KEY `articulos_tabgral_id` (`articulos_estado`),
+  CONSTRAINT `articulos_marcas_id` FOREIGN KEY (`marcas_id`) REFERENCES `marcas` (`marcas_id`),
+  CONSTRAINT `articulos_rubros_id` FOREIGN KEY (`rubros_id`) REFERENCES `rubros` (`rubros_id`),
+  CONSTRAINT `articulos_tabgral_id` FOREIGN KEY (`articulos_estado`) REFERENCES `tabgral` (`tabgral_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50026 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin_preventistadev`.`pagospedidos`
+-- Dumping data for table `admin_preventistadev`.`articulos`
 --
 
-/*!40000 ALTER TABLE `pagospedidos` DISABLE KEYS */;
-LOCK TABLES `pagospedidos` WRITE;
-INSERT INTO `admin_preventistadev`.`pagospedidos` VALUES  (50000,1,50000,170,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (50011,4,1,100,'2012-07-08 12:15:02',NULL),
- (50012,3,2,100,'2012-07-08 12:15:02',NULL),
- (50013,1,3,150,'2012-07-08 12:15:02',NULL),
- (50014,1,5,196.9,'2012-07-12 04:58:29',NULL),
- (50015,50000,5,473.1,'2012-07-12 04:58:29',NULL),
- (50016,5,7,100,'2012-07-12 06:01:32',NULL),
- (50017,50000,8,673.1,'2012-07-12 06:01:32',NULL),
- (50018,50001,9,500,'2012-07-12 06:16:11',NULL),
- (50019,50000,10,953.1,'2012-07-12 06:16:11',NULL),
- (50020,5,11,250,'2012-07-12 06:16:11',NULL),
- (50021,6,12,550,'2012-07-12 06:23:08',NULL),
- (50022,50000,50001,1953.1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (50023,50000,14,2503.1,'2012-07-17 06:23:17',NULL),
- (50024,3,15,103.4,'2012-07-17 06:23:17',NULL),
- (50025,6,16,600,'2012-07-17 07:52:55',NULL);
+/*!40000 ALTER TABLE `articulos` DISABLE KEYS */;
+LOCK TABLES `articulos` WRITE;
+INSERT INTO `admin_preventistadev`.`articulos` VALUES  (1,'GALLETA  QUIQUI',24,149,5,NULL,1,NULL,26.4,27.6,28.8,10,15,20,20,2,'2012-06-06 07:41:35','0000-00-00 00:00:00'),
+ (2,'BUBALUU',17,76,10,NULL,2,NULL,18.7,19.55,20.4,10,15,20,20,3,'2012-06-06 07:49:27','0000-00-00 00:00:00'),
+ (3,'BAGIO',25,47,2,NULL,3,NULL,27.5,30,30,10,15,20,20,7,'2012-06-06 07:57:53','0000-00-00 00:00:00'),
+ (4,'BON AGUA',16.67,47,10,NULL,5,NULL,18.33,19.17,20,10,15,20,20,7,'2012-06-06 08:05:17','0000-00-00 00:00:00'),
+ (50015,'BON SPIRE',45,34,NULL,NULL,5,NULL,49.5,51.75,54,10,15,20,20,6,'2012-06-03 10:39:41','0000-00-00 00:00:00'),
+ (50016,'GALLETA COL',30,48,NULL,NULL,1,NULL,33,34.5,36,10,15,20,20,4,'2012-06-03 11:03:20','0000-00-00 00:00:00'),
+ (50017,'RAPTE',25,80,NULL,NULL,2,NULL,27.5,28.75,33,10,15,32,20,1,'2012-06-03 11:28:33','0000-00-00 00:00:00'),
+ (50018,'GALLETA IRIS',40,44,34,0,1,'',44,46,48,10,15,20,20,5,'2012-06-03 11:32:15','0000-00-00 00:00:00'),
+ (50019,'GALLETA ARO',45,46,NULL,NULL,1,NULL,49.5,54,48,10,15,20,20,4,'2012-06-03 12:01:35','0000-00-00 00:00:00'),
+ (50020,'ALFAJOR ARES',27,82,NULL,NULL,6,NULL,29.7,32.4,30,10,15,20,20,7,'2012-06-03 12:07:25','2012-10-10 06:10:12'),
+ (50021,'BOBON QEA ',35,63,NULL,NULL,5,NULL,38.5,42,42,10,15,20,20,5,'2012-06-03 12:07:25','0000-00-00 00:00:00'),
+ (50022,'BELDENT FRUT. ',25,58,NULL,NULL,2,NULL,27.5,30,30,10,15,20,20,2,'2012-06-03 12:07:25','0000-00-00 00:00:00'),
+ (50023,'BON FIX',50,169,NULL,NULL,5,NULL,55,60,54,10,15,20,20,4,'2012-06-03 22:25:43','0000-00-00 00:00:00'),
+ (50024,'GALLETA VAINILLA',2,67,10,NULL,1,NULL,2.2,2.3,2.4,10,15,20,20,5,'2012-06-05 20:56:06','0000-00-00 00:00:00'),
+ (50025,'GALLETA PEPITO',24,85,NULL,NULL,1,NULL,26.4,27.6,28.8,10,15,20,20,7,'2012-06-06 10:31:46','0000-00-00 00:00:00');
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `pagospedidos` ENABLE KEYS */;
+/*!40000 ALTER TABLE `articulos` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`audit`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`audit`;
+CREATE TABLE  `admin_preventistadev`.`audit` (
+  `audit_id` int(11) NOT NULL AUTO_INCREMENT,
+  `audit_tabla` varchar(150) DEFAULT NULL,
+  `audit_evento` varchar(50) DEFAULT NULL,
+  `audit_usuario` varchar(100) DEFAULT NULL,
+  `audit_fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`audit_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`audit`
+--
+
+/*!40000 ALTER TABLE `audit` DISABLE KEYS */;
+LOCK TABLES `audit` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `audit` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`cambiodirectostock`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`cambiodirectostock`;
+CREATE TABLE  `admin_preventistadev`.`cambiodirectostock` (
+  `cambiodirectostock_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cambiodirectostock_tipo` int(11) DEFAULT NULL,
+  `articulos_id` int(11) DEFAULT NULL,
+  `cambiodirectostock_stockantiguo` int(11) DEFAULT NULL,
+  `cambiodirectostock_stocknuevo` int(11) DEFAULT NULL,
+  `usuarios_id` int(11) DEFAULT NULL,
+  `cambiodirectostock_comentario` text,
+  `cambiodirectostock_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `cambiodirectostock_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`cambiodirectostock_id`),
+  KEY `cambiodirectostock_articulos_id` (`articulos_id`),
+  KEY `cambiodirectostock_usuarios_id` (`usuarios_id`),
+  CONSTRAINT `cambiodirectostock_articulos_id` FOREIGN KEY (`articulos_id`) REFERENCES `articulos` (`articulos_id`),
+  CONSTRAINT `cambiodirectostock_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`cambiodirectostock`
+--
+
+/*!40000 ALTER TABLE `cambiodirectostock` DISABLE KEYS */;
+LOCK TABLES `cambiodirectostock` WRITE;
+INSERT INTO `admin_preventistadev`.`cambiodirectostock` VALUES  (1,NULL,50023,60,200,1,'N','2012-06-05 08:35:27','2012-06-05 08:35:27'),
+ (2,NULL,50015,56,250,1,'N','2012-06-05 08:56:11','2012-06-05 08:56:11'),
+ (3,NULL,50017,10,300,1,'N','2012-06-05 08:56:11','2012-06-05 08:56:11'),
+ (4,NULL,50015,250,500,1,'N','2012-06-05 19:55:25','2012-06-05 19:55:25'),
+ (5,NULL,50018,100,400,1,'N','2012-06-05 19:59:30','2012-06-05 19:59:30'),
+ (6,NULL,50015,500,1000,1,'N','2012-06-05 20:50:48','2012-06-05 20:50:48'),
+ (7,NULL,1,20,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
+ (8,NULL,2,50,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
+ (9,NULL,3,10,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
+ (10,NULL,4,150,100,1,'N','2012-06-06 10:06:05','2012-06-06 10:06:05'),
+ (11,NULL,1,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (12,NULL,2,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (13,NULL,3,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (14,NULL,4,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (15,NULL,50015,1000,2000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (16,NULL,50016,25,3000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (17,NULL,50017,300,4000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (18,NULL,50018,400,5000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (19,NULL,50019,150,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (20,NULL,50020,100,1000,1,'N','2012-06-06 10:09:27','2012-06-06 10:09:27'),
+ (21,NULL,50021,10,1000,1,'N','2012-06-06 10:09:28','2012-06-06 10:09:28'),
+ (22,NULL,50022,500,1000,1,'N','2012-06-06 10:09:28','2012-06-06 10:09:28'),
+ (23,NULL,50024,50,2000,1,'N','2012-06-06 10:09:28','2012-06-06 10:09:28'),
+ (24,NULL,1,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
+ (25,NULL,2,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
+ (26,NULL,3,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
+ (27,NULL,4,1000,10,1,'N','2012-06-06 10:22:36','2012-06-06 10:22:36'),
+ (28,NULL,50015,2000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (29,NULL,50016,3000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (30,NULL,50017,4000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (31,NULL,50018,5000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (32,NULL,50019,1000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (33,NULL,50020,1000,20,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (34,NULL,50021,1000,30,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (35,NULL,50022,1000,30,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (36,NULL,50024,2000,30,1,'N','2012-06-06 10:22:37','2012-06-06 10:22:37'),
+ (37,NULL,1,8,100,1,'N','2012-06-08 12:22:50','2012-06-08 12:22:50'),
+ (38,NULL,1,100,101,1,'N','2012-06-08 12:24:33','2012-06-08 12:24:33'),
+ (39,NULL,1,101,102,1,'N','2012-06-08 12:25:06','2012-06-08 12:25:06'),
+ (40,NULL,1,102,103,1,'N','2012-06-08 12:28:29','2012-06-08 12:28:29'),
+ (41,NULL,1,103,104,1,'N','2012-06-08 18:11:29','2012-06-08 18:11:29'),
+ (42,NULL,1,104,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (43,NULL,2,0,111,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (44,NULL,3,3,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (45,NULL,4,3,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (46,NULL,50015,12,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (47,NULL,50016,18,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (48,NULL,50017,20,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (49,NULL,50018,19,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (50,NULL,50019,19,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (51,NULL,50020,4,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (52,NULL,50021,22,100,1,'N','2012-06-08 18:28:58','2012-06-08 18:28:58'),
+ (53,NULL,50022,25,100,1,'N','2012-06-08 18:28:59','2012-06-08 18:28:59'),
+ (54,NULL,50024,29,100,1,'N','2012-06-08 18:28:59','2012-06-08 18:28:59'),
+ (55,NULL,50025,290,100,1,'N','2012-06-08 18:28:59','2012-06-08 18:28:59'),
+ (56,NULL,1,189,190,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (57,NULL,2,106,107,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (58,NULL,3,88,89,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (59,NULL,4,87,88,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (60,NULL,50015,87,88,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (61,NULL,50016,90,91,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (62,NULL,50017,94,95,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (63,NULL,50018,88,89,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (64,NULL,50019,85,86,1,'N','2012-06-21 03:43:54','2012-06-21 03:43:54'),
+ (65,NULL,50020,93,94,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
+ (66,NULL,50021,98,99,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
+ (67,NULL,50022,95,96,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
+ (68,NULL,50024,94,95,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
+ (69,NULL,50025,100,101,1,'N','2012-06-21 03:43:55','2012-06-21 03:43:55'),
+ (70,NULL,1,168,167,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
+ (71,NULL,2,91,92,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
+ (72,NULL,3,78,79,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
+ (73,NULL,4,75,76,1,'N','2012-07-08 09:40:06','2012-07-08 09:40:06'),
+ (74,NULL,50015,68,69,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (75,NULL,50016,60,61,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (76,NULL,50017,83,84,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (77,NULL,50018,58,59,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (78,NULL,50019,63,64,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (79,NULL,50020,63,64,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (80,NULL,50021,90,91,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (81,NULL,50022,78,77,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (82,NULL,50024,87,88,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07'),
+ (83,NULL,50025,96,99,1,'N','2012-07-08 09:40:07','2012-07-08 09:40:07');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `cambiodirectostock` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`clientescategoria`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`clientescategoria`;
+CREATE TABLE  `admin_preventistadev`.`clientescategoria` (
+  `clientescategoria_id` int(11) NOT NULL AUTO_INCREMENT,
+  `clientescategoria_descripcion` varchar(150) DEFAULT NULL,
+  `clientescategoria_estado` int(11) DEFAULT NULL,
+  `clientescategoria_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `clientescategoria_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`clientescategoria_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`clientescategoria`
+--
+
+/*!40000 ALTER TABLE `clientescategoria` DISABLE KEYS */;
+LOCK TABLES `clientescategoria` WRITE;
+INSERT INTO `admin_preventistadev`.`clientescategoria` VALUES  (1,'Cat. 1',1,'2012-03-02 00:00:00','2012-04-01 02:35:09'),
+ (2,'Cat. 2',1,'2012-03-02 00:00:00','2012-04-01 02:35:19'),
+ (3,'Cat. 3',1,'2012-03-02 00:00:00',NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `clientescategoria` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`clientes`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`clientes`;
+CREATE TABLE  `admin_preventistadev`.`clientes` (
+  `clientes_id` int(11) NOT NULL AUTO_INCREMENT,
+  `clientes_nombre` varchar(150) DEFAULT NULL,
+  `clientes_apellido` varchar(150) DEFAULT NULL,
+  `clientes_direccion` text,
+  `clientes_telefono` varchar(100) DEFAULT NULL,
+  `clientes_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `clientes_updated_at` datetime DEFAULT NULL,
+  `clientescategoria_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`clientes_id`),
+  KEY `clientes_clientescategoria_id` (`clientescategoria_id`),
+  CONSTRAINT `clientes_clientescategoria_id` FOREIGN KEY (`clientescategoria_id`) REFERENCES `clientescategoria` (`clientescategoria_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50002 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`clientes`
+--
+
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+LOCK TABLES `clientes` WRITE;
+INSERT INTO `admin_preventistadev`.`clientes` VALUES  (1,'JUAN','GUZMAN','CORDOBA 345','381478545','2012-06-06 12:05:59','2012-07-12 04:14:11',1),
+ (2,'MIGUEL','PONCE','SAN JUAN 4554',NULL,'2012-06-06 12:07:20','2012-06-06 12:07:20',2),
+ (3,'ALFONSO','GIRON','SAN JUAN 4544','38145855','2012-07-07 03:17:40','2012-07-07 03:17:40',2),
+ (4,'MATIAS','ALAFARO','SANTIAGO 3443','381458522','2012-07-07 03:21:36','2012-07-07 03:21:36',3),
+ (5,'ISMAEL','GUERRERO','MARCOS PAZ 344','3814951254','2012-07-08 09:43:32','2012-07-08 09:43:32',2),
+ (6,'GLADYS','OVANDO','AV.  AVELLANEDA 2345','3814951251','2012-07-08 09:44:05','2012-07-08 09:44:05',3),
+ (7,'LUCAS','GUTIERREZ','SANTA FE','1800','2012-07-08 09:44:23','2012-07-08 09:44:23',1),
+ (8,'AMANDA','PINOS','SAN MARTIN 3000','3814915254','2012-07-08 09:44:46','2012-07-08 09:44:46',2),
+ (9,'PABLO JOSE','QUINTEROS','SAN JUAN 1200','03814952558','2012-07-11 10:09:07','0000-00-00 00:00:00',3),
+ (10,'GUSTAVO','BAUZA','RAUL COLOMBRES','101','2012-07-12 21:18:36','2012-07-12 21:18:36',1),
+ (50000,'CRISTINA','FERNANDEZ','SANTIAGO 1200','3814923432','2012-06-06 12:24:43','2012-06-06 12:24:43',3),
+ (50001,'GIMENA','GALAN','MARCOS PAZ 321','381453244','2012-07-07 03:23:24','2012-07-17 04:19:37',1);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`proveedores`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`proveedores`;
+CREATE TABLE  `admin_preventistadev`.`proveedores` (
+  `proveedores_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proveedores_nombre` varchar(150) NOT NULL,
+  `proveedores_apellido` varchar(150) NOT NULL,
+  `proveedores_direccion` text NOT NULL,
+  `proveedores_telefono` varchar(100) NOT NULL,
+  `proveedores_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `proveedores_updated_at` datetime NOT NULL,
+  PRIMARY KEY (`proveedores_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`proveedores`
+--
+
+/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+LOCK TABLES `proveedores` WRITE;
+INSERT INTO `admin_preventistadev`.`proveedores` VALUES  (1,'Elias','Dip','Muñecas 2011','0381-4975264','2012-02-09 00:00:00','2012-02-09 00:00:00'),
+ (2,'Ana','Flores','Cordoba 1000','0381-4978562','2012-02-09 00:00:00','2012-02-09 00:00:00'),
+ (3,'Cristian','Martines','Santiago 345','0381-4952545','2012-03-04 00:00:00','0000-00-00 00:00:00'),
+ (4,'Cristina','Guzman','Av. Mitre 685','0381-4956585','2012-03-04 00:00:00','0000-00-00 00:00:00'),
+ (5,'Carolina','Ruiz','Muñecas 1200','0381-485252','2012-03-04 00:00:00','0000-00-00 00:00:00'),
+ (6,'Paulo','Ramirez','Santiago 125','0381-4585222','2012-03-04 00:00:00','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
+
+
+
+--
+-- Definition of table `admin_preventistadev`.`compras`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`compras`;
+CREATE TABLE  `admin_preventistadev`.`compras` (
+  `compras_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proveedores_id` int(11) DEFAULT NULL,
+  `compras_montototal` float DEFAULT NULL,
+  `usuarios_id` int(11) DEFAULT NULL,
+  `compras_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `compras_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`compras_id`),
+  KEY `compras_usuarios_id` (`usuarios_id`),
+  KEY `compras_proveedores_id` (`proveedores_id`),
+  CONSTRAINT `compras_proveedores_id` FOREIGN KEY (`proveedores_id`) REFERENCES `proveedores` (`proveedores_id`),
+  CONSTRAINT `compras_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`compras`
+--
+
+/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+LOCK TABLES `compras` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`comprasdetalle`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`comprasdetalle`;
+CREATE TABLE  `admin_preventistadev`.`comprasdetalle` (
+  `comprasdetalle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `compras_id` int(11) NOT NULL,
+  `articulos_id` int(11) NOT NULL,
+  `comprasdetalle_cantidad` int(11) DEFAULT NULL,
+  `comprasdetalle_costo` float DEFAULT NULL,
+  `comprasdetalle_subtotal` float DEFAULT NULL,
+  `comprasdetalle_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `comprasdetalle_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`comprasdetalle_id`),
+  KEY `comprasdetalle_articulo_id` (`articulos_id`),
+  KEY `comprasdetalle_compras_id` (`compras_id`),
+  CONSTRAINT `comprasdetalle_articulo_id` FOREIGN KEY (`articulos_id`) REFERENCES `articulos` (`articulos_id`),
+  CONSTRAINT `comprasdetalle_compras_id` FOREIGN KEY (`compras_id`) REFERENCES `compras` (`compras_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`comprasdetalle`
+--
+
+/*!40000 ALTER TABLE `comprasdetalle` DISABLE KEYS */;
+LOCK TABLES `comprasdetalle` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `comprasdetalle` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`cuentacorriente`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`cuentacorriente`;
+CREATE TABLE  `admin_preventistadev`.`cuentacorriente` (
+  `cuentacorriente_id` int(11) NOT NULL AUTO_INCREMENT,
+  `clientes_id` int(11) NOT NULL,
+  `cuentacorriente_haber` float DEFAULT NULL,
+  `cuentacorriente_debe` float DEFAULT NULL,
+  `cuentacorriente_saldo` float DEFAULT NULL,
+  `cuentacorriente_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `cuentacorriente_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`cuentacorriente_id`),
+  KEY `cuentacorriente_clientes_id` (`clientes_id`),
+  CONSTRAINT `cuentacorriente_clientes_id` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`cuentacorriente`
+--
+
+/*!40000 ALTER TABLE `cuentacorriente` DISABLE KEYS */;
+LOCK TABLES `cuentacorriente` WRITE;
+INSERT INTO `admin_preventistadev`.`cuentacorriente` VALUES  (1,1,2700,1837.12,0,'2012-06-08 20:28:23','2012-07-17 06:23:17'),
+ (2,2,0,0,0,'2012-06-08 20:28:28','2012-07-08 07:47:30'),
+ (3,50000,600,1588.8,0,'2012-06-08 20:28:34','2012-07-17 07:52:55'),
+ (6,3,100,125.75,NULL,'2012-07-07 03:17:40','2012-07-08 12:15:02'),
+ (7,4,250,1130,NULL,'2012-07-07 03:21:36','2012-07-12 06:16:11'),
+ (9,50001,103.4,-116.6,0,'2012-07-07 03:24:57','2012-07-17 06:23:17'),
+ (12,5,NULL,NULL,NULL,'2012-07-08 09:43:32','2012-07-08 09:43:32'),
+ (13,6,NULL,NULL,NULL,'2012-07-08 09:44:05','2012-07-08 09:44:05'),
+ (14,7,0,71.5,NULL,'2012-07-08 09:44:23','2012-07-08 12:15:02'),
+ (15,8,NULL,NULL,NULL,'2012-07-08 09:44:47','2012-07-08 09:44:46'),
+ (16,9,500,3527.2,NULL,'2012-07-11 10:09:08','2012-07-12 06:16:11'),
+ (17,10,NULL,NULL,NULL,'2012-07-12 21:18:36','2012-07-12 21:18:36');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `cuentacorriente` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`fleteros`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`fleteros`;
+CREATE TABLE  `admin_preventistadev`.`fleteros` (
+  `fleteros_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fleteros_nombre` varchar(150) DEFAULT NULL,
+  `fleteros_apellido` varchar(150) DEFAULT NULL,
+  `fleteros_telefono` varchar(150) DEFAULT NULL,
+  `fleteros_direccion` varchar(200) DEFAULT NULL,
+  `fleteros_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `fleteros_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`fleteros_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`fleteros`
+--
+
+/*!40000 ALTER TABLE `fleteros` DISABLE KEYS */;
+LOCK TABLES `fleteros` WRITE;
+INSERT INTO `admin_preventistadev`.`fleteros` VALUES  (1,'Miguel','Ponce','34','','2012-02-18 00:00:00','2012-06-21 00:45:31'),
+ (2,'Pablo','Sanchez','','','2012-02-18 00:00:00','2012-06-21 00:45:33'),
+ (3,'Ana','Ceballos','','','2012-02-18 00:00:00','2012-06-21 00:45:37'),
+ (4,'Julian','Castro','','','2012-02-18 00:00:00','2012-06-21 00:45:41'),
+ (5,'jose','sidan','','','2012-03-22 20:44:56','2012-06-21 00:45:45'),
+ (6,'Miguel','Fernandez','','San Juan 685','2012-04-01 02:23:59','2012-06-21 00:45:47'),
+ (7,'Juan Pablo','Mayoral','45511225','','2012-04-01 02:24:48','2012-06-21 00:45:50');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `fleteros` ENABLE KEYS */;
+
+
+
+--
+-- Definition of table `admin_preventistadev`.`tramites`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`tramites`;
+CREATE TABLE  `admin_preventistadev`.`tramites` (
+  `tramites_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tramites_descripcion` varchar(150) DEFAULT NULL,
+  `tramites_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `tramites_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`tramites_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`tramites`
+--
+
+/*!40000 ALTER TABLE `tramites` DISABLE KEYS */;
+LOCK TABLES `tramites` WRITE;
+INSERT INTO `admin_preventistadev`.`tramites` VALUES  (1,'CONTADO','2012-05-15 18:44:34',NULL),
+ (2,'CC','2012-05-15 18:44:34',NULL),
+ (3,'FIRMAR','2012-05-15 18:44:34',NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `tramites` ENABLE KEYS */;
+
+--
+-- Definition of table `admin_preventistadev`.`pedidos`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`pedidos`;
+CREATE TABLE  `admin_preventistadev`.`pedidos` (
+  `pedidos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `peididos_montototal` float DEFAULT NULL,
+  `pedidos_montoadeudado` float DEFAULT '0',
+  `clientes_id` int(11) NOT NULL,
+  `pedidos_estado` int(11) DEFAULT NULL,
+  `tramites_id` int(11) DEFAULT NULL,
+  `pedidos_observaciones` text,
+  `pedidos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `pedidos_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`pedidos_id`),
+  KEY `pedidos_clientes_id` (`clientes_id`),
+  KEY `pedidos_tramites_id` (`tramites_id`),
+  CONSTRAINT `pedidos_clientes_id` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `pedidos_tramites_id` FOREIGN KEY (`tramites_id`) REFERENCES `tramites` (`tramites_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50003 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`pedidos`
+--
+
+/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+LOCK TABLES `pedidos` WRITE;
+INSERT INTO `admin_preventistadev`.`pedidos` VALUES  (1,196.9,0,1,16,1,'','2012-07-08 12:06:57','2012-07-08 12:21:34'),
+ (2,71.5,71.5,7,8,2,'','2012-07-08 12:07:24','2012-07-08 12:07:24'),
+ (3,103.4,0,50001,16,3,'','2012-07-08 12:08:07','2012-07-08 12:08:07'),
+ (4,225.75,125.75,3,15,3,'','2012-07-08 12:09:37','2012-07-08 12:09:37'),
+ (5,1380,1130,4,15,1,'Pedido cargado desde el modulo web','2012-07-11 07:57:52','2012-07-11 07:57:52'),
+ (6,880.8,280.8,50000,15,2,'Pedido cargado desde  la aplicacion web','2012-07-12 06:20:03','2012-07-12 06:20:03'),
+ (7,1176.62,1176.62,1,8,1,'','2012-07-17 06:17:35','2012-07-17 06:17:35'),
+ (8,402,402,50000,8,1,'','2012-07-17 07:50:35','2012-07-17 07:50:35'),
+ (50000,3163.6,660.5,1,15,2,'algo aqui','2012-07-08 12:27:08','2012-07-12 06:44:55'),
+ (50001,4027.2,3527.2,9,15,2,'pedido cargado desde el movil','2012-07-11 10:30:51','2012-07-11 10:30:51'),
+ (50002,906,906,50000,8,2,'pedido cargado desde el movil','2012-07-12 06:51:07','2012-07-12 21:59:28');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+
 
 
 --
@@ -23768,74 +24110,220 @@ UNLOCK TABLES;
 /*!40000 ALTER TABLE `pedidodetalle` ENABLE KEYS */;
 
 
---
--- Definition of table `admin_preventistadev`.`pedidos`
---
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`pedidos`;
-CREATE TABLE  `admin_preventistadev`.`pedidos` (
-  `pedidos_id` int(11) NOT NULL AUTO_INCREMENT,
-  `peididos_montototal` float DEFAULT NULL,
-  `pedidos_montoadeudado` float DEFAULT '0',
-  `clientes_id` int(11) NOT NULL,
-  `pedidos_estado` int(11) DEFAULT NULL,
-  `tramites_id` int(11) DEFAULT NULL,
-  `pedidos_observaciones` text,
-  `pedidos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `pedidos_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`pedidos_id`),
-  KEY `pedidos_clientes_id` (`clientes_id`),
-  KEY `pedidos_tramites_id` (`tramites_id`),
-  CONSTRAINT `pedidos_clientes_id` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `pedidos_tramites_id` FOREIGN KEY (`tramites_id`) REFERENCES `tramites` (`tramites_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50003 DEFAULT CHARSET=latin1;
+
 
 --
--- Dumping data for table `admin_preventistadev`.`pedidos`
+-- Definition of table `admin_preventistadev`.`hojaruta`
 --
 
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-LOCK TABLES `pedidos` WRITE;
-INSERT INTO `admin_preventistadev`.`pedidos` VALUES  (1,196.9,0,1,16,1,'','2012-07-08 12:06:57','2012-07-08 12:21:34'),
- (2,71.5,71.5,7,8,2,'','2012-07-08 12:07:24','2012-07-08 12:07:24'),
- (3,103.4,0,50001,16,3,'','2012-07-08 12:08:07','2012-07-08 12:08:07'),
- (4,225.75,125.75,3,15,3,'','2012-07-08 12:09:37','2012-07-08 12:09:37'),
- (5,1380,1130,4,15,1,'Pedido cargado desde el modulo web','2012-07-11 07:57:52','2012-07-11 07:57:52'),
- (6,880.8,280.8,50000,15,2,'Pedido cargado desde  la aplicacion web','2012-07-12 06:20:03','2012-07-12 06:20:03'),
- (7,1176.62,1176.62,1,8,1,'','2012-07-17 06:17:35','2012-07-17 06:17:35'),
- (8,402,402,50000,8,1,'','2012-07-17 07:50:35','2012-07-17 07:50:35'),
- (50000,3163.6,660.5,1,15,2,'algo aqui','2012-07-08 12:27:08','2012-07-12 06:44:55'),
- (50001,4027.2,3527.2,9,15,2,'pedido cargado desde el movil','2012-07-11 10:30:51','2012-07-11 10:30:51'),
- (50002,906,906,50000,8,2,'pedido cargado desde el movil','2012-07-12 06:51:07','2012-07-12 21:59:28');
+DROP TABLE IF EXISTS `admin_preventistadev`.`hojaruta`;
+CREATE TABLE  `admin_preventistadev`.`hojaruta` (
+  `hojaruta_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fleteros_id` int(11) NOT NULL,
+  `usuarios_id` int(11) NOT NULL,
+  `hojaruta_estado` int(11) DEFAULT NULL,
+  `hojaruta_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `hojaruta_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`hojaruta_id`),
+  KEY `hojaruta_fleteros_id` (`fleteros_id`),
+  KEY `hojaruta_usuarios_id` (`usuarios_id`),
+  CONSTRAINT `hojaruta_fleteros_id` FOREIGN KEY (`fleteros_id`) REFERENCES `fleteros` (`fleteros_id`),
+  CONSTRAINT `hojaruta_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`hojaruta`
+--
+
+/*!40000 ALTER TABLE `hojaruta` DISABLE KEYS */;
+LOCK TABLES `hojaruta` WRITE;
+INSERT INTO `admin_preventistadev`.`hojaruta` VALUES  (13,2,1,25,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
+ (14,2,1,25,'2012-07-08 12:28:47','2012-07-08 12:28:47'),
+ (16,4,1,25,'2012-07-12 02:28:59','2012-07-12 02:28:59'),
+ (17,1,1,25,'2012-07-12 06:00:00','2012-07-12 06:00:00'),
+ (18,2,1,25,'2012-07-12 06:20:58','2012-07-12 06:20:58'),
+ (19,2,1,25,'2012-07-17 06:18:17','2012-07-17 06:18:17'),
+ (20,3,1,25,'2012-07-17 07:51:08','2012-07-17 07:51:08');
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
+/*!40000 ALTER TABLE `hojaruta` ENABLE KEYS */;
 
 
 --
--- Definition of table `admin_preventistadev`.`perfiles`
+-- Definition of table `admin_preventistadev`.`hojarutadetalle`
 --
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`perfiles`;
-CREATE TABLE  `admin_preventistadev`.`perfiles` (
-  `perfiles_id` int(11) NOT NULL AUTO_INCREMENT,
-  `perfiles_descripcion` varchar(150) DEFAULT NULL,
-  `perfiles_estado` int(11) DEFAULT '0',
-  `perfiles_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `perfiles_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`perfiles_id`),
-  KEY `perfiles_tabgral_id` (`perfiles_estado`),
-  CONSTRAINT `perfiles_tabgral_id` FOREIGN KEY (`perfiles_estado`) REFERENCES `tabgral` (`tabgral_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `admin_preventistadev`.`hojarutadetalle`;
+CREATE TABLE  `admin_preventistadev`.`hojarutadetalle` (
+  `hojarutadetalle_id` int(11) NOT NULL AUTO_INCREMENT,
+  `hojaruta_id` int(11) NOT NULL,
+  `pedidos_id` int(11) NOT NULL,
+  `hojarutadetalle_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `hojarutadetalle_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`hojarutadetalle_id`),
+  KEY `hojarutadetalle_hojartuta_id` (`hojaruta_id`),
+  KEY `hojarutadetalle_pedidos_id` (`pedidos_id`),
+  CONSTRAINT `hojarutadetalle_hojartuta_id` FOREIGN KEY (`hojaruta_id`) REFERENCES `hojaruta` (`hojaruta_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `hojarutadetalle_pedidos_id` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos` (`pedidos_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin_preventistadev`.`perfiles`
+-- Dumping data for table `admin_preventistadev`.`hojarutadetalle`
 --
 
-/*!40000 ALTER TABLE `perfiles` DISABLE KEYS */;
-LOCK TABLES `perfiles` WRITE;
-INSERT INTO `admin_preventistadev`.`perfiles` VALUES  (3,'Administrador',1,'2012-02-06 19:14:10','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `hojarutadetalle` DISABLE KEYS */;
+LOCK TABLES `hojarutadetalle` WRITE;
+INSERT INTO `admin_preventistadev`.`hojarutadetalle` VALUES  (15,13,4,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
+ (16,13,3,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
+ (17,13,2,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
+ (18,13,1,'2012-07-08 12:10:31','2012-07-08 12:10:31'),
+ (19,14,50000,'2012-07-08 12:28:47','2012-07-08 12:28:47'),
+ (22,16,5,'2012-07-12 02:29:00','2012-07-12 02:29:00'),
+ (23,17,50001,'2012-07-12 06:00:01','2012-07-12 06:00:01'),
+ (24,18,6,'2012-07-12 06:20:58','2012-07-12 06:20:58'),
+ (25,19,7,'2012-07-17 06:18:17','2012-07-17 06:18:17'),
+ (26,19,50002,'2012-07-17 06:18:17','2012-07-17 06:18:17'),
+ (27,20,8,'2012-07-17 07:51:08','2012-07-17 07:51:08');
 UNLOCK TABLES;
-/*!40000 ALTER TABLE `perfiles` ENABLE KEYS */;
+/*!40000 ALTER TABLE `hojarutadetalle` ENABLE KEYS */;
+
+
+
+
+--
+-- Definition of table `admin_preventistadev`.`pagos`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`pagos`;
+CREATE TABLE  `admin_preventistadev`.`pagos` (
+  `pagos_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pagos_monto` float DEFAULT NULL,
+  `clientes_id` int(11) DEFAULT NULL,
+  `usuarios_id` int(11) DEFAULT NULL,
+  `pagos_estado` int(11) DEFAULT NULL,
+  `pagos_fechaingreso` datetime DEFAULT NULL,
+  `pagos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `pagos_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`pagos_id`),
+  KEY `pagos_clientes_id` (`clientes_id`),
+  KEY `pagos_usuarios_id` (`usuarios_id`),
+  CONSTRAINT `pagos_clientes_id` FOREIGN KEY (`clientes_id`) REFERENCES `clientes` (`clientes_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `pagos_usuarios_id` FOREIGN KEY (`usuarios_id`) REFERENCES `usuarios` (`usuarios_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=50002 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`pagos`
+--
+
+/*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
+LOCK TABLES `pagos` WRITE;
+INSERT INTO `admin_preventistadev`.`pagos` VALUES  (1,100,3,1,NULL,'2012-07-08 12:15:02','2012-07-08 12:15:02','2012-07-08 12:15:02'),
+ (2,100,50001,1,NULL,'2012-07-08 12:15:02','2012-07-08 12:15:02','2012-07-08 12:15:02'),
+ (3,150,1,1,NULL,'2012-07-08 12:15:02','2012-07-08 12:15:02','2012-07-08 12:15:02'),
+ (4,100,50000,1,NULL,NULL,'2012-07-08 12:15:03','2012-07-08 12:15:03'),
+ (5,500,1,1,NULL,'2012-07-12 04:58:28','2012-07-12 04:58:28','2012-07-12 04:58:28'),
+ (6,350,50000,1,NULL,NULL,'2012-07-12 04:58:29','2012-07-12 04:58:29'),
+ (7,100,4,1,NULL,'2012-07-12 06:01:32','2012-07-12 06:01:32','2012-07-12 06:01:32'),
+ (8,200,1,1,NULL,NULL,'2012-07-12 06:01:32','2012-07-12 06:01:32'),
+ (9,500,9,1,NULL,'2012-07-12 06:16:11','2012-07-12 06:16:11','2012-07-12 06:16:11'),
+ (10,280,1,1,NULL,NULL,'2012-07-12 06:16:11','2012-07-12 06:16:11'),
+ (11,150,4,1,NULL,NULL,'2012-07-12 06:16:11','2012-07-12 06:16:11'),
+ (12,100,50000,1,NULL,'2012-07-12 06:23:08','2012-07-12 06:23:08','2012-07-12 06:23:08'),
+ (13,270,1,1,NULL,'2012-07-16 07:51:14','2012-07-16 07:51:14','2012-07-16 07:51:14'),
+ (14,550,1,1,NULL,'2012-07-17 06:23:16','2012-07-17 06:23:16','2012-07-17 06:23:16'),
+ (15,120,50001,1,NULL,NULL,'2012-07-17 06:23:17','2012-07-17 06:23:17'),
+ (16,50,50000,1,NULL,'2012-07-17 07:52:55','2012-07-17 07:52:55','2012-07-17 07:52:55'),
+ (50000,20,1,1,NULL,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (50001,1000,1,1,NULL,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
+
+
+--
+-- Definition of table `admin_preventistadev`.`pagospedidos`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`pagospedidos`;
+CREATE TABLE  `admin_preventistadev`.`pagospedidos` (
+  `pagospedidos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pedidos_id` int(11) NOT NULL,
+  `pagos_id` bigint(20) NOT NULL,
+  `pagospedidos_montocubierto` float DEFAULT NULL,
+  `pagospedidos_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pagospedidos_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`pagospedidos_id`),
+  KEY `pagospedidos_pagos_id` (`pagos_id`),
+  KEY `pagospedidos_pedidos_id` (`pedidos_id`),
+  CONSTRAINT `pagospedidos_pagos_id` FOREIGN KEY (`pagos_id`) REFERENCES `pagos` (`pagos_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `pagospedidos_pedidos_id` FOREIGN KEY (`pedidos_id`) REFERENCES `pedidos` (`pedidos_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=50026 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`pagospedidos`
+--
+
+/*!40000 ALTER TABLE `pagospedidos` DISABLE KEYS */;
+LOCK TABLES `pagospedidos` WRITE;
+INSERT INTO `admin_preventistadev`.`pagospedidos` VALUES  (50000,1,50000,170,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (50011,4,1,100,'2012-07-08 12:15:02',NULL),
+ (50012,3,2,100,'2012-07-08 12:15:02',NULL),
+ (50013,1,3,150,'2012-07-08 12:15:02',NULL),
+ (50014,1,5,196.9,'2012-07-12 04:58:29',NULL),
+ (50015,50000,5,473.1,'2012-07-12 04:58:29',NULL),
+ (50016,5,7,100,'2012-07-12 06:01:32',NULL),
+ (50017,50000,8,673.1,'2012-07-12 06:01:32',NULL),
+ (50018,50001,9,500,'2012-07-12 06:16:11',NULL),
+ (50019,50000,10,953.1,'2012-07-12 06:16:11',NULL),
+ (50020,5,11,250,'2012-07-12 06:16:11',NULL),
+ (50021,6,12,550,'2012-07-12 06:23:08',NULL),
+ (50022,50000,50001,1953.1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
+ (50023,50000,14,2503.1,'2012-07-17 06:23:17',NULL),
+ (50024,3,15,103.4,'2012-07-17 06:23:17',NULL),
+ (50025,6,16,600,'2012-07-17 07:52:55',NULL);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `pagospedidos` ENABLE KEYS */;
+
+
+
+--
+-- Definition of table `admin_preventistadev`.`gastos`
+--
+
+DROP TABLE IF EXISTS `admin_preventistadev`.`gastos`;
+CREATE TABLE  `admin_preventistadev`.`gastos` (
+  `gastos_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gastos_descripcion` text,
+  `hojaruta_id` int(11) DEFAULT NULL,
+  `gastos_monto` float DEFAULT NULL,
+  `gastos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `gastos_updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`gastos_id`),
+  KEY `gastos_hojaruta_id` (`hojaruta_id`),
+  CONSTRAINT `gastos_hojaruta_id` FOREIGN KEY (`hojaruta_id`) REFERENCES `hojaruta` (`hojaruta_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_preventistadev`.`gastos`
+--
+
+/*!40000 ALTER TABLE `gastos` DISABLE KEYS */;
+LOCK TABLES `gastos` WRITE;
+INSERT INTO `admin_preventistadev`.`gastos` VALUES  (4,'Nafta',13,60,'2012-07-08 12:15:03','2012-07-08 12:15:03'),
+ (5,'Parche',13,20,'2012-07-08 12:15:03','2012-07-08 12:15:03'),
+ (6,'Pinchado de goma',14,45,'2012-07-12 04:58:29','2012-07-12 04:58:29'),
+ (7,'Gasoil',14,120,'2012-07-12 04:58:29','2012-07-12 04:58:29'),
+ (8,NULL,16,NULL,'2012-07-12 06:01:32','2012-07-12 06:01:32'),
+ (9,'Pinchado de goma',17,50,'2012-07-12 06:16:11','2012-07-12 06:16:11'),
+ (10,NULL,18,NULL,'2012-07-12 06:23:08','2012-07-12 06:23:08'),
+ (11,'Pinchado de Goma',19,45,'2012-07-17 06:23:17','2012-07-17 06:23:17'),
+ (12,NULL,20,NULL,'2012-07-17 07:52:55','2012-07-17 07:52:55');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `gastos` ENABLE KEYS */;
+
+
+
+
+
 
 
 --
@@ -23868,83 +24356,6 @@ UNLOCK TABLES;
 /*!40000 ALTER TABLE `preferences` ENABLE KEYS */;
 
 
---
--- Definition of table `admin_preventistadev`.`proveedores`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`proveedores`;
-CREATE TABLE  `admin_preventistadev`.`proveedores` (
-  `proveedores_id` int(11) NOT NULL AUTO_INCREMENT,
-  `proveedores_nombre` varchar(150) NOT NULL,
-  `proveedores_apellido` varchar(150) NOT NULL,
-  `proveedores_direccion` text NOT NULL,
-  `proveedores_telefono` varchar(100) NOT NULL,
-  `proveedores_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `proveedores_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`proveedores_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`proveedores`
---
-
-/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-LOCK TABLES `proveedores` WRITE;
-INSERT INTO `admin_preventistadev`.`proveedores` VALUES  (1,'Elias','Dip','Muñecas 2011','0381-4975264','2012-02-09 00:00:00','2012-02-09 00:00:00'),
- (2,'Ana','Flores','Cordoba 1000','0381-4978562','2012-02-09 00:00:00','2012-02-09 00:00:00'),
- (3,'Cristian','Martines','Santiago 345','0381-4952545','2012-03-04 00:00:00','0000-00-00 00:00:00'),
- (4,'Cristina','Guzman','Av. Mitre 685','0381-4956585','2012-03-04 00:00:00','0000-00-00 00:00:00'),
- (5,'Carolina','Ruiz','Muñecas 1200','0381-485252','2012-03-04 00:00:00','0000-00-00 00:00:00'),
- (6,'Paulo','Ramirez','Santiago 125','0381-4585222','2012-03-04 00:00:00','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`provincias`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`provincias`;
-CREATE TABLE  `admin_preventistadev`.`provincias` (
-  `provincias_id` int(11) NOT NULL AUTO_INCREMENT,
-  `provincias_nombre` varchar(150) NOT NULL,
-  `provincias_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `provincias_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`provincias_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`provincias`
---
-
-/*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
-LOCK TABLES `provincias` WRITE;
-INSERT INTO `admin_preventistadev`.`provincias` VALUES  (1,'Buenos Aires','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (2,'Capital Federal','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (3,'Catamarca','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (4,'Chaco','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (5,'Chubut','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (6,'Córdoba','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (7,'Corrientes','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (8,'Entre Ríos','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (9,'Formosa','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (10,'Jujuy','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (11,'La Pampa','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (12,'La Rioja','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (13,'Mendoza','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (14,'Misiones','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (15,'Neuquén','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (16,'Río Negro','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (17,'Salta','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (18,'San Juan','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (19,'San Luis','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (20,'Santa Cruz','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (21,'Santa Fé','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (22,'Santiago del Estero','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (23,'Tierra del Fuego','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (24,'Tucumán','0000-00-00 00:00:00','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
 
 
 --
@@ -23986,372 +24397,17 @@ UNLOCK TABLES;
 /*!40000 ALTER TABLE `remitos` ENABLE KEYS */;
 
 
---
--- Definition of table `admin_preventistadev`.`rubros`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`rubros`;
-CREATE TABLE  `admin_preventistadev`.`rubros` (
-  `rubros_id` int(11) NOT NULL AUTO_INCREMENT,
-  `rubros_descripcion` varchar(150) DEFAULT NULL,
-  `rubros_estado` int(11) DEFAULT NULL,
-  `rubros_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `rubros_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`rubros_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`rubros`
---
-
-/*!40000 ALTER TABLE `rubros` DISABLE KEYS */;
-LOCK TABLES `rubros` WRITE;
-INSERT INTO `admin_preventistadev`.`rubros` VALUES  (1,'GALLETAS',1,'2012-02-27 00:00:00',NULL),
- (2,'CHICLES',1,'2012-02-27 00:00:00',NULL),
- (3,'JUGOS',2,'2012-02-27 00:00:00','2012-06-04 00:51:09'),
- (4,'CARAMELOS',1,'2012-03-22 00:00:00',NULL),
- (5,'BOMBONES',1,'2012-03-22 00:00:00',NULL),
- (6,'ALFAJORES',1,'2012-03-22 20:47:15',NULL);
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `rubros` ENABLE KEYS */;
 
 
---
--- Definition of table `admin_preventistadev`.`sismenu`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`sismenu`;
-CREATE TABLE  `admin_preventistadev`.`sismenu` (
-  `sismenu_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sismenu_descripcion` varchar(150) DEFAULT NULL,
-  `sismenu_estado` int(11) DEFAULT '0',
-  `sismenu_parent` int(11) DEFAULT NULL,
-  `sismenu_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `sismenu_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`sismenu_id`),
-  KEY `sismenu_tabgral_id` (`sismenu_estado`),
-  CONSTRAINT `sismenu_tabgral_id` FOREIGN KEY (`sismenu_estado`) REFERENCES `tabgral` (`tabgral_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`sismenu`
---
-
-/*!40000 ALTER TABLE `sismenu` DISABLE KEYS */;
-LOCK TABLES `sismenu` WRITE;
-INSERT INTO `admin_preventistadev`.`sismenu` VALUES  (1,'Administración',1,0,'2012-02-07 11:08:25','0000-00-00 00:00:00'),
- (2,'Usuarios',1,1,'2012-02-07 11:09:01','0000-00-00 00:00:00'),
- (3,'Perfiles',1,1,'2012-02-07 11:09:23','0000-00-00 00:00:00'),
- (4,'Permisos',1,1,'2012-02-07 11:09:43','0000-00-00 00:00:00'),
- (5,'Menues',1,1,'2012-02-07 11:10:00','0000-00-00 00:00:00'),
- (6,'Gestión de Articulos',1,0,'2012-02-07 15:06:43','0000-00-00 00:00:00'),
- (7,'Articulos',1,6,'2012-02-07 15:07:22','0000-00-00 00:00:00'),
- (8,'Rubros',1,6,'2012-02-07 00:00:00','0000-00-00 00:00:00'),
- (9,'Gestión de  Cuenta C.',1,0,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (10,'Clientes',1,9,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (11,'Proveedores',1,6,'2012-02-09 17:05:36','0000-00-00 00:00:00'),
- (12,'Gestion de pedidos',1,0,'2012-02-16 00:00:00','0000-00-00 00:00:00'),
- (13,'Pedidos',1,12,'2012-02-16 00:00:00','0000-00-00 00:00:00'),
- (14,'Hoja de Ruta',1,12,'2012-02-17 00:00:00','0000-00-00 00:00:00'),
- (15,'Fleteros',1,1,'2012-02-18 00:00:00','0000-00-00 00:00:00'),
- (16,'Marcas',1,6,'2012-02-27 00:00:00','0000-00-00 00:00:00'),
- (17,'Clientes categ.',1,1,'2012-03-02 00:00:00','0000-00-00 00:00:00'),
- (18,'Compras',1,6,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
- (19,'Remitos',1,12,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
- (20,'Recibos',1,9,'2012-03-04 00:00:00','0000-00-00 00:00:00'),
- (21,'CC',1,9,'2012-03-31 00:00:00','0000-00-00 00:00:00'),
- (22,'Utilidades',1,1,'2012-04-04 15:43:07','2012-04-04 15:43:07'),
- (23,'Pagos',1,9,'2012-06-08 04:18:04','0000-00-00 00:00:00'),
- (24,'Bases de datos',1,1,'2012-07-11 09:25:36','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `sismenu` ENABLE KEYS */;
 
 
---
--- Definition of table `admin_preventistadev`.`sisperfil`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`sisperfil`;
-CREATE TABLE  `admin_preventistadev`.`sisperfil` (
-  `sisperfil_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sismenu_id` int(11) NOT NULL,
-  `perfiles_id` int(11) NOT NULL,
-  `sisperfil_estado` int(11) DEFAULT '0',
-  `sisperfil_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `sisperfil_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`sisperfil_id`),
-  KEY `perfiles_id` (`perfiles_id`),
-  KEY `sisperfil_sismenu_id` (`sismenu_id`),
-  KEY `sisperfil_tabgral_id` (`sisperfil_estado`),
-  KEY `tabgral_id` (`sisperfil_estado`),
-  CONSTRAINT `perfiles_id` FOREIGN KEY (`perfiles_id`) REFERENCES `perfiles` (`perfiles_id`),
-  CONSTRAINT `sisperfil_sismenu_id` FOREIGN KEY (`sismenu_id`) REFERENCES `sismenu` (`sismenu_id`),
-  CONSTRAINT `sisperfil_tabgral_id` FOREIGN KEY (`sisperfil_estado`) REFERENCES `tabgral` (`tabgral_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`sisperfil`
---
-
-/*!40000 ALTER TABLE `sisperfil` DISABLE KEYS */;
-LOCK TABLES `sisperfil` WRITE;
-INSERT INTO `admin_preventistadev`.`sisperfil` VALUES  (1,1,3,1,'2012-02-07 11:15:56','0000-00-00 00:00:00'),
- (2,5,3,1,'2012-02-07 11:17:26','0000-00-00 00:00:00'),
- (3,4,3,1,'2012-02-07 11:17:26','0000-00-00 00:00:00'),
- (4,3,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (5,2,3,1,'2012-02-07 11:17:26','0000-00-00 00:00:00'),
- (6,8,3,1,'2012-02-07 15:08:26','0000-00-00 00:00:00'),
- (7,7,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (8,6,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (9,11,3,1,'2012-02-09 17:07:05','0000-00-00 00:00:00'),
- (10,10,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (11,9,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (12,13,3,1,'2012-02-16 15:43:01','0000-00-00 00:00:00'),
- (13,12,3,1,'2012-02-16 15:43:01','0000-00-00 00:00:00'),
- (14,14,3,1,'2012-02-17 21:17:37','0000-00-00 00:00:00'),
- (15,15,3,1,'2012-02-18 03:14:13','0000-00-00 00:00:00'),
- (16,16,3,1,'2012-02-27 18:17:37','0000-00-00 00:00:00'),
- (17,17,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (18,18,3,1,'2012-03-03 01:56:26','0000-00-00 00:00:00'),
- (19,19,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (20,20,3,1,'0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (21,21,3,1,'2012-03-31 16:08:55','0000-00-00 00:00:00'),
- (22,22,3,1,'2012-04-04 15:43:42','0000-00-00 00:00:00'),
- (23,23,3,1,'2012-06-08 04:19:02','0000-00-00 00:00:00'),
- (24,24,3,1,'2012-07-11 09:26:56','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `sisperfil` ENABLE KEYS */;
 
 
---
--- Definition of table `admin_preventistadev`.`sispermisos`
---
 
-DROP TABLE IF EXISTS `admin_preventistadev`.`sispermisos`;
-CREATE TABLE  `admin_preventistadev`.`sispermisos` (
-  `sispermisos_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sispermisos_tabla` varchar(150) NOT NULL,
-  `sispermisos_flag_read` int(11) DEFAULT '1',
-  `sispermisos_flag_insert` int(11) DEFAULT '0',
-  `sispermisos_flag_update` int(11) DEFAULT '0',
-  `sispermisos_flag_delete` int(11) DEFAULT '0',
-  `perfiles_id` int(11) NOT NULL,
-  `sispermisos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `sispermisos_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`sispermisos_id`),
-  KEY `perfiles_id` (`perfiles_id`),
-  KEY `sispermisos_perfiles_id` (`perfiles_id`),
-  CONSTRAINT `sispermisos_perfiles_id` FOREIGN KEY (`perfiles_id`) REFERENCES `perfiles` (`perfiles_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`sispermisos`
---
-
-/*!40000 ALTER TABLE `sispermisos` DISABLE KEYS */;
-LOCK TABLES `sispermisos` WRITE;
-INSERT INTO `admin_preventistadev`.`sispermisos` VALUES  (1,'usuarios',1,1,1,1,3,'2012-02-07 11:45:43','0000-00-00 00:00:00'),
- (2,'perfiles',1,1,1,1,3,'2012-02-07 14:06:08','0000-00-00 00:00:00'),
- (3,'sispermisos',1,1,1,1,3,'2012-02-07 14:06:53','0000-00-00 00:00:00'),
- (4,'sismenu',1,1,1,1,3,'2012-02-07 14:07:17','0000-00-00 00:00:00'),
- (5,'articulos',1,1,1,1,3,'2012-02-07 15:10:10','0000-00-00 00:00:00'),
- (6,'rubros',1,1,1,1,3,'2012-02-07 00:00:00','2012-02-24 00:00:00'),
- (7,'historialprecios',1,1,1,1,3,'2012-02-08 01:12:14','0000-00-00 00:00:00'),
- (8,'clientes',1,1,1,1,3,'2012-02-09 00:00:00','2012-02-09 00:00:00'),
- (9,'proveedores',1,1,1,1,3,'2012-02-09 00:00:00','2012-02-09 00:00:00'),
- (10,'pedidos',1,1,1,1,3,'2012-02-16 00:00:00','2012-04-01 01:48:59'),
- (11,'pedidodetalle',1,1,1,1,3,'2012-02-16 00:00:00','0000-00-00 00:00:00'),
- (13,'hojarutadetalle',1,1,1,1,3,'2012-02-17 00:00:00','2012-03-03 00:00:00'),
- (14,'hojaruta',1,1,1,1,3,'2012-02-17 00:00:00','0000-00-00 00:00:00'),
- (15,'fleteros',1,1,1,1,3,'2012-02-18 00:00:00','0000-00-00 00:00:00'),
- (16,'marcas',1,1,1,1,3,'2012-02-27 00:00:00','0000-00-00 00:00:00'),
- (17,'clientescategoria',1,1,1,1,3,'2012-03-02 00:00:00','0000-00-00 00:00:00'),
- (18,'compras',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
- (19,'comprasdetalle',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
- (20,'cambiodirectostock',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
- (21,'remitos',1,1,1,1,3,'2012-03-03 00:00:00','0000-00-00 00:00:00'),
- (22,'pagos',1,1,1,1,3,'2012-03-04 00:00:00','0000-00-00 00:00:00'),
- (23,'pagospedidos',1,1,1,1,3,'2012-03-04 00:00:00','0000-00-00 00:00:00'),
- (24,'cuentacorriente',1,1,1,1,3,'2012-03-31 00:00:00','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `sispermisos` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`sisvinculos`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`sisvinculos`;
-CREATE TABLE  `admin_preventistadev`.`sisvinculos` (
-  `sisvinculos_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sismenu_id` int(11) DEFAULT NULL,
-  `sisvinculos_link` varchar(250) DEFAULT NULL,
-  `sisvinculos_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `sisvinculos_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`sisvinculos_id`),
-  KEY `sismenu_id` (`sismenu_id`),
-  KEY `sisvinculos_sismenu_id` (`sismenu_id`),
-  CONSTRAINT `sisvinculos_sismenu_id` FOREIGN KEY (`sismenu_id`) REFERENCES `sismenu` (`sismenu_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`sisvinculos`
---
-
-/*!40000 ALTER TABLE `sisvinculos` DISABLE KEYS */;
-LOCK TABLES `sisvinculos` WRITE;
-INSERT INTO `admin_preventistadev`.`sisvinculos` VALUES  (1,1,'#','2012-02-07 11:21:39','0000-00-00 00:00:00'),
- (2,2,'usuarios_controller/index','2012-02-07 11:21:55','0000-00-00 00:00:00'),
- (3,3,'perfiles_controller/index','2012-02-07 11:22:11','0000-00-00 00:00:00'),
- (4,4,'sispermisos_controller/index','2012-02-07 11:22:22','0000-00-00 00:00:00'),
- (5,5,'sismenu_controller/index','2012-02-07 11:22:32','0000-00-00 00:00:00'),
- (6,7,'articulos_controller/index','2012-02-07 15:09:14','0000-00-00 00:00:00'),
- (7,8,'rubros_controller/index','2012-02-07 15:09:47','0000-00-00 00:00:00'),
- (8,6,'#','2012-02-07 16:51:17','0000-00-00 00:00:00'),
- (9,9,'#','0000-00-00 00:00:00','0000-00-00 00:00:00'),
- (10,10,'clientes_controller/index','2012-02-09 17:06:31','0000-00-00 00:00:00'),
- (11,11,'proveedores_controller/index','2012-02-09 17:06:31','0000-00-00 00:00:00'),
- (12,12,'#','2012-02-16 15:38:47','0000-00-00 00:00:00'),
- (13,13,'pedidos_controller/index','2012-02-16 15:39:25','0000-00-00 00:00:00'),
- (14,14,'hojaruta_controller/index','2012-02-17 21:16:57','0000-00-00 00:00:00'),
- (15,15,'fleteros_controller/index','2012-02-18 03:13:32','0000-00-00 00:00:00'),
- (16,16,'marcas_controller/index','2012-02-27 18:17:04','0000-00-00 00:00:00'),
- (17,17,'clientescategoria_controller/index','2012-03-02 20:19:54','0000-00-00 00:00:00'),
- (18,18,'compras_controller/index','2012-03-03 01:55:52','0000-00-00 00:00:00'),
- (19,19,'remitos_controller/index','2012-03-03 16:53:59','0000-00-00 00:00:00'),
- (20,20,'#','2012-03-04 16:03:03','0000-00-00 00:00:00'),
- (21,21,'cuentacorriente_controller/index','2012-03-31 16:07:34','0000-00-00 00:00:00'),
- (22,22,'utilidades_controller/index','2012-04-04 15:43:07','0000-00-00 00:00:00'),
- (23,23,'pagos_controller/index','2012-06-08 04:18:38','0000-00-00 00:00:00'),
- (24,24,'dbmobile_controller/index','2012-07-11 09:26:31','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `sisvinculos` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`tabgral`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`tabgral`;
-CREATE TABLE  `admin_preventistadev`.`tabgral` (
-  `tabgral_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tabgral_descripcion` varchar(50) NOT NULL,
-  `grupos_tabgral_id` int(11) NOT NULL,
-  `tabgral_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tabgral_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`tabgral_id`),
-  KEY `grupos_tabgral_id` (`grupos_tabgral_id`),
-  CONSTRAINT `grupos_tabgral_id` FOREIGN KEY (`grupos_tabgral_id`) REFERENCES `grupos_tabgral` (`grupos_tabgral_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`tabgral`
---
-
-/*!40000 ALTER TABLE `tabgral` DISABLE KEYS */;
-LOCK TABLES `tabgral` WRITE;
-INSERT INTO `admin_preventistadev`.`tabgral` VALUES  (1,'Habilitado',1,'2012-02-06 19:13:23','0000-00-00 00:00:00'),
- (2,'Deshabilitado',1,'2012-02-06 19:13:38','0000-00-00 00:00:00'),
- (3,'Categoria 1',2,'2012-02-16 13:31:13','0000-00-00 00:00:00'),
- (4,'Categoria 2',2,'2012-02-16 13:31:13','0000-00-00 00:00:00'),
- (5,'Categoria 3',2,'2012-02-16 13:31:13','0000-00-00 00:00:00'),
- (6,'Solicitado',3,'2012-03-01 22:04:40','0000-00-00 00:00:00'),
- (7,'Asignado',3,'2012-03-01 22:04:40','0000-00-00 00:00:00'),
- (8,'Entregado',3,'2012-03-01 22:04:39','0000-00-00 00:00:00'),
- (9,'Cancelado',3,'2012-03-01 22:04:39','0000-00-00 00:00:00'),
- (10,'Planteada',4,'2012-03-03 02:46:44','0000-00-00 00:00:00'),
- (11,'Ejecutada',4,'2012-03-03 02:46:44','0000-00-00 00:00:00'),
- (12,'En curso',5,'2012-03-03 13:53:39','0000-00-00 00:00:00'),
- (13,'Entregado',5,'2012-03-03 13:53:39','0000-00-00 00:00:00'),
- (14,'Cancelado',5,'2012-03-03 13:53:39','0000-00-00 00:00:00'),
- (15,'Entregado y parcialmente pagado',3,'2012-03-04 16:05:50','0000-00-00 00:00:00'),
- (16,'Entregado y pagado',3,'2012-03-04 16:05:50','0000-00-00 00:00:00'),
- (17,'Generado',6,'2012-03-04 20:56:33','0000-00-00 00:00:00'),
- (18,'Ingresado',6,'2012-03-04 20:56:33','0000-00-00 00:00:00'),
- (19,'Cancelado',6,'2012-03-04 20:56:33','0000-00-00 00:00:00'),
- (20,'Disponible',7,'2012-03-20 01:55:46','0000-00-00 00:00:00'),
- (21,'No disponible',7,'2012-03-20 01:55:46','0000-00-00 00:00:00'),
- (22,'Efectivo',8,'2012-03-27 15:26:08','0000-00-00 00:00:00'),
- (23,'Cuenta Corriente',8,'2012-03-27 15:26:08','0000-00-00 00:00:00'),
- (24,'BCB',8,'2012-03-27 15:30:28','0000-00-00 00:00:00'),
- (25,'Finalizada',4,'2012-03-30 01:44:38','0000-00-00 00:00:00');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `tabgral` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`tramites`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`tramites`;
-CREATE TABLE  `admin_preventistadev`.`tramites` (
-  `tramites_id` int(11) NOT NULL AUTO_INCREMENT,
-  `tramites_descripcion` varchar(150) DEFAULT NULL,
-  `tramites_created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `tramites_updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`tramites_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`tramites`
---
-
-/*!40000 ALTER TABLE `tramites` DISABLE KEYS */;
-LOCK TABLES `tramites` WRITE;
-INSERT INTO `admin_preventistadev`.`tramites` VALUES  (1,'CONTADO','2012-05-15 18:44:34',NULL),
- (2,'CC','2012-05-15 18:44:34',NULL),
- (3,'FIRMAR','2012-05-15 18:44:34',NULL);
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `tramites` ENABLE KEYS */;
-
-
---
--- Definition of table `admin_preventistadev`.`usuarios`
---
-
-DROP TABLE IF EXISTS `admin_preventistadev`.`usuarios`;
-CREATE TABLE  `admin_preventistadev`.`usuarios` (
-  `usuarios_id` int(11) NOT NULL AUTO_INCREMENT,
-  `usuarios_username` varchar(150) DEFAULT NULL,
-  `usuarios_password` varchar(150) DEFAULT NULL,
-  `usuarios_nombre` varchar(150) DEFAULT NULL,
-  `usuarios_apellido` varchar(150) DEFAULT NULL,
-  `usuarios_email` varchar(150) DEFAULT NULL,
-  `usuarios_direccion` varchar(200) DEFAULT NULL,
-  `usuarios_telefono` varchar(50) DEFAULT NULL,
-  `usuarios_estado` int(11) DEFAULT NULL,
-  `usuarios_legajo` int(11) DEFAULT NULL,
-  `perfiles_id` int(11) NOT NULL,
-  `provincias_id` int(11) DEFAULT NULL,
-  `localidades_id` int(11) DEFAULT NULL,
-  `usuarios_activationcode` varchar(150) DEFAULT NULL,
-  `usuarios_tokenforgotpasswd` text,
-  `usuarios_created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `usuarios_updated_at` datetime NOT NULL,
-  PRIMARY KEY (`usuarios_id`),
-  KEY `localidades_id` (`localidades_id`),
-  KEY `perfiles_id` (`usuarios_telefono`),
-  KEY `perfiles_id_usuarios` (`perfiles_id`),
-  KEY `provincias_id` (`provincias_id`),
-  KEY `tabgral_id` (`usuarios_direccion`),
-  KEY `usuarios_estado` (`usuarios_estado`),
-  KEY `usuarios_perfiles_id` (`perfiles_id`),
-  KEY `usuarios_provincias_id` (`provincias_id`),
-  CONSTRAINT `usuarios_estado` FOREIGN KEY (`usuarios_estado`) REFERENCES `tabgral` (`tabgral_id`),
-  CONSTRAINT `usuarios_localidades_id` FOREIGN KEY (`localidades_id`) REFERENCES `localidades` (`localidades_id`),
-  CONSTRAINT `usuarios_perfiles_id` FOREIGN KEY (`perfiles_id`) REFERENCES `perfiles` (`perfiles_id`),
-  CONSTRAINT `usuarios_provincias_id` FOREIGN KEY (`provincias_id`) REFERENCES `provincias` (`provincias_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `admin_preventistadev`.`usuarios`
---
-
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-LOCK TABLES `usuarios` WRITE;
-INSERT INTO `admin_preventistadev`.`usuarios` VALUES  (1,'admin','21232f297a57a5a743894a0e4a801fc3','Admin','admin','admin@gmail.com',NULL,NULL,1,NULL,3,1,NULL,NULL,NULL,'2012-02-07 00:00:00','2012-02-09 00:00:00'),
- (3,'marcos','caf1a3dfb505ffed0d024130f58c5cfa','marcos laquaire',NULL,NULL,NULL,NULL,1,NULL,3,NULL,NULL,NULL,NULL,'2012-03-22 00:00:00','2012-03-22 00:00:00'),
- (4,'gaston','6fda27264f8154abdb6ed31bd701a8e5','Gaston','Gonzalez','gastonmgonzalez@gmail.com',NULL,NULL,1,NULL,3,24,22731,NULL,NULL,'2012-04-01 01:13:05','2012-04-01 01:13:05');
-UNLOCK TABLES;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

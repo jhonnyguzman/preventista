@@ -1,0 +1,10 @@
+A continuación se listan los datos a tener en cuenta al 
+realizar una actualización en el servidor de producción.
+-----------------------------------
+
+1-	Se elimino de la base de datos la opcion de menú 'Recibos'.
+2-	El archivo basedbmobile.txt es distinto en el servidor de producciń (Tener en cuenta esto).
+3-  El controlador dbmobile_controler.php es distinto en el servidor de producción. 
+		Debido a que en el servidor de produccion se encuentra corriendo una versionde php 5.2.17
+		fue necesario modificar la parte de generación de la base de datos sqlite. 
+4-  El archivo index.php esta configurado para ejecutar el framework codeigniter en modo producción.

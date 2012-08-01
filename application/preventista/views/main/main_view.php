@@ -2,7 +2,8 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>preventista</title>
+		<title>Preventista | Home</title>
+		<link rel="shortcut icon" href="<?=base_url()?>css/images/favicon.ico" />
 		<link rel="stylesheet" href="<?=base_url()?>css/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-modal-messages/jquery.messages.css" type="text/css" media="screen">
@@ -36,8 +37,9 @@
 				<div id="header-right">
 					<div id='header-menu'>
 						<ul>
+						<li><a href="<?=base_url()?>docs/userguide/toc.html">Guia del usuario</a>&nbsp;|&nbsp;</li>
 						<li>Usuario:&nbsp;<?=$this->session->userdata('usuarios_username')?>&nbsp;|&nbsp;</li>
-						<li>Perfil:&nbsp;<?=$this->session->userdata('perfiles_descripcion')?>&nbsp;|&nbsp;</li>
+						<!--<li>Perfil:&nbsp;<?=$this->session->userdata('perfiles_descripcion')?>&nbsp;|&nbsp;</li>-->
 						<li><a href="<?=base_url()?>welcome/logout">Salir</a><li>
 						</ul>
 					</div>

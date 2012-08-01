@@ -13,6 +13,7 @@ class Cuentacorriente_Controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('cuentacorriente_model');
+		$this->load->model('clientes_model');
 		$this->load->model('pedidos_model');
 		$this->config->load('cuentacorriente_settings');
 		$data['flags'] = $this->basicauth->getPermissions('cuentacorriente');
@@ -55,17 +56,15 @@ class Cuentacorriente_Controller extends CI_Controller {
 
 		$data = array();
 		$data['subtitle'] = $this->config->item('recordAddTitle');
-		$this->form_validation->set_rules('clientes_id', 'clientes_id', 'trim|required|integer|xss_clean');
+		$this->form_validation->set_rules('clientes_id', 'clientes_id', 'trim|required|integer|callback_checkExistsCC|xss_clean');
 		$this->form_validation->set_rules('cuentacorriente_haber', 'cuentacorriente_haber', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('cuentacorriente_debe', 'cuentacorriente_debe', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('cuentacorriente_saldo', 'cuentacorriente_saldo', 'trim|alpha_numeric|xss_clean');
 		if($this->form_validation->run())
 		{	
 			$data_cuentacorriente  = array();
 			$data_cuentacorriente['clientes_id'] = $this->input->post('clientes_id');
 			$data_cuentacorriente['cuentacorriente_haber'] = $this->input->post('cuentacorriente_haber');
 			$data_cuentacorriente['cuentacorriente_debe'] = $this->input->post('cuentacorriente_debe');
-			$data_cuentacorriente['cuentacorriente_saldo'] = $this->input->post('cuentacorriente_saldo');
 			$data_cuentacorriente['cuentacorriente_updated_at'] = $this->basicrud->formatDateToBD();
 
 			$id_cuentacorriente = $this->cuentacorriente_model->add_m($data_cuentacorriente);
@@ -76,9 +75,10 @@ class Cuentacorriente_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('cuentacorriente_flash_error_message')); 
 				redirect('cuentacorriente_controller','location');
 			}
+		}else{
+			$data['clientes'] = $this->clientes_model->get_m();
+			$this->load->view('cuentacorriente_view/form_add_cuentacorriente',$data);
 		}
-		$this->load->view('cuentacorriente_view/form_add_cuentacorriente',$data);
-
 	}
 
 
@@ -105,14 +105,12 @@ class Cuentacorriente_Controller extends CI_Controller {
 		$this->form_validation->set_rules('clientes_id', 'clientes_id', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('cuentacorriente_haber', 'cuentacorriente_haber', 'trim|alpha_numeric|xss_clean');
 		$this->form_validation->set_rules('cuentacorriente_debe', 'cuentacorriente_debe', 'trim|alpha_numeric|xss_clean');
-		$this->form_validation->set_rules('cuentacorriente_saldo', 'cuentacorriente_saldo', 'trim|alpha_numeric|xss_clean');
 		if($this->form_validation->run()){
 			$data_cuentacorriente  = array();
 			$data_cuentacorriente['cuentacorriente_id'] = $this->input->post('cuentacorriente_id');
 			$data_cuentacorriente['clientes_id'] = $this->input->post('clientes_id');
 			$data_cuentacorriente['cuentacorriente_haber'] = $this->input->post('cuentacorriente_haber');
 			$data_cuentacorriente['cuentacorriente_debe'] = $this->input->post('cuentacorriente_debe');
-			$data_cuentacorriente['cuentacorriente_saldo'] = $this->input->post('cuentacorriente_saldo');
 			$data_cuentacorriente['cuentacorriente_updated_at'] = $this->basicrud->formatDateToBD();
 
 			if($this->cuentacorriente_model->edit_m($data_cuentacorriente)){ 
@@ -122,9 +120,10 @@ class Cuentacorriente_Controller extends CI_Controller {
 				$this->session->set_flashdata('flashError', $this->config->item('cuentacorriente_flash_error_message')); 
 				redirect('cuentacorriente_controller','location');
 			}
+		}else{
+			$data['clientes'] = $this->clientes_model->get_m();
+			$this->load->view('cuentacorriente_view/form_edit_cuentacorriente',$data);
 		}
-		$this->load->view('cuentacorriente_view/form_edit_cuentacorriente',$data);
-
 	}
 
 
@@ -227,4 +226,21 @@ class Cuentacorriente_Controller extends CI_Controller {
 
 	}
 
+	/**
+	 * Esta función verifica si el cliente ingresado posee una cuenta 
+	 * corriente en el sistema
+	 *
+	 * @param int $clientes_id
+	 * @return boolean true 	if Not exists the cliente	 
+	 */	 
+	function checkExistsCC($clientes_id) 
+	{
+		$data = array();
+		$this->form_validation->set_message('checkExistsCC','El cliente seleccionado ya posee una cuenta corriente.');
+		
+		$data['cc'] = $this->cuentacorriente_model->get_m(array('clientes_id' => $clientes_id));	    
+	   
+	   if($data['cc']) return false;
+	   else return true;	
+	}
 }

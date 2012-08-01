@@ -9,27 +9,32 @@
 	</p>
 	<p>
 		<label><span class='required'>*</span><?=$this->config->item('clientes_id')?>:</label>
-		<input type="text" value="<?=$cuentacorriente->clientes_id?>" name="clientes_id" id="clientes_id"></input>
+		<?php foreach($clientes as $f):?>
+			<?php if($f->clientes_id == $cuentacorriente->clientes_id): ?>
+				<input type="text" value="<?=$f->clientes_apellido." ".$f->clientes_nombre?>" name="clientes_apellnom" id="clientes_apellnom" readonly="true"></input>
+				<input type="hidden" value="<?=$cuentacorriente->clientes_id?>" name="clientes_id" id="clientes_id"></input>
+			<?php endif; ?>
+		<?php endforeach;?>
 	</p>
 	<p>
-		<label><span class='required'>*</span><?=$this->config->item('cuentacorriente_haber')?>:</label>
+		<label><?=$this->config->item('cuentacorriente_haber')?>:</label>
 		<input type="text" value="<?=$cuentacorriente->cuentacorriente_haber?>" name="cuentacorriente_haber" id="cuentacorriente_haber"></input>
 	</p>
 	<p>
-		<label><span class='required'>*</span><?=$this->config->item('cuentacorriente_debe')?>:</label>
+		<label><?=$this->config->item('cuentacorriente_debe')?>:</label>
 		<input type="text" value="<?=$cuentacorriente->cuentacorriente_debe?>" name="cuentacorriente_debe" id="cuentacorriente_debe"></input>
 	</p>
-	<p>
+	<!--<p>
 		<label><span class='required'>*</span><?=$this->config->item('cuentacorriente_saldo')?>:</label>
 		<input type="text" value="<?=$cuentacorriente->cuentacorriente_saldo?>" name="cuentacorriente_saldo" id="cuentacorriente_saldo"></input>
+	</p>-->
+	<p>
+		<label><?=$this->config->item('cuentacorriente_created_at')?>:</label>
+		<input type="text" value="<?=$cuentacorriente->cuentacorriente_created_at?>" name="cuentacorriente_created_at" id="cuentacorriente_created_at" readonly="true"></input>
 	</p>
 	<p>
-		<label><span class='required'>*</span><?=$this->config->item('cuentacorriente_created_at')?>:</label>
-		<input type="text" value="<?=$cuentacorriente->cuentacorriente_created_at?>" name="cuentacorriente_created_at" id="cuentacorriente_created_at"></input>
-	</p>
-	<p>
-		<label><span class='required'>*</span><?=$this->config->item('cuentacorriente_updated_at')?>:</label>
-		<input type="text" value="<?=$cuentacorriente->cuentacorriente_updated_at?>" name="cuentacorriente_updated_at" id="cuentacorriente_updated_at"></input>
+		<label><?=$this->config->item('cuentacorriente_updated_at')?>:</label>
+		<input type="text" value="<?=$cuentacorriente->cuentacorriente_updated_at?>" name="cuentacorriente_updated_at" id="cuentacorriente_updated_at" readonly="true"></input>
 	</p>
 	<div class="botonera">
 		<input type="submit" name="modificar" value="Modificar" class="crudtest-button" id="btn-save" onClick="submitData('formEditcuentacorriente',new Array('right-content','right-content'))"></input>

@@ -18,7 +18,7 @@
 $config['base_url']	= 'http://localhost/repositorios/preventista/';
 //$config['base_url']	= 'http://192.168.2.103/repositorios/preventista/';
 //$config['base_url']	= 'http://preventista.servehttp.com/repositorios/preventista/';
-//$config['base_url']	= 'http://10.0.0.18/repositorios/preventista/';
+//$config['base_url']	= 'http://10.0.0.4/repositorios/preventista/';
 
 /*
 |--------------------------------------------------------------------------

@@ -2,14 +2,12 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
-		<title>Sistemas de Gesti&oacute;n | Acceso </title>
+		<title>Preventista | Acceso </title>
+		<link rel="shortcut icon" href="<?=base_url()?>css/images/favicon.ico" />
 		<link type="text/css" href="<?=base_url()?>css/jquery-ui/ui-darkness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
 		<link rel='stylesheet' href='<?=base_url()?>css/login.css' type='text/css' media='screen' />
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.7.1.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-ui/jquery-ui-1.8.18.custom.js"></script>
-		<!--<script type="text/javascript" src="<?=base_url()?>js/facebox.js"></script>
-		<script type="text/javascript" src="<?=base_url()?>js/jquery.wysiwyg.js"></script>
-		<script type="text/javascript" src="<?=base_url()?>js/simpla.jquery.configuration.js"></script>-->
 	</head>
 	<body id="login">
 		<div id="login-wrapper" class="png_bg">

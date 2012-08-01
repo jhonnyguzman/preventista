@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','form_validation','session','basicrud'
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','date','file');
+$autoload['helper'] = array('url','date','file','text');
 
 
 /*
