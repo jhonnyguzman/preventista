@@ -30,3 +30,12 @@
 	</script>
 
 <?php endif; ?>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btn-save").click(function(){
+		closeModalWindows();
+	})
+});	
+
+</script>

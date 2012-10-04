@@ -44,6 +44,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	setPagination('<?=base_url()?>clientes_controller/search_c','result-list'); 
+	setPaginationTwo('<?=base_url()?>clientes_controller/search_c','result-list','formSearchclientes'); 
 });
 </script>

@@ -39,5 +39,6 @@ $(document).ready(function() {
 	$("#clientes_id").keypress(function(){
 		submitData2('formSearchpedidos',new Array('result-list','result-list'));
 	});
+
 });
 </script>

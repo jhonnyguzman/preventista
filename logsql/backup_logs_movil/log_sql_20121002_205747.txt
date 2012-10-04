@@ -1,0 +1,9 @@
+INSERT INTO pagos (pagos_id,pagos_monto,clientes_id,usuarios_id,pagos_created_at,pagos_updated_at) VALUES (50050,40.0,31,1, 'null','null');
+INSERT INTO pagospedidos (pagospedidos_id,pedidos_id, pagos_id, pagospedidos_montocubierto,pagospedidos_created_at,pagospedidos_updated_at) VALUES (50050,5,50050,4.4, 'null','null');
+UPDATE pedidos SET pedidos_estado = 16, pedidos_updated_at = '2012-10-02 20:31:43' WHERE pedidos_id = 5;
+UPDATE pedidos SET pedidos_montoadeudado = 276.4, pedidos_estado = 15, pedidos_updated_at = '2012-10-02 20:31:44' WHERE pedidos_id = 7;
+UPDATE cuentacorriente SET cuentacorriente_haber= 295.6, cuentacorriente_debe = 276.4, cuentacorriente_updated_at = '2012-31-02 20:31:45' WHERE clientes_id = 31;
+INSERT INTO pagos (pagos_id,pagos_monto,clientes_id,usuarios_id,pagos_created_at,pagos_updated_at) VALUES (50051,20.0,31,1, 'null','null');
+INSERT INTO pagospedidos (pagospedidos_id,pedidos_id, pagos_id, pagospedidos_montocubierto,pagospedidos_created_at,pagospedidos_updated_at) VALUES (0,7,50051,55.600006, 'null','null');
+UPDATE pedidos SET pedidos_montoadeudado = 256.4, pedidos_estado = 15, pedidos_updated_at = '2012-10-02 20:41:30' WHERE pedidos_id = 7;
+UPDATE cuentacorriente SET cuentacorriente_haber= 315.6, cuentacorriente_debe = 256.4, cuentacorriente_updated_at = '2012-41-02 20:41:31' WHERE clientes_id = 31;

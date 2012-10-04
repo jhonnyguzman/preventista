@@ -18,15 +18,7 @@
 	<form action="<?=base_url()?>index.php/cuentacorriente_controller/search_c" method="post" name="formSearchcuentacorriente" id="formSearchcuentacorriente">
 	<fieldset>
 		<legend>Filtrar por:</legend>
-		<?php foreach($fieldSearch as $field):?>
-		<p>
-			<label><?=$this->config->item($field)?>:</label>
-			<input type="text" name="<?=$field?>" id="<?=$field?>"></input>
-		</p>
-		<?php endforeach; ?>
-		<p>
-		<input type="submit" name="btn-search" id="btn-search" value="Buscar" onClick="submitData('formSearchcuentacorriente',new Array('result-list','result-list'))"></input>
-		</p>
+		<?=$this->load->view("cuentacorriente_view/_search")?>
 	</fieldset>
 	</form>
 </div>

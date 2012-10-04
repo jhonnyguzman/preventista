@@ -926,7 +926,10 @@ body
 	padding: 12px 0 12px 20px;
    background: transparent url("images/icon-upload.png") no-repeat left center;
 }
-
+#icon-stock_dinero{
+   padding: 12px 0 12px 20px;
+   background: transparent url("images/icon-stock_dinero.png") no-repeat left center;
+}
 #icon-turn {
 	padding: 12px 0 12px 20px;
    background: transparent url("images/icon-turn.gif") no-repeat left center;

@@ -1,0 +1,8 @@
+INSERT INTO pagos (pagos_id,pagos_monto,clientes_id,usuarios_id,pagos_created_at,pagos_updated_at) VALUES (50057,300.0,31,1, 'null','null');
+INSERT INTO pagosdeudas (pagosdeudas_id,deudas_id, pagos_id, pagosdeudas_montocubierto,pagosdeudas_created_at,pagosdeudas_updated_at) VALUES (50057,16,50057,140.0, 'null','null');
+UPDATE deudas SET deudas_montoadeudado = 0.0, deudas_estado = 28, deudas_updated_at = '2012-10-03 02:00:14' WHERE deudas_id = 16;
+INSERT INTO pagosdeudas (pagosdeudas_id,deudas_id, pagos_id, pagosdeudas_montocubierto,pagosdeudas_created_at,pagosdeudas_updated_at) VALUES (50058,17,50057,150.0, 'null','null');
+UPDATE deudas SET deudas_montoadeudado = 0.0, deudas_estado = 28, deudas_updated_at = '2012-10-03 02:00:15' WHERE deudas_id = 17;
+INSERT INTO pagosdeudas (pagosdeudas_id,deudas_id, pagos_id, pagosdeudas_montocubierto,pagosdeudas_created_at,pagosdeudas_updated_at) VALUES (50059,18,50057,10.0, 'null','null');
+UPDATE deudas SET deudas_montoadeudado = 40.0, deudas_estado = 27, deudas_updated_at = '2012-10-03 02:00:15' WHERE deudas_id = 18;
+UPDATE cuentacorriente SET cuentacorriente_haber= 1700.0, cuentacorriente_debe = 173.0, cuentacorriente_updated_at = '2012-00-03 02:00:16' WHERE clientes_id = 31;

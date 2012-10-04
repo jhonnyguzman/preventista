@@ -258,7 +258,7 @@ class Articulos_Controller extends CI_Controller {
 			$data_search_articulos['articulos_estado'] = 20;
 			$data_search_articulos['limit'] = $this->config->item('pag_perpage');
 			$data_search_articulos['offset'] = $offset;
-			$data_search_articulos['sortBy'] = 'articulos_id';
+			$data_search_articulos['sortBy'] = 'articulos_descripcion';
 			$data_search_articulos['sortDirection'] = 'asc';
 
 			if($flag==1){
@@ -605,10 +605,24 @@ class Articulos_Controller extends CI_Controller {
 	}
 
 
-	function test($marca){
-		$marcas = $this->basicrud->getMarca($marca);
-		echo "<pre>";
-		print_r($marcas);
-		echo "</pre>";
+	function showStockDinero_c()
+	{
+		$data['stock_en_dinero_preciocompra'] = 0;
+		$data['stock_en_dinero_precio1'] = 0;
+		$data['stock_en_dinero_precio2'] = 0;
+		$data['stock_en_dinero_precio3'] = 0;
+
+		$articulos = $this->articulos_model->get_m(array('articulos_estado' => 20)); //traer todos los articulos con estado 'Disponible'
+		if(count($articulos) > 0)
+		{
+			foreach ($articulos as $f) {
+				$data['stock_en_dinero_preciocompra']+=$f->articulos_preciocompra * $f->articulos_stockreal;
+				$data['stock_en_dinero_precio1']+=$f->articulos_precio1 * $f->articulos_stockreal;
+				$data['stock_en_dinero_precio2']+=$f->articulos_precio2 * $f->articulos_stockreal;
+				$data['stock_en_dinero_precio3']+=$f->articulos_precio3 * $f->articulos_stockreal;
+			}
+		}
+
+		$this->load->view("articulos_view/form_stock_en_dinero", $data);
 	}
 }

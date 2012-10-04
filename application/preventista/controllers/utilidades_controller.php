@@ -73,34 +73,9 @@ class Utilidades_Controller extends CI_Controller {
 			$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'pedidos_model','nameMethod' => 'getPedidosUtilidades_m', 'perpage'=>$this->config->item('pag_perpage'),$data_search_pagination));
 			$data['pedidos'] = $this->pedidos_model->getPedidosUtilidades_m($data_search_pedidos);
 			$data['upedidos'] = $this->getUtilidadesPedidos($data['pedidos']);
-			
-			//filtros para compras
-			/*if($this->input->post('created_at_from')) 
-				$data_search_compras['compras_created_at_from'] = $this->basicrud->getFormatDateToBD($this->input->post('created_at_from'));
-			else $data_search_compras['compras_created_at_from'] = $this->basicrud->getDateToBDWithOutTime();
-
-			if($this->input->post('created_at_to')) 
-				$data_search_compras['compras_created_at_to'] = $this->basicrud->getFormatDateToBD($this->input->post('created_at_to'));
-			else $data_search_compras['compras_created_at_to'] = $this->basicrud->getDateToBDWithOutTime();
-			
-			$data_search_pagination2 = $data_search_compras; 
-			$data_search_pagination2['count'] = true;
-			$data_search_compras['limit'] = $this->config->item('pag_perpage');
-			$data_search_compras['offset'] = $offset;
-
-			$data['paginationcompras'] = $this->basicrud->getPagination(array('nameModel'=>'compras_model','nameMethod' => 'getComprasUtilidades_m', 'perpage'=>$this->config->item('pag_perpage'),$data_search_pagination2));
-			$data['compras'] = $this->compras_model->getComprasUtilidades_m($data_search_compras);
-			*/
 
 			$this->load->view('utilidades_view/record_list_utilidades',$data);
 			
-			/*echo "<pre>";
-			print_r($data["pedidos"]);
-			echo "</pre>";
-
-			echo "<pre>";
-			print_r($data["upedidos"]);
-			echo "</pre>";*/
 		}
 			
 	}
@@ -146,7 +121,6 @@ class Utilidades_Controller extends CI_Controller {
 		}else{
 			$utilidad = ($pv - $pc) * $cantidad;
 		}
-
 		return $utilidad;
 	}
 }

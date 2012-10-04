@@ -101,7 +101,7 @@ $config['isRequired_articulos_updated_at']= 1;
 
 /* Config params of pagination */
 
-$config['pag_perpage']= 20;
+$config['pag_perpage']= 40;
 
 
 /* Config flash messages */

@@ -77,7 +77,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){ 
 		// setTimeToRun();
-		setPagination('<?=base_url()?>articulos_controller/search_c','result-list'); 
+		setPaginationTwo('<?=base_url()?>articulos_controller/search_c','result-list','formSearcharticulos'); 
 		selectAllChks('chkAll','chkArticulos');
 
 		var tabindex = 1;

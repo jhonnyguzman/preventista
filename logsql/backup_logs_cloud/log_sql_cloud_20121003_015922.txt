@@ -1,0 +1,9 @@
+INSERT INTO deudas (_id, montototal, fecha, clientes_id, created_at, updated_at, usuarios_id, estado, montoadeudado) VALUES ('16', '140', '2012-06-02 00:00:00', '31', '2012-10-03 01:57:47', '2012-10-03 01:57:47', '1', 26, '140')
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 273, updated_at = '2012-10-03 01:57:47' WHERE clientes_id = '31'
+INSERT INTO deudas (_id, montototal, fecha, clientes_id, created_at, updated_at, usuarios_id, estado, montoadeudado) VALUES ('17', '150', '2012-06-05 00:00:00', '31', '2012-10-03 01:58:04', '2012-10-03 01:58:04', '1', 26, '150')
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 423, updated_at = '2012-10-03 01:58:04' WHERE clientes_id = '31'
+INSERT INTO deudas (_id, montototal, fecha, clientes_id, created_at, updated_at, usuarios_id, estado, montoadeudado) VALUES ('18', '50', '2012-06-10 00:00:00', '31', '2012-10-03 01:58:19', '2012-10-03 01:58:19', '1', 26, '50')
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 473, updated_at = '2012-10-03 01:58:19' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 473, updated_at = '2012-10-03 01:58:49' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 473, updated_at = '2012-10-03 01:59:05' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 473, updated_at = '2012-10-03 01:59:21' WHERE clientes_id = '31'

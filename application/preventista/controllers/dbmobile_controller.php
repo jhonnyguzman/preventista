@@ -31,6 +31,8 @@ class Dbmobile_Controller extends CI_Controller {
 		$this->load->model('remitos_model');
 		$this->load->model('pagos_model');
 		$this->load->model('pagospedidos_model');
+		$this->load->model('deudas_model');
+		$this->load->model('pagosdeudas_model');
 	}
 
 	function index()
@@ -142,11 +144,10 @@ class Dbmobile_Controller extends CI_Controller {
 					foreach ($records as $f) 
 					{
 						$str_sql = $this->getFormatSqlInsert($f, $value);
-						/*if(!$this->database->exec($str_sql))
+						if(!$this->database->exec($str_sql))
 						{
 						  die("Error al crear la tabla o insertar los datos ");
-						}*/
-						echo " Sentencia: ".$str_sql."<br>";
+						}
 					}
 				}
 		}
@@ -198,6 +199,8 @@ class Dbmobile_Controller extends CI_Controller {
 		$models[] = "remitos_model";
 		$models[] = "pagos_model";
 		$models[] = "pagospedidos_model";
+		$models[] = "deudas_model";
+		$models[] = "pagosdeudas_model";
 		
 		return $models;
 			

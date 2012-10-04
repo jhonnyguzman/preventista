@@ -15,6 +15,7 @@ class Hojaruta_Controller extends CI_Controller {
 		$this->load->model('hojaruta_model');
 		$this->load->model('hojarutadetalle_model');
 		$this->load->model('pedidos_model');
+		$this->load->model('deudas_model');
 		$this->load->model('pedidodetalle_model');
 		$this->load->model('remitos_model');
 		$this->load->model('fleteros_model');
@@ -341,6 +342,7 @@ class Hojaruta_Controller extends CI_Controller {
 		$checkResult1 = array(); $checkResult2 = array();
 
 		$hojaruta_ids =$this->input->post('hojaruta_ids');
+
 		foreach ($hojaruta_ids as $f) 
 		{
 			$hojarutadetalle = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $f));
@@ -363,6 +365,7 @@ class Hojaruta_Controller extends CI_Controller {
 		}else{
 			$this->setPrintSeleccion2_c($hojaruta_ids);
 		}
+		
 	}
 
 
@@ -401,7 +404,7 @@ class Hojaruta_Controller extends CI_Controller {
 					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
 						"clientes_id" => $data['pedido'][0]->clientes_id,
 						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
-					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+					$data["saldocliente"] = $this->getSaldoCliente(
 						$data['pedido'][0]->clientes_id, 
 						$data['pedido'][0]->pedidos_created_at_without_format);
 
@@ -448,7 +451,7 @@ class Hojaruta_Controller extends CI_Controller {
 					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
 						"clientes_id" => $data['pedido'][0]->clientes_id,
 						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
-					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+					$data["saldocliente"] = $this->getSaldoCliente(
 						$data['pedido'][0]->clientes_id, 
 						$data['pedido'][0]->pedidos_created_at_without_format);
 
@@ -487,6 +490,7 @@ class Hojaruta_Controller extends CI_Controller {
 	{
 		$this->load->model('cuentacorriente_model'); 
 		$this->load->model('pagospedidos_model');
+		$this->load->model('pagosdeudas_model');
 
 		$flag = false; $i = 0; $data = array();
 		$hojaruta_id = $this->input->post('hojaruta_id');
@@ -500,7 +504,7 @@ class Hojaruta_Controller extends CI_Controller {
 		$gmontos = $this->input->post("gmontos");
 		
 		//datos de pagos casuales
-		$clientes_id = $this->input->post("clientes_id");
+		$pclientes_id = $this->input->post("pclientes_id");
 		$pmontos = $this->input->post("pmontos");
 		
 		
@@ -537,9 +541,26 @@ class Hojaruta_Controller extends CI_Controller {
 		//cargamos los gastos ingresados
 		$this->cargarGastos($gdescrip, $gmontos, $hojaruta_id);
 		//cargamos los pagos casuales ingresados
-		$this->cargarPagosCasuales($clientes_id, $pmontos);
+		$this->cargarPagosCasuales($pclientes_id, $pmontos);
 		
 		$this->load->view('hojaruta_view/result_evaluacion', $data);
+
+		/*echo "<pre>";
+		print_r($monto_recibido);
+		echo "</pre>";
+		echo "<pre>";
+		print_r($pclientes_id);
+		echo "</pre>";
+		echo "<pre>";
+		print_r($pmontos);
+		echo "</pre>";
+		echo "<pre>";
+		print_r($gmontos);
+		echo "</pre>";
+		echo "<pre>";
+		print_r($gdescrip);
+		echo "</pre>";*/
+
 
 	}
 
@@ -555,25 +576,27 @@ class Hojaruta_Controller extends CI_Controller {
 	{
 		$pedido = $this->pedidos_model->get_m(array('pedidos_id' => $pedidos_id));
 
-		if($pedido){
-			$data_pagos['pagos_id'] = $this->preferences->getNextId('pagos_next_id');
-			$data_pagos['pagos_monto'] = $monto;
-			$data_pagos['clientes_id'] = $pedido[0]->clientes_id;
-			$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
-			$data_pagos['pagos_fechaingreso'] = $this->basicrud->formatDateToBD();
-			$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
+		if(count($pedido) > 0){
 			if($monto != ''){
+				$data_pagos['pagos_id'] = $this->preferences->getNextId('pagos_next_id');
+				$data_pagos['pagos_monto'] = $monto;
+				$data_pagos['clientes_id'] = $pedido[0]->clientes_id;
+				$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
+				$data_pagos['pagos_fechaingreso'] = $this->basicrud->formatDateToBD();
+				$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
+
 				if($id_pagos = $this->pagos_model->add_m($data_pagos)){
 					$data_pagos['pagos_id'] = $id_pagos;
 					$this->preferences->editNextId('pagos_next_id',$id_pagos);
 					$estado = $this->basicrud->calcDeudaCliente($data_pagos);
 				}
 			}else{
-				$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $data_pagos['clientes_id']));
-				$haber = $this->pedidos_model->getSumPedidos1($data_pagos['clientes_id']);
-				$debe = $this->pedidos_model->getSumPedidos2($data_pagos['clientes_id']);
-				$this->basicrud->updateEstadoContable($data_pagos['clientes_id'], $haber, $debe);
+				$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $pedido[0]->clientes_id));
+				$haber = $this->pedidos_model->getSumPedidos1($pedido[0]->clientes_id) + $this->deudas_model->getSumDeudas1($pedido[0]->clientes_id);
+				$debe = $this->pedidos_model->getSumPedidos2($pedido[0]->clientes_id) + $this->deudas_model->getSumDeudas2($pedido[0]->clientes_id);
+				$this->basicrud->updateEstadoContable($pedido[0]->clientes_id, $haber, $debe);
 			}
+
 		}
 	}
 
@@ -606,24 +629,30 @@ class Hojaruta_Controller extends CI_Controller {
 	 * @access public
 	 * @return void
 	 */
-	function cargarPagosCasuales($clientes_id, $pmontos)
+	function cargarPagosCasuales($pclientes_id = array(), $pmontos = array())
 	{
-		for($i=0; $i<count($clientes_id); $i++)
+		if($pclientes_id)
 		{
-			$data_pagos  = array();
-			$data_pagos['pagos_id'] = $this->preferences->getNextId('pagos_next_id');
-			$data_pagos['pagos_monto'] = $pmontos[$i];
-			$data_pagos['clientes_id'] = $clientes_id[$i];
-			$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
-			$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
+			for($i=0; $i<count($pclientes_id); $i++)
+			{
+				$data_pagos  = array();
+				$data_pagos['pagos_id'] = $this->preferences->getNextId('pagos_next_id');
+				$data_pagos['pagos_monto'] = $pmontos[$i];
+				$data_pagos['clientes_id'] = $pclientes_id[$i];
+				$data_pagos['usuarios_id'] = $this->session->userdata("usuarios_id");
+				$data_pagos['pagos_updated_at'] = $this->basicrud->formatDateToBD();
 
-			if($id_pagos = $this->pagos_model->add_m($data_pagos)){
-				$data_pagos['pagos_id'] = $id_pagos;
-				$this->preferences->editNextId('pagos_next_id',$id_pagos);				
-				if($this->basicrud->calcDeudaCliente($data_pagos)){
-					$data['pago'] = $data_pagos;
+				if($id_pagos = $this->pagos_model->add_m($data_pagos)){
+					$data_pagos['pagos_id'] = $id_pagos;
+					$this->preferences->editNextId('pagos_next_id',$id_pagos);				
+					if($this->basicrud->calcDeudaCliente($data_pagos)){
+						$data['pago'] = $data_pagos;
+					}
 				}
 			}
+			echo "<pre>";
+			print_r($pclientes_id);
+			echo "</pre>";
 		}
 	}
 
@@ -698,7 +727,7 @@ class Hojaruta_Controller extends CI_Controller {
 					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
 						"clientes_id" => $data['pedido'][0]->clientes_id,
 						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
-					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+					$data["saldocliente"] = $this->getSaldoCliente(
 						$data['pedido'][0]->clientes_id, 
 						$data['pedido'][0]->pedidos_created_at_without_format);
 
@@ -719,7 +748,7 @@ class Hojaruta_Controller extends CI_Controller {
 
 
 	/**
-	* Esta función permite un txt con todos los remitos  
+	* Esta función permite generar un txt con todos los remitos  
 	* de las lineas de una hoja de ruta seleccionadas
 	*/
 	function printRemitos2($hojaruta_id,$list)
@@ -747,7 +776,7 @@ class Hojaruta_Controller extends CI_Controller {
 					$data["pedidosadeudados"] = $this->pedidos_model->getPedidosAdeudados2_m(array(
 						"clientes_id" => $data['pedido'][0]->clientes_id,
 						'remitos_created_at' => $data['remito'][0]->remitos_created_at_without_format));
-					$data["saldocliente"] = $this->pedidos_model->getSumPedidos3(
+					$data["saldocliente"] = $this->getSaldoCliente(
 						$data['pedido'][0]->clientes_id, 
 						$data['pedido'][0]->pedidos_created_at_without_format);
 
@@ -759,9 +788,21 @@ class Hojaruta_Controller extends CI_Controller {
 			$data = $html;
 			$name = $this->basicrud->setFileName('Remitos').".txt";
 			force_download($name, $data);
+
+
 			
 		}
     	
+	}
+
+
+	function getSaldoCliente($clientes_id, $pedido_createt_at)
+	{
+		$pedidosadeudados = $this->pedidos_model->getSumPedidos3($clientes_id, $pedido_createt_at);
+
+		$deudassinpagar = $this->deudas_model->getSumDeudas3($clientes_id, $pedido_createt_at);
+
+		return $saldo_cliente = $pedidosadeudados +  $deudassinpagar;
 	}
 
 

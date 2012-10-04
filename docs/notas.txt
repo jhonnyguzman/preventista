@@ -4,21 +4,72 @@
 - Realizar abm de marca y rubro pero antes hacer backup de archivos actuales de rubros
 - Realizar abm de articulos 
 
+Fecha 19-09-2012
+---------------------
 
-function get_c($marcas_parent)
-	{
-		$data = '';	
-		$marcas = $this->marcas_model->get_m(array('marcas_parent' => $marcas_parent, 'marcas_estado' => 1));
+***Móvil***
 
-		if(count($marcas) > 0){
-			
-			$data = "<select name='marcas_id' id='marcas_id' onClick=\"getR(this,'".base_url()."marcas_controller/get_c/','rubros')\">";
-			foreach ($marcas as $f) {
-				$data.= "<option value='".$f->marcas_id."'>".$f->marcas_descripcion."</option>";
-			}
-			$data.= "</select>";
-		}
+	Gestion de pedidos 
+	-----------------------
 
-		echo $data;
-	}
-&nbsp;
+		- Alta de pedidos 
+
+				-  Subtotal marca "0" -> verificar
+				-  Monto acordado no toma "0" -> LISTO
+
+		- Eliminar mensajes como por ejemplo: "stock no disponible": hacer que si 
+		  un articulo no posee stock suficiente marque en rojo dicho
+		  articulo. -> LISTO (se cambio el tiempo de duracion del mensaje Toast)
+		  
+		- Eliminar mensajes como por ejemplo: "Articulos agregado correctamente"
+
+		- Ver el tema de la fecha de alta del pedido. Todos los pedidos se cargan con fecha del dia
+	      siguiente.-> LISTO
+
+		- Verificar que si se presiona sin querer la tecla de "back" al momento de cargar un pedido,
+		  informe que si quiere guardar el pedido o cancelar la operacion de carga. -> LISTO
+
+		- Cuando se termine de cargar un pedido, el  flujo de ejecución de la aplicacion debe ir a la
+		  parte de seleccion de cliente. -> LISTO
+
+	BUGs
+	----
+
+		- Al momento de cargar un pedido la pantalla se sube hacia arriba. verificar eso. -> LISTO
+		- Cuando  selecciono un articulo para agregarlo a un pedido automaticamente me muestra el teclado para
+		  ingresar la cantidad y luego presionar el boton de añadir. Pero si  quiero simplemente seleccionar un articulo
+		  y luego seleccionar otro, tengo volver con la tecla "back" para que desapareza el teclaro numerico y tengo
+		  que hacer click en el campo descripcion. son muchos pasos. verificar eso.
+
+
+***WEB***
+
+	-  Agregar stock en dinero -> compra : sumatoria total de precios de compra de articulos
+						   -> venta : sumatoria total de precio de venta de articulos ->LISTO
+
+
+
+	Seccion de articulos
+	----------------------
+		
+		- Añadir mas resultados a la paginacion -> LISTO
+		- Cambiar ordenamiento por descripción  -> LISTO
+		- Los mismo para clientes -> LISTO
+
+
+	- Historial de deudas
+		
+		- fecha
+		- monto
+		- cliente
+
+	 se debe crear un historial de deudas para iniciar con el trabajo del sistema. Al momento de usar el sistema
+	 los clientes viene con un historial de deudas. Esas deudas deben cargarse en el sistema previamente
+	 a empezar a usar el sistema. -> LISTO
+
+	 Seccion de pedidos
+	 -------------------
+
+	 	- Filtrar todos los pedidos salvo aquellos que tengan estado cancelado. Cuando se ingresa a la seccion de pedidos
+	 	se debe filtrar todos los pedidos salvo los que tengan estado 'cancelado'. ->LISTO
+

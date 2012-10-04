@@ -8,7 +8,7 @@
 						<tr>
 							<th>Fecha</th>
 							<th>Pedido Id</th>
-							<th>Monto total</th>
+							<th>Utilidad</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -72,7 +72,7 @@
 				<p>No results!</p>
 			<?php endif; ?>
 		</div>-->
-	</div>
+	<!--</div>-->
 	<!--<div id="result-list-ganancia">
 		<span class="markUtilidades">Ganancia: $&nbsp; <?php echo $ingreso - $egreso; ?> </span>
 	</div>-->
@@ -80,7 +80,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){ 
-		setPagination('<?=base_url()?>utilidades_controller/search_c','result-list-wrapper');
+		setPaginationTwo('<?=base_url()?>utilidades_controller/search_c','result-list-wrapper','formSearchUtilidades');
 	});
 </script>
 

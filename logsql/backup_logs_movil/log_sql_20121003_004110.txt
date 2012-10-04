@@ -1,0 +1,6 @@
+INSERT INTO pagos (pagos_id,pagos_monto,clientes_id,usuarios_id,pagos_created_at,pagos_updated_at) VALUES (50054,60.0,31,1, 'null','null');
+INSERT INTO pagospedidos (pagospedidos_id,pedidos_id, pagos_id, pagospedidos_montocubierto,pagospedidos_created_at,pagospedidos_updated_at) VALUES (50058,10,50054,47.0, 'null','null');
+UPDATE pedidos SET pedidos_estado = 16, pedidos_updated_at = '2012-10-02 23:39:15' WHERE pedidos_id = 10;
+INSERT INTO pagospedidos (pagospedidos_id,pedidos_id, pagos_id, pagospedidos_montocubierto,pagospedidos_created_at,pagospedidos_updated_at) VALUES (50059,11,50054,13.0, 'null','null');
+UPDATE pedidos SET pedidos_montoadeudado = 161.0, pedidos_estado = 15, pedidos_updated_at = '2012-10-02 23:39:15' WHERE pedidos_id = 11;
+UPDATE cuentacorriente SET cuentacorriente_haber= 783.0, cuentacorriente_debe = 161.0, cuentacorriente_updated_at = '2012-39-02 23:39:16' WHERE clientes_id = 31;

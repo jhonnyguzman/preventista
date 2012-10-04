@@ -318,6 +318,11 @@ class Pedidos_Controller extends CI_Controller {
 			$data_search_pedidos['sortBy'] = 'pedidos_created_at';
 			$data_search_pedidos['sortDirection'] = 'desc';
 
+			if($flag == 0){
+				$data_search_pagination['not_in_pedidos_estado'] = 9; //excluir pedidos con estado 'cancelado'
+				$data_search_pedidos['not_in_pedidos_estado'] = 9;  //excluir pedidos con estado 'cancelado'
+			}
+
 			if($flag==1){
 				$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'pedidos_model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);
 				$data['pedidos'] = $this->pedidos_model->get_m($data_search_pedidos);

@@ -1,0 +1,20 @@
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1400, debe = 473, updated_at = '2012-10-03 02:00:10' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1700, debe = 173, updated_at = '2012-10-03 02:01:54' WHERE clientes_id = '31'
+INSERT INTO hojaruta (_id, fleteros_id, usuarios_id, estado, created_at, updated_at) VALUES ('20', '1', '1', 10, '2012-10-03 03:46:53', '2012-10-03 03:46:53')
+INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('25', 20, '50051', '2012-10-03 03:46:53')
+UPDATE pedidos SET estado = 7 WHERE _id = '50051'
+INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('26', 20, '50050', '2012-10-03 03:46:53')
+UPDATE pedidos SET estado = 7 WHERE _id = '50050'
+INSERT INTO remitos (_id, hojarutadetalle_id, estado) VALUES ('31', '25', 12)
+INSERT INTO remitos (_id, hojarutadetalle_id, estado) VALUES ('32', '26', 12)
+UPDATE hojaruta SET estado = 11 WHERE _id = '20'
+UPDATE remitos SET estado = 13 WHERE _id = '31'
+UPDATE pedidos SET estado = 8 WHERE _id = '50051'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1700, debe = 245.6, updated_at = '2012-10-03 03:47:11' WHERE clientes_id = '31'
+UPDATE remitos SET estado = 13 WHERE _id = '32'
+UPDATE pedidos SET estado = 8 WHERE _id = '50050'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1700, debe = 767.72, updated_at = '2012-10-03 03:47:11' WHERE clientes_id = '31'
+UPDATE hojaruta SET estado = 25 WHERE _id = '20'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1700, debe = 767.72, updated_at = '2012-10-03 03:47:29' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1700, debe = 767.72, updated_at = '2012-10-03 03:47:50' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1700, debe = 767.72, updated_at = '2012-10-03 03:48:29' WHERE clientes_id = '31'

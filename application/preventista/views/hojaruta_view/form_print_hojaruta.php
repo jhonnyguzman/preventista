@@ -6,6 +6,15 @@
 		<?php foreach($arrKeys as $f): ?>
 			<input type="hidden" name="hojaruta_ids[]" id="hojaruta_ids" value="<?=$f?>">
 		<?php endforeach; ?>
-		<input type="submit" name="aceptar" value="Aceptar"/>
+		<input type="submit" name="aceptar" id="btn-aceptar" value="Aceptar"/>
 	</form>
 <?php endif; ?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#btn-aceptar").click(function(){
+			$(".ui-dialog-titlebar-close").trigger('click');
+		});
+	})
+</script>

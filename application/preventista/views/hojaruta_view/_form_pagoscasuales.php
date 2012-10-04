@@ -48,7 +48,7 @@
 			var tds = "<tr>";
 			for(var i=0; i < n; i++){
 				 if(i == 0)
-				 	tds += "<td>"+capellido+"<input type='hidden' name='clientes_id[]' id='clientes_id-"+cantFilasPagosCasuales+"' value='"+cid+"'/></td>";
+				 	tds += "<td>"+capellido+"<input type='hidden' name='pclientes_id[]' id='clientes_id-"+cantFilasPagosCasuales+"' value='"+cid+"'/></td>";
 				 if(i == 1)
 				 	tds += "<td>$<input type='text' name='pmontos[]' id='pmontos-"+cantFilasPagosCasuales+"' value='"+pmonto+"'/></td>";
 				  if(i == 2)

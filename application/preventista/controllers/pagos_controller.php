@@ -18,6 +18,9 @@ class Pagos_Controller extends CI_Controller {
 		$this->load->model('tabgral_model');
 		$this->load->model('cuentacorriente_model');
 		$this->load->model('pagospedidos_model');
+		$this->load->model('deudas_model');
+		$this->load->model('pedidos_model');
+		$this->load->model('pagosdeudas_model');
 		$this->config->load('pagos_settings');
 		$data['flags'] = $this->basicauth->getPermissions('pagos');
 		$this->flagR = $data['flags']['flag-read'];
@@ -209,72 +212,6 @@ class Pagos_Controller extends CI_Controller {
 	}
 
 
-	/*function calcDeuda($pago = array())
-	{
-		//consultar todos los pedidos del cliente con estado entregado o parcialmente pagado
-		$pedidos = $this->pedidos_model->get2_m(array('clientes_id' => $pago['clientes_id'], 'pedidos_estado1' => 8,'pedidos_estado2' => 15));
-		$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $pago['clientes_id']));
-		if($cc)
-		{
-			$saldo = $pago['pagos_monto'];
-			$flag = true;
-
-			if(isset($pedidos) && is_array($pedidos) && count($pedidos) > 0 )
-			{
-				//comprobamos si existe saldo negativo en la cuenta corriente del cliente
-				// si existe lo sumamos al monto del pago ingresado
-				if($cc[0]->cuentacorriente_debe < 0)
-					$saldo = $saldo + ($cc[0]->cuentacorriente_debe * (-1));
-
-				foreach ($pedidos as $f) 
-				{
-					if($flag)
-					{
-						//verifico si existe montoadeudado
-						if($f->pedidos_montoadeudado > 0) $saldo = $saldo - $f->pedidos_montoadeudado;
-						else $saldo = $saldo - $f->peididos_montototal;
-
-						if($saldo >= 0){
-							$pr['pedidos_id'] = $f->pedidos_id;
-							$pr['pagos_id'] = $pago['pagos_id'];
-							$pr['pagospedidos_montocubierto'] =$f->peididos_montototal;
-							$pagospedidos = $this->pagospedidos_model->add_m($pr);
-							$pedido = $this->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 16, 'pedidos_montoadeudado' => 0)); // estado de pedido = pagado y entregado
-							if($saldo == 0) $flag = false;
-						}else{	
-							$porcobrar = $saldo * (-1);
-							$pagoparcial = $f->peididos_montototal - $porcobrar;
-							$pr['pedidos_id'] = $f->pedidos_id;
-							$pr['pagos_id'] = $pago['pagos_id'];
-							$pr['pagospedidos_montocubierto'] = $pagoparcial;
-							$pagospedidos = $this->pagospedidos_model->add_m($pr);
-							$pedido = $this->pedidos_model->edit_m(array('pedidos_id' => $f->pedidos_id, 'pedidos_estado' => 15, 'pedidos_montoadeudado' => $porcobrar)); // estado de pedido = entregado y parcialmente pagado
-							$flag = false;
-						}
-					}	
-				}
-				if($saldo > 0){
-					$haber = $this->pedidos_model->getSumPedidos1($pago['clientes_id']);
-					$debe = $this->pedidos_model->getSumPedidos2($pago['clientes_id']) - $saldo;
-					$this->basicrud->updateEstadoContable($pago['clientes_id'], $haber, $debe);
-				}else{
-					$haber = $this->pedidos_model->getSumPedidos1($pago['clientes_id']);
-					$debe = $this->pedidos_model->getSumPedidos2($pago['clientes_id']);
-					$this->basicrud->updateEstadoContable($pago['clientes_id'], $haber, $debe);
-				}
-			}else{
-				$haber = $this->pedidos_model->getSumPedidos1($pago['clientes_id']);
-				if($cc[0]->cuentacorriente_debe < 0) $debe = $cc[0]->cuentacorriente_debe - $saldo;
-				else $debe = $this->pedidos_model->getSumPedidos2($pago['clientes_id']) - $saldo;
-				$this->basicrud->updateEstadoContable($pago['clientes_id'], $haber, $debe);
-			}
-			return true;
-		}
-
-		return true;
-	}
-	*/
-
 	/**
 	 * This function sends the id of record to the
 	 * method of the model responsible for deleting 
@@ -292,12 +229,114 @@ class Pagos_Controller extends CI_Controller {
 			exit();
 		}
 
+		$this->checkPagosPedidos($pagos_id);
+		$this->checkPagosDeudas($pagos_id);
+
 		if($this->pagos_model->delete_m($pagos_id)){ 
 			$this->session->set_flashdata('flashConfirm', $this->config->item('pagos_flash_delete_message')); 
 			redirect('pagos_controller','location');
 		}else{
 			$this->session->set_flashdata('flashError', $this->config->item('pagos_flash_error_delete_message')); 
 			redirect('pagos_controller','location');
+		}
+
+	}
+
+
+	/**
+	 * Esta funcion verifica si para un pago dado existen lienas en la tabla
+	 * pagospedidos. Si es asi hace la operación contraria a insertar un pago.
+	 * Es decir que suma la deuda del cliente basado en el pago a eliminar 
+	 * y a cuentos pedidos a efectado dicho pago.
+	 *
+	 * @access public
+	 * @param integer $pagos_id id of record
+	 * @return void
+	 */
+	function checkPagosPedidos($pagos_id)
+	{
+
+		$pagospedidos = $this->pagospedidos_model->get_m(array('pagos_id' => $pagos_id));
+		if(count($pagospedidos) > 0)
+		{
+			foreach ($pagospedidos as $f) 
+			{
+				$pedido = $this->pedidos_model->get_m(array('pedidos_id' => $f->pedidos_id));
+				if(($pedido[0]->pedidos_montoadeudado + $f->pagospedidos_montocubierto) < $pedido[0]->peididos_montototal)
+				{
+					$this->pedidos_model->edit_m(
+						array(
+							'pedidos_id' => $pedido[0]->pedidos_id, 
+							'pedidos_montoadeudado' => ($pedido[0]->pedidos_montoadeudado + $f->pagospedidos_montocubierto),
+							'pedidos_estado' => 15)); //estado de pedido igual a 'Entregado y parcialmente pagado'
+
+				}else{
+					$this->pedidos_model->edit_m(
+						array(
+							'pedidos_id' => $pedido[0]->pedidos_id, 
+							'pedidos_montoadeudado' => ($pedido[0]->pedidos_montoadeudado + $f->pagospedidos_montocubierto),
+							'pedidos_estado' => 8)); //estado de pedido igual a 'entregado'	
+				}
+
+				$this->pagospedidos_model->delete_m($f->pagospedidos_id);
+
+				//actualzimos cuenta corriente
+				$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $pedido[0]->clientes_id));
+				$haber = $this->pedidos_model->getSumPedidos1($pedido[0]->clientes_id) + $this->deudas_model->getSumDeudas1($pedido[0]->clientes_id);
+				$debe = $this->pedidos_model->getSumPedidos2($pedido[0]->clientes_id) + $this->deudas_model->getSumDeudas2($pedido[0]->clientes_id);
+				$this->basicrud->updateEstadoContable($pedido[0]->clientes_id, $haber, $debe);
+
+			}
+
+		}
+
+	}
+
+
+	/**
+	 * Esta funcion verifica si para un pago dado existen lienas en la tabla
+	 * pagosdeudas. Si es asi hace la operación contraria a insertar un pago.
+	 * Es decir que suma la deuda del cliente basado en el pago y a cuantas deudas
+	 * afecto dicho pago.
+	 *
+	 * @access public
+	 * @param integer $pagos_id id of record
+	 * @return void
+	 */
+	function checkPagosDeudas($pagos_id)
+	{
+
+		$pagosdeudas = $this->pagosdeudas_model->get_m(array('pagos_id' => $pagos_id));
+		if(count($pagosdeudas) > 0)
+		{
+			foreach ($pagosdeudas as $f) 
+			{
+				$deuda = $this->deudas_model->get_m(array('deudas_id' => $f->deudas_id));
+				if(($deuda[0]->deudas_montoadeudado + $f->pagosdeudas_montocubierto) < $deuda[0]->deudas_montototal)
+				{
+					$this->deudas_model->edit_m(
+						array(
+							'deudas_id' => $deuda[0]->deudas_id, 
+							'deudas_montoadeudado' => ($deuda[0]->deudas_montoadeudado + $f->pagosdeudas_montocubierto),
+							'deudas_estado' => 27)); //estado de pedido igual a 'Parcialmente pagada'
+				}else{
+					$this->deudas_model->edit_m(
+						array(
+							'deudas_id' => $deuda[0]->deudas_id, 
+							'deudas_montoadeudado' =>($deuda[0]->deudas_montoadeudado + $f->pagosdeudas_montocubierto),
+							'deudas_estado' => 26)); //estado de pedido igual a 'Sin pagar'
+				}
+
+				$this->pagosdeudas_model->delete_m($f->pagosdeudas_id);
+
+				//actualzimos cuenta corriente
+				$cc = $this->cuentacorriente_model->get_m(array('clientes_id' => $deuda[0]->clientes_id));
+				$haber = $this->pedidos_model->getSumPedidos1($deuda[0]->clientes_id) + $this->deudas_model->getSumDeudas1($deuda[0]->clientes_id);
+				$debe = $this->pedidos_model->getSumPedidos2($deuda[0]->clientes_id) + $this->deudas_model->getSumDeudas2($deuda[0]->clientes_id);
+				$this->basicrud->updateEstadoContable($deuda[0]->clientes_id, $haber, $debe);
+
+			}
+
 		}
 
 	}
@@ -336,8 +375,8 @@ class Pagos_Controller extends CI_Controller {
 			$data_search_pagination['count'] = true;
 			$data_search_pagos['limit'] = $this->config->item('pag_perpage');
 			$data_search_pagos['offset'] = $offset;
-			$data_search_pagos['sortBy'] = 'pagos_id';
-			$data_search_pagos['sortDirection'] = 'asc';
+			$data_search_pagos['sortBy'] = 'pagos_created_at';
+			$data_search_pagos['sortDirection'] = 'desc';
 
 			if($flag==1){
 				$data['pagination'] = $this->basicrud->getPagination(array('nameModel'=>'pagos_model','perpage'=>$this->config->item('pag_perpage')),$data_search_pagination);

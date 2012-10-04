@@ -1,8 +1,0 @@
-DELETE FROM cuentacorriente WHERE _id = '17'
-INSERT INTO cuentacorriente (clientes_id, haber, debe, updated_at) VALUES ('18', '10', '', '', '2012-07-31 21:53:51')
-UPDATE cuentacorriente SET clientes_id = '10', haber = '0', debe = '0', updated_at = '2012-07-31 22:06:58' WHERE _id = '18' AND clientes_id = '10'
-UPDATE cuentacorriente SET clientes_id = '10', haber = '0', debe = '10', updated_at = '2012-07-31 22:07:04' WHERE _id = '18' AND clientes_id = '10'
-UPDATE cuentacorriente SET clientes_id = '10', haber = '0', debe = '0', updated_at = '2012-07-31 22:07:10' WHERE _id = '18' AND clientes_id = '10'
-UPDATE cuentacorriente SET clientes_id = '10', haber = '0', debe = '0', updated_at = '2012-07-31 22:07:33' WHERE _id = '18' AND clientes_id = '10'
-UPDATE cuentacorriente SET clientes_id = '10', haber = '12', debe = '0', updated_at = '2012-07-31 22:07:40' WHERE _id = '18' AND clientes_id = '10'
-UPDATE cuentacorriente SET clientes_id = '10', haber = '0', debe = '0', updated_at = '2012-07-31 22:07:46' WHERE _id = '18' AND clientes_id = '10'

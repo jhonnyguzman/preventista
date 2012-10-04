@@ -125,6 +125,9 @@ class Pedidos_Model extends CI_Model {
 		if(isset($options['pedidos_observaciones']))
 			$this->db->where('p.pedidos_observaciones', $options['pedidos_observaciones']);
 
+		if(isset($options['not_in_pedidos_estado']))
+			$this->db->where_not_in('pedidos_estado',$options['not_in_pedidos_estado']);
+
 		//limit / offset
 		if(isset($options['limit']) && isset($options['offset']))
 			$this->db->limit($options['limit'],$options['offset']);

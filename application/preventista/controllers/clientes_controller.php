@@ -205,7 +205,7 @@ class Clientes_Controller extends CI_Controller {
 			$data_search_pagination['count'] = true;
 			$data_search_clientes['limit'] = $this->config->item('pag_perpage');
 			$data_search_clientes['offset'] = $offset;
-			$data_search_clientes['sortBy'] = 'clientes_id';
+			$data_search_clientes['sortBy'] = 'clientes_apellido';
 			$data_search_clientes['sortDirection'] = 'asc';
 
 			if($flag==1){

@@ -16,7 +16,7 @@ $config['clientes_id']='Cliente';
 $config['clientes_apellido']='Cliente';
 $config['clientes_nombre']='Cliente';
 $config['clientes_apellnom']='Cliente';
-$config['cuentacorriente_haber']='Haber';
+$config['cuentacorriente_haber']='Pagado';
 $config['cuentacorriente_debe']='Debe';
 $config['cuentacorriente_saldo']='Saldo';
 $config['cuentacorriente_created_at']='Fecha de alta';
@@ -42,8 +42,8 @@ $config['show_clientes_apellnom']= 1;
 $config['show_cuentacorriente_haber']= 1;
 $config['show_cuentacorriente_debe']= 1;
 $config['show_cuentacorriente_saldo']= 0;
-$config['show_cuentacorriente_created_at']= 1;
-$config['show_cuentacorriente_updated_at']= 1;
+$config['show_cuentacorriente_created_at']= 0;
+$config['show_cuentacorriente_updated_at']= 0;
 
 /* Config required fields */
 

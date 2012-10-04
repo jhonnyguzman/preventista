@@ -106,9 +106,9 @@ class Clientes_Model extends CI_Model {
 		if(isset($options['clientes_id']))
 			$this->db->where('c.clientes_id', $options['clientes_id']);
 		if(isset($options['clientes_nombre']))
-			$this->db->like('c.clientes_nombre', $options['clientes_nombre']);
+			$this->db->like('c.clientes_nombre', $options['clientes_nombre'],'after');
 		if(isset($options['clientes_apellido']))
-			$this->db->like('c.clientes_apellido', $options['clientes_apellido']);
+			$this->db->like('c.clientes_apellido', $options['clientes_apellido'],'after');
 		if(isset($options['clientes_direccion']))
 			$this->db->like('c.clientes_direccion', $options['clientes_direccion']);
 		if(isset($options['clientes_telefono']))
@@ -166,8 +166,8 @@ class Clientes_Model extends CI_Model {
 		//code here
 		$fields=array();
 		$fields[]='clientes_id';
-		$fields[]='clientes_nombre';
 		$fields[]='clientes_apellido';
+		$fields[]='clientes_nombre';
 		$fields[]='clientes_direccion';
 		$fields[]='clientes_telefono';
 		$fields[]='clientescategoria_id';

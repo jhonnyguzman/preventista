@@ -1,0 +1,18 @@
+Dominio	www.marcospreventista.com.ar
+Plan	VPS1
+Usuario	root
+Clave	EH4K8GtPUc
+MySQL Host	localhost
+Correo entrante	marcospreventista.com.ar
+Correo saliente	marcospreventista.com.ar
+
+
+FTP
+
+Datos de Acceso:
+
+Host	www.marcospreventista.com.ar
+Alternativo	184.75.251.75
+Usuario	root
+Clave	EH4K8GtPUc
+Puerto	21

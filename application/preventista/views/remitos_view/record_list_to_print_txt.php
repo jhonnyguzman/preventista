@@ -50,7 +50,7 @@
 		echo str_pad("Fletero: ".$hojaruta->fleteros_apellnom, 39)."\n";
 		echo str_pad(' ', 20)."Total Pedido: $ ".$pedido[0]->peididos_montototal."\n";
 		echo str_pad(' ', 23)."Saldo C/C: $ ".$saldocliente."\n";
-		echo str_pad(' ', 27)."Deuda: $ ".$saldocliente."\n";
+		echo str_pad(' ', 27)."Deuda: $ ".($saldocliente + $pedido[0]->peididos_montototal)."\n";
 		echo str_pad("Firma Cliente: ", 30,'.')."\n";
 
 		echo "\n".str_pad("-",47,"-");

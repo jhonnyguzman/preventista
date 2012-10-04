@@ -9,4 +9,6 @@
 				<a href="#" onClick="loadPage('<?=base_url()?>index.php/articulos_controller/add_c','right-content')" id="icon-new" title='Nuevo'>Nuevo</a>
 			</li>
 	<?php endif; ?>
+
+	<li><a href="#" onClick="dialogUp('content_detail_modal',300,300,'<?=base_url()?>articulos_controller/showStockDinero_c','Stock en Dinero')" id="icon-stock_dinero">Ver stock en Dinero</a></li>
 </ul>

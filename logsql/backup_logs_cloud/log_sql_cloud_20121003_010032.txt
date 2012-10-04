@@ -1,0 +1,5 @@
+INSERT INTO deudas (montototal, fecha, clientes_id, updated_at, usuarios_id, estado, montoadeudado) VALUES ('150', '2012-05-15', '31', '2012-10-03 00:49:42', '1', 26, '150')
+UPDATE cuentacorriente SET clientes_id = '31', haber = 830, debe = 458, updated_at = '2012-10-03 00:49:42' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1000, debe = 288, updated_at = '2012-10-03 00:59:54' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1000, debe = 288, updated_at = '2012-10-03 01:00:00' WHERE clientes_id = '31'
+UPDATE cuentacorriente SET clientes_id = '31', haber = 1000, debe = 288, updated_at = '2012-10-03 01:00:14' WHERE clientes_id = '31'

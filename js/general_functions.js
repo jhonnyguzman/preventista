@@ -488,10 +488,7 @@ function getModalWindowAdvancedTwo(modal_id,url,w,h,nameChk,url2)
 		$("#"+modal_id).load(url + list).dialog({ 
  			width:w,
  			height:h,
- 			modal:true,
- 			beforeClose: function(event, ui) { 
-				//loadPage(url2,'right-content');				
-			}	
+ 			modal:true	
 		});
 	}else{
 		showAleatoryMessage('Selecciona al menos un registro!');
@@ -617,7 +614,7 @@ function getPrecio(cat,i){
 	else 
 	{ 
 		$("#articulos_precio-"+i).attr('id','articulos_precio3-'+i); 
-		$("#articulos_precio-"+i).attr('name','articulos_precio3-'+i); 
+		$("#articulos_precio3-"+i).attr('name','articulos_precio3-'+i); 
 		return 'articulos_precio3-'+i; 
 	}
 }

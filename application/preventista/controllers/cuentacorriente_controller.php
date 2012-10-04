@@ -15,6 +15,7 @@ class Cuentacorriente_Controller extends CI_Controller {
 		$this->load->model('cuentacorriente_model');
 		$this->load->model('clientes_model');
 		$this->load->model('pedidos_model');
+		$this->load->model('deudas_model');
 		$this->config->load('cuentacorriente_settings');
 		$data['flags'] = $this->basicauth->getPermissions('cuentacorriente');
 		$this->flagR = $data['flags']['flag-read'];
@@ -31,6 +32,7 @@ class Cuentacorriente_Controller extends CI_Controller {
 			$data['flag'] = $this->flags;
 			$data['subtitle'] = $this->config->item('recordListTitle');
 			$data['fieldSearch'] = $this->basicrud->getFieldSearch($this->cuentacorriente_model->getFieldsTable_m());
+			$data['clientes'] = $this->clientes_model->get_m();
 			$this->load->view('cuentacorriente_view/home_cuentacorriente', $data);
 			$this->search_c();
 		}
@@ -131,6 +133,10 @@ class Cuentacorriente_Controller extends CI_Controller {
 
 	function show_c($clientes_id)
 	{
+		$haber = $this->pedidos_model->getSumPedidos1($clientes_id) + $this->deudas_model->getSumDeudas1($clientes_id);
+		$debe = $this->pedidos_model->getSumPedidos2($clientes_id) + $this->deudas_model->getSumDeudas2($clientes_id);
+		$this->basicrud->updateEstadoContable($clientes_id, $haber, $debe);
+
 		$data["cc"] = $this->cuentacorriente_model->get_m(array('clientes_id' => $clientes_id));
 		$this->load->view('cuentacorriente_view/form_show_cuentacorriente',$data);
 	}
