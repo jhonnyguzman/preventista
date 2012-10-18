@@ -478,7 +478,7 @@ function getModalWindowAdvancedOne(p_url,p_title,p_width,p_height,nameChk)
 }
 
 
-function getModalWindowAdvancedTwo(modal_id,url,w,h,nameChk,url2)
+function getModalWindowAdvancedTwo(modal_id,url,w,h,nameChk,url2,p_title)
 {
 	var list = new Array();
 	$.each($("input[name="+nameChk+"]:checked"), function() {
@@ -488,6 +488,7 @@ function getModalWindowAdvancedTwo(modal_id,url,w,h,nameChk,url2)
 		$("#"+modal_id).load(url + list).dialog({ 
  			width:w,
  			height:h,
+ 			title:p_title,
  			modal:true	
 		});
 	}else{

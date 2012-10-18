@@ -254,12 +254,13 @@ class Pedidodetalle_Model extends CI_Model {
 	}
 
 
-	function getPedidoDetalle_m($pedidodetalle_created_at)
+	function getPedidoDetalle_m($pedidodetalle_created_at, $arrHojaRutas = array() )
 	{
 		$string = "CAST(pd.pedidodetalle_created_at AS DATE) = '".$this->basicrud->getFormatDateToBD($pedidodetalle_created_at)."'";
 		
 		$this->db->select_sum('pd.pedidodetalle_cantidad','cantidadpedido');
 
+		$this->db->where_in('h.hojaruta_id', $arrHojaRutas);
 		$this->db->where($string);
 		
 		$this->db->group_by("pd.articulos_id"); 
@@ -268,7 +269,10 @@ class Pedidodetalle_Model extends CI_Model {
 
 		$this->db->select("pd.articulos_id, COUNT(*) AS cantidad, a.articulos_descripcion", FALSE);
 		
-		$this->db->from("pedidodetalle as pd");
+		$this->db->from("hojaruta as h");
+		$this->db->join("hojarutadetalle as hd","hd.hojaruta_id = h.hojaruta_id");
+		$this->db->join("pedidos as p", "p.pedidos_id = hd.pedidos_id");
+		$this->db->join("pedidodetalle as pd","pd.pedidos_id = p.pedidos_id");
 		$this->db->join("articulos as a","a.articulos_id = pd.articulos_id");
 
 		$query = $this->db->get();	

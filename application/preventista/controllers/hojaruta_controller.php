@@ -329,7 +329,7 @@ class Hojaruta_Controller extends CI_Controller {
 	function showPrintSeleccion_c()
 	{
 		if($this->uri->segment(3)) {
-			$data['arrKeys'] = explode(",", $this->uri->segment(3)); //ids de pedidos
+			$data['arrKeys'] = explode(",", $this->uri->segment(3)); //ids de hojas de rutas
 			if($this->checkEstadoHojaRuta($data['arrKeys']))
 				$data['error_message'] = $this->config->item("hojaruta_flash_errorX4_message");
 		}
@@ -545,23 +545,6 @@ class Hojaruta_Controller extends CI_Controller {
 		
 		$this->load->view('hojaruta_view/result_evaluacion', $data);
 
-		/*echo "<pre>";
-		print_r($monto_recibido);
-		echo "</pre>";
-		echo "<pre>";
-		print_r($pclientes_id);
-		echo "</pre>";
-		echo "<pre>";
-		print_r($pmontos);
-		echo "</pre>";
-		echo "<pre>";
-		print_r($gmontos);
-		echo "</pre>";
-		echo "<pre>";
-		print_r($gdescrip);
-		echo "</pre>";*/
-
-
 	}
 
 
@@ -660,7 +643,7 @@ class Hojaruta_Controller extends CI_Controller {
 	/**
 	* Esta función permite descargar en pdf una hoja de ruta 
 	*/
-	function printOnlyHojaRuta($hojaruta_id)
+	/*function printOnlyHojaRuta($hojaruta_id)
 	{
 		$this->load->helper(array('dompdf', 'file'));
 		
@@ -673,7 +656,7 @@ class Hojaruta_Controller extends CI_Controller {
 				pdf_create($html,'HojaRuta_'.$hojaruta_id,'a5');
 			}
 		}
-	}
+	}*/
 
 
 	/**
@@ -701,7 +684,7 @@ class Hojaruta_Controller extends CI_Controller {
 	* Esta función permite descargar en pdf los remitos  
 	* de las lineas de una hoja de ruta seleccionadas
 	*/
-	function printRemitos($hojaruta_id,$list)
+	/*function printRemitos($hojaruta_id,$list)
 	{
 		$this->load->library('zip');
 		$this->load->helper(array('dompdf', 'file'));
@@ -743,7 +726,7 @@ class Hojaruta_Controller extends CI_Controller {
 			
 		}
     	
-	}
+	}*/
 
 
 
@@ -806,16 +789,38 @@ class Hojaruta_Controller extends CI_Controller {
 	}
 
 
-	/*function setDownload($hojaruta_ids = array())
+	function showDetalleArt_c()
 	{
-		$this->load->library('zip');
-		$data = array();
-		foreach ($hojaruta_ids as $f) 
-		{
-			$data['hojaruta_'.$f] = file_get_contents("./pdfs/hojaruta_".$f.".pdf");
+		if($this->uri->segment(3)) {
+			$data['arrKeys'] = explode(",", $this->uri->segment(3)); //ids de hojas de rutas
+		}
+		$data['fechaActual'] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
+		$this->load->view('hojaruta_view/form_detalle_articulos',$data);
+	}
+
+
+	function searchDetalleArt_c()
+	{
+		$hojaruta_ids = $this->input->post('hojaruta_ids');
+		$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($this->input->post("fechaDetalleArticulo"), $hojaruta_ids);
+		$this->load->view("pedidodetalle_view/record_list_detalle_articulos",$data);
+	}
+
+	function printDetalleArt2_c($dia,$mes,$anio, $hojaruta_ids = '')
+	{
+		$this->load->helper('download');
+		$fecha = $dia."/".$mes."/".$anio;
+
+		if($fecha){
+			$data["title"] = "Detalle de mercadería para el día ".$fecha;
+			$data['hojaruta_ids'] = explode(",", $hojaruta_ids); //ids de hojas de rutas
+			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha,$data['hojaruta_ids']);
+			$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print2', $data, true);
+
+			$data = $html;
+			$name = $this->basicrud->setFileName('DetalleArticulos').".txt";
+			force_download($name, $data);
 		}
 
-		$this->zip->add_data($data);
-		$this->zip->download('my_backup.zip');
-	}*/
+	}
 }

@@ -337,67 +337,6 @@ class Pedidos_Controller extends CI_Controller {
 	}
 
 
-	function showDetalleArt_c()
-	{
-		$data['fechaActual'] = $this->basicrud->formatDateToHuman($this->basicrud->getDateToBDWithOutTime());
-		$this->load->view("pedidos_view/form_detalle_articulos",$data);
-	}
-
-	function searchDetalleArt_c()
-	{
-		$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($this->input->post("fechaDetalleArticulo"));
-		$this->load->view("pedidodetalle_view/record_list_detalle_articulos",$data);
-	}
-
-
-	/**
-	* Esta función permite descargar en pdf con el detalle de articulos para una 
-	* determinada  
-	*/
-	function printDetalleArt_c($dia,$mes,$anio)
-	{
-		$this->load->helper(array('dompdf', 'file'));
-		$fecha = $dia."/".$mes."/".$anio;
-
-		if($fecha){
-			$data["title"] = "Detalle de mercader&iacute;a para el dia ".$fecha;
-			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha);
-			$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print', $data, true);
-			pdf_create($html,$this->basicrud->setFileName('DetalleArticulos'),'a5');
-		}
-	}
-
-
-	function printDetalleArt2_c($dia,$mes,$anio)
-	{
-		$this->load->helper('download');
-		$fecha = $dia."/".$mes."/".$anio;
-
-		if($fecha){
-			$data["title"] = "Detalle de mercadería para el día ".$fecha;
-			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha);
-			$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print2', $data, true);
-
-			$data = $html;
-			$name = $this->basicrud->setFileName('DetalleArticulos').".txt";
-			force_download($name, $data);
-		}
-	}
-
-
-	function printDetalleArt3_c($dia,$mes,$anio)
-	{
-	
-		$fecha = $dia."/".$mes."/".$anio;
-
-		if($fecha){
-			$data["title"] = "Detalle de mercadería para el día ".$fecha;
-			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha);
-			$this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print3', $data);
-		}
-	}
-
-
 	private function getDescripPrecio($clientes_categoria){
 		if($clientes_categoria == 1) return 'articulos_precio1';
 		elseif($clientes_categoria == 2) return 'articulos_precio2';

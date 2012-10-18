@@ -200,8 +200,8 @@ class Pagospedidos_Model extends CI_Model {
 		$fields[]='pedidos_id';
 		$fields[]='pagos_id';
 		$fields[]='pagospedidos_montocubierto';
-		$fields[]='pedidosremitos_created_at';
-		$fields[]='pedidosremitos_updated_at';
+		$fields[]='pagospedidos_created_at';
+		$fields[]='pagospedidos_updated_at';
 		return $fields;
 	}
 }

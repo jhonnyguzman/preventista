@@ -26,7 +26,7 @@ class Pagosdeudas_Model extends CI_Model {
 		//log query
 		$this->arr_log['new_id'] = $this->db->insert_id();
 		$this->arr_log['string'] = $this->db->last_query();
-		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLog($this->arr_log));
+		$this->basicrud->writeFileLog($this->basicrud->writeAddSqlToLogWithoutId($this->arr_log));
 
 		return $this->db->insert_id();
 	}
