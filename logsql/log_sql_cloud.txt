@@ -59,3 +59,6 @@ INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordad
 UPDATE articulos SET stockreal = stockreal - 1 WHERE _id = '9'
 INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (22, 5, '7', '2', '', '18.00', '9', '2012-10-18 21:29:16', '2012-10-18 21:29:16')
 UPDATE articulos SET stockreal = stockreal - 2 WHERE _id = '7'
+INSERT INTO hojaruta (_id, fleteros_id, usuarios_id, estado, created_at, updated_at) VALUES ('3', '1', '1', 10, '2012-10-18 23:29:30', '2012-10-18 23:29:30')
+INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('5', 3, '5', '2012-10-18 23:29:30')
+UPDATE pedidos SET estado = 7 WHERE _id = '5'

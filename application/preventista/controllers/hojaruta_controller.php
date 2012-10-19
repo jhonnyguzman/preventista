@@ -802,25 +802,25 @@ class Hojaruta_Controller extends CI_Controller {
 	function searchDetalleArt_c()
 	{
 		$hojaruta_ids = $this->input->post('hojaruta_ids');
-		$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($this->input->post("fechaDetalleArticulo"), $hojaruta_ids);
+		$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($hojaruta_ids);
 		$this->load->view("pedidodetalle_view/record_list_detalle_articulos",$data);
 	}
 
-	function printDetalleArt2_c($dia,$mes,$anio, $hojaruta_ids = '')
+	function printDetalleArt2_c($hojaruta_ids = '')
 	{
 		$this->load->helper('download');
-		$fecha = $dia."/".$mes."/".$anio;
+		//$fecha = $dia."/".$mes."/".$anio;
 
-		if($fecha){
-			$data["title"] = "Detalle de mercadería para el día ".$fecha;
-			$data['hojaruta_ids'] = explode(",", $hojaruta_ids); //ids de hojas de rutas
-			$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($fecha,$data['hojaruta_ids']);
-			$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print2', $data, true);
+		
+		$data["title"] = "Detalle de mercadería para el día ".$fecha;
+		$data['hojaruta_ids'] = explode(",", $hojaruta_ids); //ids de hojas de rutas
+		$data['detallearticulos']= $this->pedidodetalle_model->getPedidoDetalle_m($data['hojaruta_ids']);
+		$html = $this->load->view('pedidodetalle_view/record_list_detalle_articulos_to_print2', $data, true);
 
-			$data = $html;
-			$name = $this->basicrud->setFileName('DetalleArticulos').".txt";
-			force_download($name, $data);
-		}
+		$data = $html;
+		$name = $this->basicrud->setFileName('DetalleArticulos').".txt";
+		force_download($name, $data);
+		
 
 	}
 }

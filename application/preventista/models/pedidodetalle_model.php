@@ -254,14 +254,13 @@ class Pedidodetalle_Model extends CI_Model {
 	}
 
 
-	function getPedidoDetalle_m($pedidodetalle_created_at, $arrHojaRutas = array() )
+	function getPedidoDetalle_m($arrHojaRutas = array() )
 	{
-		$string = "CAST(pd.pedidodetalle_created_at AS DATE) = '".$this->basicrud->getFormatDateToBD($pedidodetalle_created_at)."'";
+		//$string = "CAST(pd.pedidodetalle_created_at AS DATE) = '".$this->basicrud->getFormatDateToBD($pedidodetalle_created_at)."'";
 		
 		$this->db->select_sum('pd.pedidodetalle_cantidad','cantidadpedido');
 
 		$this->db->where_in('h.hojaruta_id', $arrHojaRutas);
-		$this->db->where($string);
 		
 		$this->db->group_by("pd.articulos_id"); 
 
