@@ -5,13 +5,13 @@
 		<title>Preventista | Home</title>
 		<link rel="shortcut icon" href="<?=base_url()?>css/images/favicon.ico" />
 		<link rel="stylesheet" href="<?=base_url()?>css/reset.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="<?=base_url()?>css/style.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=base_url()?>css/style.min.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-modal-messages/jquery.messages.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-modal-alerts/jquery.alerts.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-ui/flick/jquery.ui.all.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-autocomplete/jquery.autocomplete.css" type="text/css" media="screen">
-		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.7.1.js"></script>
-		<script type="text/javascript" src="<?=base_url()?>js/general_functions.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/general_functions.min.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-modal-messages/jquery.messages.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-modal-alerts/jquery.alerts.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-menu-acordion/jquery.acordion.js"></script>
@@ -24,7 +24,7 @@
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-ui/jquery.ui.dialog.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-ui/jquery.ui.tabs.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-ui/i18n/jquery.ui.datepicker-es.js"></script>
-		<script type="text/javascript" src="<?=base_url()?>js/jquery-autocomplete/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 	</head>
 	<body>
 		<div id="wrap">

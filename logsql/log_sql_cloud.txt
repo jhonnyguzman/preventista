@@ -49,3 +49,13 @@ INSERT INTO remitos (_id, hojarutadetalle_id, estado) VALUES ('2', '3', 12)
 UPDATE hojaruta SET estado = 11 WHERE _id = '2'
 INSERT INTO pagos (_id, monto, clientes_id, usuarios_id, fechaingreso, created_at, updated_at) VALUES ('1', '200', '50002', '1', '2012-10-18 07:09:20', '2012-10-18 07:09:20', '2012-10-18 07:09:20')
 UPDATE cuentacorriente SET clientes_id = '50002', haber = 0, debe = -200, updated_at = '2012-10-18 07:09:20' WHERE clientes_id = '50002'
+UPDATE cuentacorriente SET clientes_id = '6', haber = 0, debe = 0, updated_at = '2012-10-18 21:23:27' WHERE clientes_id = '6'
+UPDATE articulos SET preciocompra = '2', stockreal = '100', precio1 = '2.2', precio2 = '2.3', precio3 = '2.4', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '14'
+UPDATE articulos SET preciocompra = '2', stockreal = '200', precio1 = '2.2', precio2 = '2.3', precio3 = '2.4', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '29'
+UPDATE articulos SET preciocompra = '2', stockreal = '150', precio1 = '2.2', precio2 = '2.3', precio3 = '2.4', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '31'
+UPDATE articulos SET preciocompra = '2', stockreal = '10', precio1 = '2.2', precio2 = '2.3', precio3 = '2.4', porcentaje1 = '10', porcentaje2 = '15', porcentaje3 = '20' WHERE _id = '45'
+INSERT INTO pedidos (_id, montototal, montoadeudado, clientes_id, estado, tramites_id, observaciones, created_at, updated_at) VALUES ('5', '27.00', '27.00', '4', 6, '1', '', '2012-10-18 21:29:16', '2012-10-18 21:29:16')
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES ('21', 5, '9', '1', '', '9.00', '9', '2012-10-18 21:29:16', '2012-10-18 21:29:16')
+UPDATE articulos SET stockreal = stockreal - 1 WHERE _id = '9'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (22, 5, '7', '2', '', '18.00', '9', '2012-10-18 21:29:16', '2012-10-18 21:29:16')
+UPDATE articulos SET stockreal = stockreal - 2 WHERE _id = '7'

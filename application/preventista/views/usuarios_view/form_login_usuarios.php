@@ -5,8 +5,8 @@
 		<title>Preventista | Acceso </title>
 		<link rel="shortcut icon" href="<?=base_url()?>css/images/favicon.ico" />
 		<link type="text/css" href="<?=base_url()?>css/jquery-ui/ui-darkness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
-		<link rel='stylesheet' href='<?=base_url()?>css/login.css' type='text/css' media='screen' />
-		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.7.1.js"></script>
+		<link rel='stylesheet' href='<?=base_url()?>css/login.min.css' type='text/css' media='screen' />
+		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.8.2.min.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-ui/jquery-ui-1.8.18.custom.js"></script>
 	</head>
 	<body id="login">
