@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-modal-alerts/jquery.alerts.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-ui/flick/jquery.ui.all.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-autocomplete/jquery.autocomplete.css" type="text/css" media="screen">
-		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/general_functions.min.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-modal-messages/jquery.messages.js"></script>
 		<script type="text/javascript" src="<?=base_url()?>js/jquery-modal-alerts/jquery.alerts.js"></script>
