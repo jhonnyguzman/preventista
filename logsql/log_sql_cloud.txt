@@ -62,3 +62,11 @@ UPDATE articulos SET stockreal = stockreal - 2 WHERE _id = '7'
 INSERT INTO hojaruta (_id, fleteros_id, usuarios_id, estado, created_at, updated_at) VALUES ('3', '1', '1', 10, '2012-10-18 23:29:30', '2012-10-18 23:29:30')
 INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('5', 3, '5', '2012-10-18 23:29:30')
 UPDATE pedidos SET estado = 7 WHERE _id = '5'
+UPDATE articulos SET stockreal = stockreal + 100 WHERE _id = '7'
+UPDATE articulos SET preciocompra = '7.5', precio1 = '8.25', precio2 = '8.63', precio3 = '9.00' WHERE _id = '7'
+UPDATE articulos SET stockreal = stockreal + 500 WHERE _id = '8'
+UPDATE articulos SET preciocompra = '17', precio1 = '18.70', precio2 = '19.55', precio3 = '20.40' WHERE _id = '8'
+UPDATE articulos SET stockreal = stockreal + (0) WHERE _id = '7'
+UPDATE articulos SET preciocompra = '7.5', precio1 = '8.25', precio2 = '8.63', precio3 = '9.00' WHERE _id = '7'
+UPDATE articulos SET stockreal = stockreal + (50) WHERE _id = '8'
+UPDATE articulos SET preciocompra = '17', precio1 = '18.70', precio2 = '19.55', precio3 = '20.40' WHERE _id = '8'

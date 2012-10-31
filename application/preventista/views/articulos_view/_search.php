@@ -26,13 +26,13 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#articulos_descripcion").keypress(function(){
+	$("#articulos_descripcion").bind("keypress",function(){
 		submitData2('formSearcharticulos',new Array('result-list','result-list'));
 	});
-	$("#rubros_id").click(function(){
+	$("#rubros_id").change(function(){
 		submitData2('formSearcharticulos',new Array('result-list','result-list'));
 	});
-	$("#marcas_id").click(function(){
+	$("#marcas_id").change(function(){
 		submitData2('formSearcharticulos',new Array('result-list','result-list'));
 	});
 });

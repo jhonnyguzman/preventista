@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php for($i=0; $i<10; $i++): ?>
+			<?php for($i=0; $i<30; $i++): ?>
 				<tr id="<?=$i?>">
 					<td><input type="text" name="articulos_descripcion-<?=$i?>" id="articulos_descripcion-<?=$i?>" onFocus="autocompleteTwo('articulos_descripcion-<?=$i?>','<?=base_url()?>autocomplete_controller/getAutocompleteLineas','articulos_model','',new Array('articulos_id-<?=$i?>', 'articulos_preciocompra-<?=$i?>','articulos_stockreal-<?=$i?>'),'articulos_descripcion');" 
 						onblur="checkRepeatArticle(this,<?=$i?>); setPriceOld(<?=$i?>);"/>

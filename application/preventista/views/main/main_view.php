@@ -5,7 +5,7 @@
 		<title>Preventista | Home</title>
 		<link rel="shortcut icon" href="<?=base_url()?>css/images/favicon.ico" />
 		<link rel="stylesheet" href="<?=base_url()?>css/reset.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="<?=base_url()?>css/style.min.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="<?=base_url()?>css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-modal-messages/jquery.messages.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-modal-alerts/jquery.alerts.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?=base_url()?>css/jquery-ui/flick/jquery.ui.all.css" type="text/css" media="screen">

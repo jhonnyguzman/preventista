@@ -226,20 +226,22 @@ class BasiCrud {
 	   	(empty($options['uri_seg'])) ? $config['uri_segment'] = 3 : $config['uri_segment'] = $options['uri_seg'];
 	   
 	   	$config['per_page'] = $options['perpage'];
-	   
-			//firt page	   	
+	   	
+	   	$config['num_links'] = 10;
+
+		//firt page	   	
 	   	$config['first_link'] = 'Primero';
 	   	$config['first_tag_open'] = '<span>';
 	   	$config['first_tag_close'] = '</span>';
-			//next page	   	
+		//next page	   	
 	   	$config['next_link'] = 'Siguiente';
 	   	$config['next_tag_open'] = '<span>';
 	   	$config['next_tag_close'] = '</span>';
 	   	//previous page
 	   	$config['prev_link'] = 'Atr&aacute;s';
 	   	$config['prev_tag_open'] = '<span>';
-			$config['prev_tag_close'] = '</span>';
-			//last page	   	
+		$config['prev_tag_close'] = '</span>';
+		//last page	   	
 	   	$config['last_link'] = '&Uacute;ltimo';
 	   	$config['last_tag_open'] = '<span>';
 	   	$config['last_tag_close'] = '</span>';
@@ -251,7 +253,7 @@ class BasiCrud {
 	   	$links = $CI->pagination->create_links();
 	   	$num_pages = $CI->pagination->num_pages;
 	   
-	   	if($links) $data= "Registros encontrados:&nbsp;".$config['total_rows']."&nbsp;|&nbsp;P&aacute;gina ".$CI->pagination->cur_page."&nbsp;de&nbsp;".$num_pages."&nbsp;|&nbsp;".$links;  
+	   	if($links) $data= "Registros encontrados:&nbsp;".$config['total_rows']."&nbsp;|&nbsp;P&aacute;g. ".$CI->pagination->cur_page."&nbsp;de&nbsp;".$num_pages."&nbsp;|&nbsp;".$links;  
 	   	return $data; 
 
 	}

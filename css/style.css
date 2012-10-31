@@ -1077,14 +1077,21 @@ body
 {
 	width: 98%;	
 	margin-top: 15px;
-	font-size: 1.2em;
+	font-size: 1.5em;
 	font-family: verdana, sans-serif;
 	color: #6B6B6B;
 }
 
+
 .pagination .pag a
 {
-	color: #2287E6;		
+	color: #2287E6;
+
+}
+
+.pagination .pag span
+{
+	margin: 3px;
 }
 
 .pagination .pag a:hover
