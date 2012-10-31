@@ -10488,3 +10488,367 @@ ERROR - 2012-10-31 20:14:51 --> Severity: Notice  --> Undefined variable: data /
 DEBUG - 2012-10-31 20:14:51 --> File loaded: application/preventista/views/compras_view/record_list_compras.php
 DEBUG - 2012-10-31 20:14:51 --> Final output sent to browser
 DEBUG - 2012-10-31 20:14:51 --> Total execution time: 0.0627
+DEBUG - 2012-10-31 20:35:33 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:33 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:33 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:33 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:33 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:33 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:33 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:33 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:33 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:33 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:33 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:33 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:33 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:33 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:33 --> File loaded: application/preventista/views/main/main_view.php
+DEBUG - 2012-10-31 20:35:33 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:33 --> Total execution time: 0.0628
+DEBUG - 2012-10-31 20:35:35 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:35 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:35 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:35 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:35 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:35 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:35 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:35 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:35 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:35 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:35 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:35 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:35 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:35 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:35 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:35 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:35 --> Config file loaded: application/preventista/config/articulos_settings.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/_menu_botonera.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/_search.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/home_articulos.php
+ERROR - 2012-10-31 20:35:35 --> Severity: Notice  --> Undefined index: count /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 219
+ERROR - 2012-10-31 20:35:35 --> Severity: Notice  --> Undefined index: nameMethod /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 220
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/_formprintall.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/_formprintfilter.php
+DEBUG - 2012-10-31 20:35:35 --> File loaded: application/preventista/views/articulos_view/record_list_articulos.php
+DEBUG - 2012-10-31 20:35:35 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:35 --> Total execution time: 0.1013
+DEBUG - 2012-10-31 20:35:39 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:39 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:39 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:39 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:39 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:39 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:39 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:39 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:39 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:39 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:39 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:39 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:39 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:39 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:39 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:39 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:39 --> Config file loaded: application/preventista/config/articulos_settings.php
+ERROR - 2012-10-31 20:35:39 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:39 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:39 --> Severity: Notice  --> Undefined index: nameMethod /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 214
+DEBUG - 2012-10-31 20:35:39 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:39 --> File loaded: application/preventista/views/articulos_view/_formprintall.php
+DEBUG - 2012-10-31 20:35:39 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:39 --> File loaded: application/preventista/views/articulos_view/_formprintfilter.php
+DEBUG - 2012-10-31 20:35:39 --> File loaded: application/preventista/views/articulos_view/record_list_articulos.php
+DEBUG - 2012-10-31 20:35:39 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:39 --> Total execution time: 0.0988
+DEBUG - 2012-10-31 20:35:41 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:41 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:41 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:41 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:41 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:41 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:41 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:41 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:41 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:41 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:41 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:41 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:41 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:41 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:41 --> File loaded: application/preventista/views/main/main_view.php
+DEBUG - 2012-10-31 20:35:41 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:41 --> Total execution time: 0.0570
+DEBUG - 2012-10-31 20:35:43 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:43 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:43 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:43 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:43 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:43 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:43 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:43 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:43 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:43 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:43 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:43 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:43 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:43 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:43 --> File loaded: application/preventista/views/main/main_view.php
+DEBUG - 2012-10-31 20:35:43 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:43 --> Total execution time: 0.0570
+DEBUG - 2012-10-31 20:35:45 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:45 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:45 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:45 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:45 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:45 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:45 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:45 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:45 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:45 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:45 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:45 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:45 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:45 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:45 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:45 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:45 --> Config file loaded: application/preventista/config/articulos_settings.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/_menu_botonera.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/_search.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/home_articulos.php
+ERROR - 2012-10-31 20:35:45 --> Severity: Notice  --> Undefined index: count /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 219
+ERROR - 2012-10-31 20:35:45 --> Severity: Notice  --> Undefined index: nameMethod /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 220
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/_formprintall.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/_formprintfilter.php
+DEBUG - 2012-10-31 20:35:45 --> File loaded: application/preventista/views/articulos_view/record_list_articulos.php
+DEBUG - 2012-10-31 20:35:45 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:45 --> Total execution time: 0.0838
+DEBUG - 2012-10-31 20:35:47 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:47 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:47 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:47 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:47 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:47 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:47 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:47 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:47 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:47 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:47 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:47 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:47 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:47 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:47 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:47 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:47 --> Config file loaded: application/preventista/config/articulos_settings.php
+ERROR - 2012-10-31 20:35:47 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:47 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:47 --> Severity: Notice  --> Undefined index: nameMethod /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 214
+DEBUG - 2012-10-31 20:35:47 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:47 --> File loaded: application/preventista/views/articulos_view/_formprintall.php
+DEBUG - 2012-10-31 20:35:47 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:47 --> File loaded: application/preventista/views/articulos_view/_formprintfilter.php
+DEBUG - 2012-10-31 20:35:47 --> File loaded: application/preventista/views/articulos_view/record_list_articulos.php
+DEBUG - 2012-10-31 20:35:47 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:47 --> Total execution time: 0.0784
+DEBUG - 2012-10-31 20:35:48 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:48 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:48 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:48 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:48 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:48 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:48 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:48 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:48 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:48 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:48 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:48 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:48 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:48 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:48 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:48 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:48 --> Config file loaded: application/preventista/config/articulos_settings.php
+ERROR - 2012-10-31 20:35:48 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:48 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:48 --> Severity: Notice  --> Undefined index: nameMethod /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 214
+DEBUG - 2012-10-31 20:35:48 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:48 --> File loaded: application/preventista/views/articulos_view/_formprintall.php
+DEBUG - 2012-10-31 20:35:48 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:48 --> File loaded: application/preventista/views/articulos_view/_formprintfilter.php
+DEBUG - 2012-10-31 20:35:48 --> File loaded: application/preventista/views/articulos_view/record_list_articulos.php
+DEBUG - 2012-10-31 20:35:48 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:48 --> Total execution time: 0.0849
+DEBUG - 2012-10-31 20:35:49 --> Config Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Hooks Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Utf8 Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> UTF-8 Support Enabled
+DEBUG - 2012-10-31 20:35:49 --> URI Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Router Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Output Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Input Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Global POST and COOKIE data sanitized
+DEBUG - 2012-10-31 20:35:49 --> Language Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Loader Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:49 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:49 --> Config file loaded: application/preventista/config/preventista_settings.php
+DEBUG - 2012-10-31 20:35:49 --> Helper loaded: url_helper
+DEBUG - 2012-10-31 20:35:49 --> Helper loaded: date_helper
+DEBUG - 2012-10-31 20:35:49 --> Helper loaded: file_helper
+DEBUG - 2012-10-31 20:35:49 --> Helper loaded: text_helper
+DEBUG - 2012-10-31 20:35:49 --> Database config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:49 --> Database Driver Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Helper loaded: form_helper
+DEBUG - 2012-10-31 20:35:49 --> Form Validation Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Session Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Helper loaded: string_helper
+DEBUG - 2012-10-31 20:35:49 --> Session routines successfully run
+DEBUG - 2012-10-31 20:35:49 --> Pagination Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Controller Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Model Class Initialized
+DEBUG - 2012-10-31 20:35:49 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:49 --> Config for development environment is not found. Trying global config.
+DEBUG - 2012-10-31 20:35:49 --> Config file loaded: application/preventista/config/articulos_settings.php
+ERROR - 2012-10-31 20:35:49 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:49 --> Severity: Notice  --> Undefined offset: -1 /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 663
+ERROR - 2012-10-31 20:35:49 --> Severity: Notice  --> Undefined index: nameMethod /var/www/repositorios/preventista/application/preventista/libraries/basicrud.php 214
+DEBUG - 2012-10-31 20:35:49 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:49 --> File loaded: application/preventista/views/articulos_view/_formprintall.php
+DEBUG - 2012-10-31 20:35:49 --> File loaded: application/preventista/views/articulos_view/_fieldstoprint.php
+DEBUG - 2012-10-31 20:35:49 --> File loaded: application/preventista/views/articulos_view/_formprintfilter.php
+DEBUG - 2012-10-31 20:35:49 --> File loaded: application/preventista/views/articulos_view/record_list_articulos.php
+DEBUG - 2012-10-31 20:35:49 --> Final output sent to browser
+DEBUG - 2012-10-31 20:35:49 --> Total execution time: 0.0855
