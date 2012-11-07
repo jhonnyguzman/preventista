@@ -439,7 +439,20 @@ class Hojaruta_Controller extends CI_Controller {
 			$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $f));
 			if($data['hojarutadetalle'])
 			{
-				//page info here, db calls, etc.     
+				//obtener los pedidos adeudados para ponerlos en cada item de la hoja de ruta
+				// reemplezamos el valor del campo tramite_id que nose usa por un array de objetos que va a contener
+				// los pedidos adeudados.
+    			foreach($data['hojarutadetalle'] as $key => $g)
+    			{
+    				$pedido = $this->pedidos_model->get_m(array("pedidos_id" => $g->pedidos_id));
+					$remito = $this->remitos_model->get_m(array("hojarutadetalle_id" => $g->hojarutadetalle_id));
+					$data['hojarutadetalle'][$key]->tramites_id = $this->pedidos_model->getPedidosAdeudados2_m(array(
+						"clientes_id" => $pedido[0]->clientes_id,
+						'remitos_created_at' => $remito[0]->remitos_created_at_without_format));
+    			}
+
+
+    			//page info here, db calls, etc.     
     			$html.= $this->load->view('hojaruta_view/record_list_to_print_txt', $data, true);
 
     			foreach($data['hojarutadetalle'] as $g)
@@ -668,13 +681,27 @@ class Hojaruta_Controller extends CI_Controller {
 		
 		if($hojaruta_id){
 			$data['hojaruta'] = $this->hojaruta_model->get_m(array("hojaruta_id" => $hojaruta_id), $flag = 1);
-			if($data['hojaruta']){
-				$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $hojaruta_id));
+			if($data['hojaruta'])
+			{
+				$data['hojarutadetalle'] = $this->hojarutadetalle_model->get_m(array("hojaruta_id" => $hojaruta_id));	
+				
+				//obtenes los pedidos adeudados para ponerlos en cada item de la hoja de ruta
+				// reemplezamos el valor del campo tramite_id que nose usa por un array de objetos que va a contener
+				// los pedidos adeudados.
+    			foreach($data['hojarutadetalle'] as $key => $g)
+    			{
+    				$pedido = $this->pedidos_model->get_m(array("pedidos_id" => $g->pedidos_id));
+					$remito = $this->remitos_model->get_m(array("hojarutadetalle_id" => $g->hojarutadetalle_id));
+					$data['hojarutadetalle'][$key]->tramites_id = $this->pedidos_model->getPedidosAdeudados2_m(array(
+						"clientes_id" => $pedido[0]->clientes_id,
+						'remitos_created_at' => $remito[0]->remitos_created_at_without_format));
+    			}
 
 				$html = $this->load->view('hojaruta_view/record_list_to_print_txt', $data, true);
 				$data = $html;
 				$name = 'HojaRuta_'.$hojaruta_id.".txt";
 				force_download($name, $data);
+
 			}
 		}
 	}

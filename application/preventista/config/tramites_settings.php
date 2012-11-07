@@ -12,7 +12,7 @@ $config['accessTitle']='<div class="accessTitle"> No tienes permiso para realiza
 /* Config labels of the form fields */
 
 $config['tramites_id']='Tramite Id';
-$config['tramites_descripcion']='Descripci&aacute;n';
+$config['tramites_descripcion']='Descripci&oacute;n';
 $config['tramites_created_at']='Fecha de alta';
 $config['tramites_updated_at']='Actualizado el';
 

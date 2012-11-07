@@ -1,0 +1,5 @@
+- Al momento de imprimir una hoja de ruta, aparte de los campos nombre cliente, tramite, importa, debe salir los pedidos adeudados de cada cliente (solo el importe).
+
+- El formato de impresion de remitos debe ser mas grande.
+
+- La fuente de impresion debe ser mas grande
