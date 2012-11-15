@@ -6,9 +6,17 @@ MySQL Host	localhost
 Correo entrante	marcospreventista.com.ar
 Correo saliente	marcospreventista.com.ar
 
+----------------------------------------
 
-FTP
+DirectAdmin:
 
+Usuario: admin
+Contraseña: marcospreventista28009
+Host: 184.75.251.75:2222
+
+----------------------------------------
+
+FTP  ADMIN
 Datos de Acceso:
 
 Host	www.marcospreventista.com.ar
@@ -16,3 +24,26 @@ Alternativo	184.75.251.75
 Usuario	root
 Clave	EH4K8GtPUc
 Puerto	21
+
+----------------------------------------
+
+FTP MARCOS
+
+Host	184.75.251.75
+Usuario	marcos
+Clave	marcospreventista28009
+Puerto	21
+
+
+BASE DE DATOS DESARROLLO
+
+Nombre: admin_preventistadev
+Usuario: admin_marcos
+Contraseña: marcospreventista28009
+
+BASE DE DATOS PRODUCCION
+
+Nombre: admin_preventistaprod
+Usuario: admin_marcos
+Contraseña: marcospreventista28009
+

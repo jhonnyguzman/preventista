@@ -38,8 +38,8 @@
 			}
 		}
 
-		echo "\n".str_pad(' ', 17)."Saldo C/C: $ ".$saldocliente;
-		echo "\n".str_pad(' ', 6)."Saldo + Total Pedido: $ ".($saldocliente + $pedido[0]->peididos_montototal);
+		//echo "\n".str_pad(' ', 17)."Saldo C/C: $ ".$saldocliente;
+		//echo "\n".str_pad(' ', 6)."Saldo + Total Pedido: $ ".($saldocliente + $pedido[0]->peididos_montototal);
 
 		echo "\n\n".str_pad(".",47,".");
 
@@ -48,9 +48,9 @@
 		echo str_pad("Remito N°: ".$remito[0]->remitos_id, 31)."Fecha: ".$remito[0]->remitos_created_at."\n";
 		echo "Cliente: ".$pedido[0]->clientes_apellido." ".$pedido[0]->clientes_nombre."\n";
 		echo str_pad("Fletero: ".$hojaruta->fleteros_apellnom, 39)."\n";
-		echo str_pad(' ', 20)."Total Pedido: $ ".$pedido[0]->peididos_montototal."\n";
-		echo str_pad(' ', 23)."Saldo C/C: $ ".$saldocliente."\n";
-		echo str_pad(' ', 27)."Deuda: $ ".($saldocliente + $pedido[0]->peididos_montototal)."\n\n";
+		echo str_pad(' ', 20)."Total Pedido: $ ".$pedido[0]->peididos_montototal."\n\n";
+		//echo str_pad(' ', 23)."Saldo C/C: $ ".$saldocliente."\n";
+		//echo str_pad(' ', 27)."Deuda: $ ".($saldocliente + $pedido[0]->peididos_montototal)."\n\n";
 		echo str_pad("Firma Cliente: ", 47,'.')."\n";
 
 		echo "\n\n".str_pad("-",47,"-");
