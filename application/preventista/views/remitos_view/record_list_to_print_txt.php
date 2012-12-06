@@ -23,7 +23,7 @@
 		echo "\n".str_pad(' ', 29)."Total: $ ".$pedido[0]->peididos_montototal;
 
 		//remitos adeudados
-		if(count($pedidosadeudados) > 0)
+		/*if(count($pedidosadeudados) > 0)
 		{
 			echo "\nRemitos Adeudados";
 			foreach($pedidosadeudados as $f){
@@ -41,7 +41,7 @@
 		//echo "\n".str_pad(' ', 17)."Saldo C/C: $ ".$saldocliente;
 		//echo "\n".str_pad(' ', 6)."Saldo + Total Pedido: $ ".($saldocliente + $pedido[0]->peididos_montototal);
 
-		echo "\n\n".str_pad(".",47,".");
+		*/echo "\n\n".str_pad(".",47,".");
 
 		//Comprobante de entrega
 		echo "\n\n\n";

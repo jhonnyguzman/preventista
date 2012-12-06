@@ -8,7 +8,7 @@
 		echo str_pad("Trám.", 9, ' ', STR_PAD_RIGHT);
 		echo str_pad("Imp.", 9, ' ', STR_PAD_RIGHT);
 		echo str_pad("Mto. Recib.", 11, ' ', STR_PAD_RIGHT);
-		echo str_pad("Deudas", 8, ' ', STR_PAD_LEFT);
+		//echo str_pad("Deudas", 8, ' ', STR_PAD_LEFT);
 		echo "\n".str_pad("-",56,"-");
 
 		foreach($hojarutadetalle as $f){
@@ -18,7 +18,7 @@
 			echo str_pad("$ ".$f->peididos_montototal, 11, ' ', STR_PAD_RIGHT);
 			echo str_pad(".", 6, '.', STR_PAD_RIGHT);
 
-			if(is_array($f->tramites_id) && count($f->tramites_id) > 0){
+			/*if(is_array($f->tramites_id) && count($f->tramites_id) > 0){
 				$i = 1;
 				foreach ($f->tramites_id as $g) {
 					if($i == 1){
@@ -30,7 +30,7 @@
 					$i++;
 				}
 				
-			}
+			}*/
 
 			echo "\n";
 			echo " ".$f->clientes_direccion;	
