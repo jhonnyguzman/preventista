@@ -197,3 +197,74 @@ UPDATE remitos SET estado = 13 WHERE _id = '12'
 UPDATE pedidos SET estado = 8 WHERE _id = '13'
 UPDATE cuentacorriente SET clientes_id = '30', haber = 0, debe = 98.4, updated_at = '2012-11-07 01:05:44' WHERE clientes_id = '30'
 UPDATE hojaruta SET estado = 25 WHERE _id = '8'
+INSERT INTO pedidos (_id, montototal, montoadeudado, clientes_id, estado, tramites_id, observaciones, created_at, updated_at) VALUES ('15', '155.60', '155.60', '4', 6, '2', '', '2012-11-29 21:25:07', '2012-11-29 21:25:07')
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES ('51', 15, '7', '10', '', '90.00', '9', '2012-11-29 21:25:07', '2012-11-29 21:25:07')
+UPDATE articulos SET stockreal = stockreal - 10 WHERE _id = '7'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (52, 15, '9', '2', '', '18.00', '9', '2012-11-29 21:25:07', '2012-11-29 21:25:07')
+UPDATE articulos SET stockreal = stockreal - 2 WHERE _id = '9'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (53, 15, '31', '5', '', '12.00', '2.4', '2012-11-29 21:25:07', '2012-11-29 21:25:07')
+UPDATE articulos SET stockreal = stockreal - 5 WHERE _id = '31'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (54, 15, '2', '10', '', '35.60', '3.56', '2012-11-29 21:25:07', '2012-11-29 21:25:07')
+UPDATE articulos SET stockreal = stockreal - 10 WHERE _id = '2'
+INSERT INTO pedidos (_id, montototal, montoadeudado, clientes_id, estado, tramites_id, observaciones, created_at, updated_at) VALUES ('16', '116.40', '116.40', '30', 6, '3', '', '2012-11-29 21:25:47', '2012-11-29 21:25:47')
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES ('56', 16, '7', '10', '', '90.00', '9', '2012-11-29 21:25:47', '2012-11-29 21:25:47')
+UPDATE articulos SET stockreal = stockreal - 10 WHERE _id = '7'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (57, 16, '93', '1', '', '2.40', '2.4', '2012-11-29 21:25:48', '2012-11-29 21:25:48')
+UPDATE articulos SET stockreal = stockreal - 1 WHERE _id = '93'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (58, 16, '153', '10', '', '24.00', '2.4', '2012-11-29 21:25:48', '2012-11-29 21:25:48')
+UPDATE articulos SET stockreal = stockreal - 10 WHERE _id = '153'
+INSERT INTO hojaruta (_id, fleteros_id, usuarios_id, estado, created_at, updated_at) VALUES ('9', '1', '1', 10, '2012-11-29 21:26:07', '2012-11-29 21:26:07')
+INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('15', 9, '16', '2012-11-29 21:26:07')
+UPDATE pedidos SET estado = 7 WHERE _id = '16'
+INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('16', 9, '15', '2012-11-29 21:26:07')
+UPDATE pedidos SET estado = 7 WHERE _id = '15'
+INSERT INTO remitos (_id, hojarutadetalle_id, estado) VALUES ('13', '16', 12)
+INSERT INTO remitos (_id, hojarutadetalle_id, estado) VALUES ('14', '15', 12)
+UPDATE hojaruta SET estado = 11 WHERE _id = '9'
+UPDATE remitos SET estado = 13 WHERE _id = '13'
+UPDATE pedidos SET estado = 8 WHERE _id = '15'
+INSERT INTO pagos (_id, monto, clientes_id, usuarios_id, fechaingreso, updated_at) VALUES ('2', '155.6', '4', '1', '2012-11-29 21:26:57', '2012-11-29 21:26:57')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '5', 2, '27')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '5'
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '6', 2, '79.2')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '6'
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '7', 2, '47.4')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '7'
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '8', 2, 2)
+UPDATE pedidos SET montoadeudado = 14.64, estado = 15 WHERE _id = '8'
+UPDATE cuentacorriente SET clientes_id = '4', haber = 155.6, debe = 313.04, updated_at = '2012-11-29 21:26:58' WHERE clientes_id = '4'
+UPDATE remitos SET estado = 13 WHERE _id = '14'
+UPDATE pedidos SET estado = 8 WHERE _id = '16'
+INSERT INTO pagos (_id, monto, clientes_id, usuarios_id, fechaingreso, updated_at) VALUES ('3', '116.4', '30', '1', '2012-11-29 21:26:58', '2012-11-29 21:26:58')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '4', 3, '12')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '4'
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '10', 3, '79.2')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '10'
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '13', 3, '7.2')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '13'
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '16', 3, 18)
+UPDATE pedidos SET montoadeudado = 98.4, estado = 15 WHERE _id = '16'
+UPDATE cuentacorriente SET clientes_id = '30', haber = 116.4, debe = 98.4, updated_at = '2012-11-29 21:26:58' WHERE clientes_id = '30'
+UPDATE hojaruta SET estado = 25 WHERE _id = '9'
+UPDATE cuentacorriente SET clientes_id = '4', haber = 155.6, debe = 313.04, updated_at = '2012-11-29 21:27:49' WHERE clientes_id = '4'
+UPDATE cuentacorriente SET clientes_id = '4', haber = 155.6, debe = 313.04, updated_at = '2012-11-29 21:28:41' WHERE clientes_id = '4'
+UPDATE cuentacorriente SET clientes_id = '6', haber = 0, debe = 0, updated_at = '2012-11-29 21:28:59' WHERE clientes_id = '6'
+UPDATE cuentacorriente SET clientes_id = '30', haber = 116.4, debe = 98.4, updated_at = '2012-11-29 21:29:04' WHERE clientes_id = '30'
+INSERT INTO pedidos (_id, montototal, montoadeudado, clientes_id, estado, tramites_id, observaciones, created_at, updated_at) VALUES ('17', '130.80', '130.80', '13', 6, '1', '', '2012-11-29 21:30:16', '2012-11-29 21:30:16')
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES ('60', 17, '7', '10', '', '90.00', '9', '2012-11-29 21:30:16', '2012-11-29 21:30:16')
+UPDATE articulos SET stockreal = stockreal - 10 WHERE _id = '7'
+INSERT INTO pedidodetalle (_id, pedidos_id, articulos_id, cantidad, montoacordado, subtotal, pv, created_at, updated_at) VALUES (61, 17, '8', '2', '', '40.80', '20.4', '2012-11-29 21:30:16', '2012-11-29 21:30:16')
+UPDATE articulos SET stockreal = stockreal - 2 WHERE _id = '8'
+INSERT INTO hojaruta (_id, fleteros_id, usuarios_id, estado, created_at, updated_at) VALUES ('10', '1', '1', 10, '2012-11-29 21:30:23', '2012-11-29 21:30:23')
+INSERT INTO hojarutadetalle (_id, hojaruta_id, pedidos_id, updated_at) VALUES ('17', 10, '17', '2012-11-29 21:30:23')
+UPDATE pedidos SET estado = 7 WHERE _id = '17'
+INSERT INTO remitos (_id, hojarutadetalle_id, estado) VALUES ('15', '17', 12)
+UPDATE hojaruta SET estado = 11 WHERE _id = '10'
+UPDATE remitos SET estado = 13 WHERE _id = '15'
+UPDATE pedidos SET estado = 8 WHERE _id = '17'
+INSERT INTO pagos (_id, monto, clientes_id, usuarios_id, fechaingreso, updated_at) VALUES ('4', '130.8', '13', '1', '2012-11-29 21:30:43', '2012-11-29 21:30:43')
+INSERT INTO pagospedidos (_id, pedidos_id, pagos_id, montocubierto) VALUES (NULL, '17', 4, '130.8')
+UPDATE pedidos SET montoadeudado = 0, estado = 16 WHERE _id = '17'
+UPDATE cuentacorriente SET clientes_id = '13', haber = 130.8, debe = 0, updated_at = '2012-11-29 21:30:43' WHERE clientes_id = '13'
+UPDATE hojaruta SET estado = 25 WHERE _id = '10'
+UPDATE cuentacorriente SET clientes_id = '13', haber = 130.8, debe = 0, updated_at = '2012-11-29 21:31:27' WHERE clientes_id = '13'
